@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       documentId,
-      runs: runs.map((r) => ({
+      runs: runs.map((r: (typeof runs)[0]) => ({
         id: r.id,
         documentId: r.documentId,
         createdAt: r.createdAt.toISOString(),
