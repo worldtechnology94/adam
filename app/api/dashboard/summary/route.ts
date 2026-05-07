@@ -60,12 +60,12 @@ export async function GET(request: NextRequest) {
     const complianceScore = latestRun?.complianceScore ?? 100;
     const violationsList = latestRun?.violations ?? [];
     const total = violationsList.length;
-    const critical = violationsList.filter((v) => v.severity === "critical").length;
-    const major = violationsList.filter((v) => v.severity === "major").length;
-    const minor = violationsList.filter((v) => v.severity === "minor").length;
+    const critical = violationsList.filter((v: { severity: string }) => v.severity === "critical").length;
+    const major = violationsList.filter((v: { severity: string }) => v.severity === "major").length;
+    const minor = violationsList.filter((v: { severity: string }) => v.severity === "minor").length;
 
     const byRule = violationsList.reduce(
-      (acc, v) => {
+      (acc: Record<string, { ruleId: string; ruleName: string; count: number }>, v: { ruleId: string; ruleName: string; severity: string }) => {
         const key = v.ruleId;
         if (!acc[key]) acc[key] = { ruleId: v.ruleId, ruleName: v.ruleName, count: 0 };
         acc[key].count++;
