@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "STE-1.1",
+    "name": "Approved words only",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "Use only words that are on the official STE approved word list, and use each word only in the part of speech (noun, verb, adjective, etc.) for which it is approved. If you need a meaning that is not approved, use a different word or phrase from the list.",
+    "specText": "Use only approved words in their approved part of speech. See the dictionary.",
+    "compliantExamples": [
+      {
+        "text": "Remove the cover."
+      },
+      {
+        "text": "The pressure is correct."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Utilize the correct tool.",
+        "reason": "'Utilize' is not on the approved list; use 'Use'."
+      },
+      {
+        "text": "The pressure was observed to be correct.",
+        "reason": "Passive and wordy; use active, approved words."
+      }
+    ]
+  },
+  {
+    "id": "STE-1.2",
+    "name": "Prohibited words",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "Do not use words that are explicitly listed as not approved. The dictionary gives approved alternatives for each.",
+    "specText": "Do not use words that are not in the approved word list.",
+    "compliantExamples": [
+      {
+        "text": "Before you start, check the oil level."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Prior to starting the engine, check the oil.",
+        "reason": "'Prior to' is not approved; use 'Before'."
+      }
+    ]
+  },
+  {
+    "id": "STE-1.3",
+    "name": "Approved meanings",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "Use each approved dictionary word only in the meaning(s) given for that word. If the writer needs a different sense, use the alternative word or construction from the dictionary (meaning rows).",
+    "specText": "Use approved words only with their approved meanings.",
+    "specCitation": "ASD-STE100 Simplified Technical English Issue 9 (January 2025), Rule 1.3 — Words, Part 1",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-1.4",
+    "name": "Technical nouns",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "This rule is part of the ASD-STE100 standard (Words). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-1.5",
+    "name": "Word forms",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "This rule is part of the ASD-STE100 standard (Words). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-1.6",
+    "name": "Unapproved words only as technical nouns",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "Use a word that is not in the approved dictionary only when it functions as a technical noun (TN) or as part of a technical noun. Other uses of unapproved words violate this rule.",
+    "specText": "Use a word that is not approved in the dictionary only when it is a technical noun or part of a technical noun.",
+    "specCitation": "ASD-STE100 Simplified Technical English Issue 9 (January 2025), Rule 1.6 — Words, Part 1",
+    "compliantExamples": [
+      {
+        "text": "The LRU must agree with the IPC."
+      },
+      {
+        "text": "Install the widget assembly as shown."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Utilize the correct procedure.",
+        "reason": "'Utilize' is not an approved dictionary word and is not used as or inside a technical noun; use an approved verb such as 'Use'."
+      }
+    ]
+  },
+  {
+    "id": "STE-1.7",
+    "name": "Do not use a technical noun as a verb",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "A technical noun must not be used as a verb. Use an approved verb (or an approved technical verb where applicable) to express the action.",
+    "specText": "Do not use a technical noun as a verb.",
+    "specCitation": "ASD-STE100 Simplified Technical English Issue 9 (January 2025), Rule 1.7 — Words, Part 1",
+    "compliantExamples": [
+      {
+        "text": "Torque the bolt to 20 Nm."
+      },
+      {
+        "text": "Apply the sealant to the joint."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Bracket the pipe to the frame.",
+        "reason": "If 'bracket' is a technical noun in your nomenclature, do not use it as a verb; rephrase with an approved verb (e.g. attach, install) per Rule 1.7."
+      }
+    ]
+  },
+  {
+    "id": "STE-2.1",
+    "name": "Noun clusters (max 3 words)",
+    "topic": 2,
+    "topicName": "Noun Clusters",
+    "description": "Do not use more than three words in a row as a noun cluster (e.g. 'the hydraulic pressure pump assembly' is four words). Break into shorter phrases or use the dictionary-approved terms.",
+    "specText": "Use a maximum of three words in a noun cluster.",
+    "compliantExamples": [
+      {
+        "text": "Remove the fuel pump."
+      },
+      {
+        "text": "The hydraulic pump is on the left."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Remove the high-pressure fuel pump assembly component.",
+        "reason": "Noun cluster has more than three words."
+      }
+    ]
+  },
+  {
+    "id": "STE-2.2",
+    "name": "Noun cluster clarity",
+    "topic": 2,
+    "topicName": "Noun Clusters",
+    "description": "This rule is part of the ASD-STE100 standard (Noun Clusters). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-2.3",
+    "name": "Noun cluster requirements",
+    "topic": 2,
+    "topicName": "Noun Clusters",
+    "description": "This rule is part of the ASD-STE100 standard (Noun Clusters). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-3.1",
+    "name": "Verb tense",
+    "topic": 3,
+    "topicName": "Verbs & Verb Phrases",
+    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-3.2",
+    "name": "Passive voice",
+    "topic": 3,
+    "topicName": "Verbs & Verb Phrases",
+    "description": "In procedures, use active voice so the reader knows who performs the action. In descriptive text, passive is sometimes allowed but prefer active when possible.",
+    "specText": "Do not use passive voice in procedural sentences.",
+    "compliantExamples": [
+      {
+        "text": "Install the new seal."
+      },
+      {
+        "text": "The technician checks the pressure."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "The seal was installed.",
+        "reason": "Passive voice; use 'Install the seal' or 'The technician installed the seal'."
+      }
+    ]
+  },
+  {
+    "id": "STE-3.3",
+    "name": "Gerunds",
+    "topic": 3,
+    "topicName": "Verbs & Verb Phrases",
+    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-3.4",
+    "name": "Infinitives",
+    "topic": 3,
+    "topicName": "Verbs & Verb Phrases",
+    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-3.5",
+    "name": "Verb consistency",
+    "topic": 3,
+    "topicName": "Verbs & Verb Phrases",
+    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-3.6",
+    "name": "Auxiliary verbs",
+    "topic": 3,
+    "topicName": "Verbs & Verb Phrases",
+    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-3.7",
+    "name": "Phrasal verbs",
+    "topic": 3,
+    "topicName": "Verbs & Verb Phrases",
+    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-3.8",
+    "name": "Verb voice",
+    "topic": 3,
+    "topicName": "Verbs & Verb Phrases",
+    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-3.9",
+    "name": "Verb phrases",
+    "topic": 3,
+    "topicName": "Verbs & Verb Phrases",
+    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-4.1",
+    "name": "Active voice (procedures)",
+    "topic": 4,
+    "topicName": "Procedures (Instructions)",
+    "description": "Write procedural steps in active voice with the imperative form (e.g. 'Remove the cap', not 'The cap should be removed').",
+    "specText": "Use the imperative form in procedural sentences.",
+    "compliantExamples": [
+      {
+        "text": "Open the valve. Check the pressure."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "The technician should open the valve.",
+        "reason": "Use imperative: 'Open the valve'."
+      }
+    ]
+  },
+  {
+    "id": "STE-4.2",
+    "name": "Do not omit words",
+    "topic": 4,
+    "topicName": "Procedures (Instructions)",
+    "description": "Do not omit words or use contractions to make your sentences shorter. Contractions are flagged under STE-8.4. ADAM flags sentence fragments that start with And/But/Or (omitted subject).",
+    "specText": "Do not omit words or use contractions to make your sentences shorter.",
+    "specCitation": "ASD-STE100 Issue 9 (STEMG-aligned summary), Rule 4.2",
+    "compliantExamples": [
+      {
+        "text": "Open the valve."
+      },
+      {
+        "text": "Open the valve and close it."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "And open the valve.",
+        "reason": "Standalone sentence should not start with And/But/Or (omitted words). Contractions: see STE-8.4."
+      }
+    ]
+  },
+  {
+    "id": "STE-4.3",
+    "name": "Vertical list for complex text",
+    "topic": 4,
+    "topicName": "Procedures (Instructions)",
+    "description": "ASD-STE100 Issue 9 (STEMG-aligned summary): Use a vertical list for complex text. ADAM uses a heuristic on instructional sentences (verb-first): long sentences with many commas may be easier to read as a vertical list.",
+    "specText": "Use a vertical list for complex text (ASD-STE100 Issue 9).",
+    "compliantExamples": [
+      {
+        "text": "Open the valve."
+      },
+      {
+        "text": "- Remove the cover.\n- Disconnect the wiring.\n- Inspect the area."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Remove the cover, disconnect the wiring, release the latch, inspect the area for damage, and make sure the surface is clean before you continue.",
+        "reason": "Very dense instructional sentence; may be clearer as a vertical list (heuristic check)."
+      }
+    ]
+  },
+  {
+    "id": "STE-4.4",
+    "name": "Connecting words and phrases",
+    "topic": 4,
+    "topicName": "Procedures (Instructions)",
+    "description": "ASD-STE100 Issue 9 (STEMG-aligned summary): Use connecting words and phrases to connect sentences that contain related topics. ADAM flags weak sentence-initial openers after another sentence (e.g. Additionally, Furthermore) and repeated “The + noun” at the start of consecutive descriptive sentences.",
+    "specText": "Use connecting words and phrases to connect sentences that contain related topics.",
+    "specCitation": "ASD-STE100 Issue 9, Rule 4.4",
+    "compliantExamples": [
+      {
+        "text": "The localizer is aligned with the runway. And the glideslope path is at a constant angle."
+      },
+      {
+        "text": "The valve is open. This valve supplies hydraulic pressure to the actuator."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "The pressure increases. Furthermore the indicator shows a fault.",
+        "reason": "Weak opener; prefer a clearer STEMG-style connector or pronoun (heuristic)."
+      },
+      {
+        "text": "The valve is open. The valve is closed.",
+        "reason": "Same article + noun repeated; link with This valve, It, or an approved connector (heuristic)."
+      }
+    ]
+  },
+  {
+    "id": "STE-4.5",
+    "name": "Article or demonstrative before a noun",
+    "topic": 4,
+    "topicName": "Procedures (Instructions)",
+    "description": "When applicable, use an article (A/AN/THE) or demonstrative adjective (THIS/THAT/THESE/THOSE) before a noun. ADAM flags instructional sentences that open with imperative + bare noun (heuristic).",
+    "specText": "When applicable, use an article or a demonstrative adjective before a noun.",
+    "specCitation": "ASD-STE100 Issue 9 (STEMG-aligned summary), Rule 4.5",
+    "compliantExamples": [
+      {
+        "text": "Open the valve."
+      },
+      {
+        "text": "Remove the connection."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Open valve.",
+        "reason": "Bare noun after imperative; use THE or A/AN when applicable."
+      }
+    ]
+  },
+  {
+    "id": "STE-4.6",
+    "name": "Descriptive lead-in and command (comma)",
+    "topic": 4,
+    "topicName": "Procedures (Instructions)",
+    "description": "Maps to ASD-STE100 Issue 9 **rule 5.4** (same topic in the STEMG): when you start an instruction with a descriptive statement, divide that statement from the command with a comma. ADAM flags subordinate openers (If/When/…) with no comma and a later command verb (heuristic).",
+    "specText": "When you start an instruction with a descriptive statement, divide that statement from the command with a comma.",
+    "specCitation": "ASD-STE100 Issue 9 (rule 5.4 in Issue 9 structure; catalog id STE-4.6)",
+    "compliantExamples": [
+      {
+        "text": "When the light is on, open the valve."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "When the light is on open the valve.",
+        "reason": "Missing comma between descriptive lead-in and command (heuristic)."
+      }
+    ]
+  },
+  {
+    "id": "STE-4.7",
+    "name": "Notes: information only",
+    "topic": 4,
+    "topicName": "Procedures (Instructions)",
+    "description": "Maps to ASD-STE100 Issue 9 **rule 5.5**: write notes only to give information, not instructions. ADAM flags sentences beginning with NOTE: when the text after the colon reads as an instruction (verb-first or cues like must/shall).",
+    "specText": "Write notes only to give information, not instructions.",
+    "specCitation": "ASD-STE100 Issue 9 (rule 5.5; catalog id STE-4.7)",
+    "compliantExamples": [
+      {
+        "text": "NOTE: The pressure is high when the temperature exceeds 80 degrees."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "NOTE: Open the valve.",
+        "reason": "Instruction in a note; use a procedural step or descriptive wording."
+      }
+    ]
+  },
+  {
+    "id": "STE-4.8",
+    "name": "Procedure completeness",
+    "topic": 4,
+    "topicName": "Procedures (Instructions)",
+    "description": "Heuristic: instructional sentences must not contain obvious placeholders (TBD, TBC, …) that leave the procedure incomplete.",
+    "specText": "Do not leave procedural steps as placeholders; complete the instruction or remove the step until content is known.",
+    "specCitation": "ADAM heuristic (STEMG completeness practice; catalog id STE-4.8)",
+    "compliantExamples": [
+      {
+        "text": "Remove the four bolts. Discard the seal."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Tighten the bolts TBD.",
+        "reason": "TBD placeholder in an imperative sentence (heuristic)."
+      }
+    ]
+  },
+  {
+    "id": "STE-5.1",
+    "name": "Sentence length (instruction)",
+    "topic": 5,
+    "topicName": "Sentence Length",
+    "description": "Keep procedural sentences to a maximum of 20 words. Short sentences are easier to follow and reduce the risk of misunderstanding.",
+    "specText": "Use a maximum of 20 words in an instructional sentence.",
+    "compliantExamples": [
+      {
+        "text": "Remove the four bolts. Discard the seal."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "You must remove the four bolts that hold the cover in place and then discard the old seal before you install the new one.",
+        "reason": "Sentence exceeds 20 words."
+      }
+    ]
+  },
+  {
+    "id": "STE-5.2",
+    "name": "Sentence length (descriptive)",
+    "topic": 5,
+    "topicName": "Sentence Length",
+    "description": "In descriptive text, use a maximum of 25 words per sentence.",
+    "specText": "Use a maximum of 25 words in a descriptive sentence.",
+    "compliantExamples": [
+      {
+        "text": "The pump is on the left side of the unit. It has a red cap."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "The pump that supplies hydraulic fluid to the system is located on the left side of the unit and has a red cap that must be removed before maintenance.",
+        "reason": "More than 25 words."
+      }
+    ]
+  },
+  {
+    "id": "STE-5.3",
+    "name": "Instructions in imperative form",
+    "topic": 5,
+    "topicName": "Sentence Length",
+    "description": "ASD-STE100 Issue 9 (Topic 5): Write instructions in the imperative (command) form. ADAM flags a common non-imperative pattern: You + modal + verb (e.g. You must open).",
+    "specText": "Write instructions in the imperative (command) form.",
+    "specCitation": "ASD-STE100 Issue 9, Rule 5.3",
+    "compliantExamples": [
+      {
+        "text": "Open the valve."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "You must open the valve.",
+        "reason": "Prefer imperative Open the valve (heuristic STE-5.3)."
+      }
+    ]
+  },
+  {
+    "id": "STE-5.4",
+    "name": "Word count limits",
+    "topic": 5,
+    "topicName": "Sentence Length",
+    "description": "This rule is part of the ASD-STE100 standard (Sentence Length). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-6.1",
+    "name": "Paragraph structure",
+    "topic": 6,
+    "topicName": "Structure",
+    "description": "Start each paragraph with a topic sentence that states the main idea. One main idea per paragraph.",
+    "specText": "Start each paragraph with a topic sentence.",
+    "compliantExamples": [
+      {
+        "text": "The filter must be replaced every 500 hours. Remove the cover to get access."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Remove the cover. The filter is inside. Replace it every 500 hours.",
+        "reason": "Topic sentence should introduce the main idea first."
+      }
+    ]
+  },
+  {
+    "id": "STE-6.2",
+    "name": "List structure",
+    "topic": 6,
+    "topicName": "Structure",
+    "description": "This rule is part of the ASD-STE100 standard (Structure). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-6.3",
+    "name": "Paragraph length",
+    "topic": 6,
+    "topicName": "Structure",
+    "description": "This rule is part of the ASD-STE100 standard (Structure). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-6.4",
+    "name": "Topic sentences",
+    "topic": 6,
+    "topicName": "Structure",
+    "description": "This rule is part of the ASD-STE100 standard (Structure). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-6.5",
+    "name": "Logical order",
+    "topic": 6,
+    "topicName": "Structure",
+    "description": "This rule is part of the ASD-STE100 standard (Structure). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-6.6",
+    "name": "Structure clarity",
+    "topic": 6,
+    "topicName": "Structure",
+    "description": "This rule is part of the ASD-STE100 standard (Structure). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-7.1",
+    "name": "Warnings format",
+    "topic": 7,
+    "topicName": "Warnings & Cautions",
+    "description": "Start warnings with the word WARNING in capital letters. Use approved words only and keep the message clear.",
+    "specText": "Start a warning with the word WARNING in capital letters.",
+    "compliantExamples": [
+      {
+        "text": "WARNING: Do not touch the hot surface. You can get burned."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Caution: The surface might be extremely hot during operation.",
+        "reason": "Use 'WARNING' and approved words (e.g. 'can be very hot')."
+      }
+    ]
+  },
+  {
+    "id": "STE-7.2",
+    "name": "Safety instruction command or condition",
+    "topic": 7,
+    "topicName": "Warnings & Cautions",
+    "description": "Start a safety instruction with a clear command or condition. ADAM flags common narrative lead-ins (e.g. Note that, It is important) immediately after WARNING/CAUTION/DANGER; verify full text against ASD-STE100 Issue 9.",
+    "specText": "Start a safety instruction with a clear and accurate command or condition.",
+    "specCitation": "ASD-STE100 Issue 9 (STEMG-aligned summary), Rule 7.2",
+    "compliantExamples": [
+      {
+        "text": "WARNING: Do not touch the hot surface."
+      },
+      {
+        "text": "WARNING: If the light is on, do not remove the cover."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "WARNING: Note that the surface can be very hot.",
+        "reason": "Lead-in delays the command or condition (heuristic STE-7.2 check)."
+      }
+    ]
+  },
+  {
+    "id": "STE-7.3",
+    "name": "Risk or result explanation",
+    "topic": 7,
+    "topicName": "Warnings & Cautions",
+    "description": "Give an explanation that shows the risk or possible result. ADAM uses a heuristic on longer WARNING/CAUTION/DANGER lines: expect risk/outcome vocabulary or causal wording unless the line is short or starts with If/When. Verify against ASD-STE100 Issue 9.",
+    "specText": "Give an explanation to show the risk or possible result.",
+    "specCitation": "ASD-STE100 Issue 9 (STEMG-aligned summary), Rule 7.3",
+    "compliantExamples": [
+      {
+        "text": "WARNING: Do not touch the hot surface. You can get burned."
+      },
+      {
+        "text": "WARNING: You can get an injury if you do not use the guard."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "WARNING: Make sure you remove all tools from the work area before you start the engine and check the area for loose objects.",
+        "reason": "Long procedural text without stating risk or outcome (heuristic STE-7.3)."
+      }
+    ]
+  },
+  {
+    "id": "STE-7.4",
+    "name": "Warning language",
+    "topic": 7,
+    "topicName": "Warnings & Cautions",
+    "description": "Use clear, appropriate language for safety text. ADAM flags vague hedging (perhaps, maybe, hopefully, sort of, …) in the body after WARNING/CAUTION/DANGER.",
+    "specText": "Use clear language for warnings and cautions (verify wording against ASD-STE100 Issue 9).",
+    "specCitation": "ASD-STE100 Issue 9 (STEMG-aligned summary), Rule 7.4",
+    "compliantExamples": [
+      {
+        "text": "WARNING: Do not touch the hot surface. You can get burned."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "WARNING: Perhaps the surface is hot.",
+        "reason": "Vague hedging weakens the safety message (heuristic)."
+      }
+    ]
+  },
+  {
+    "id": "STE-7.5",
+    "name": "Warnings and cautions",
+    "topic": 7,
+    "topicName": "Warnings & Cautions",
+    "description": "Safety information must be actionable. ADAM flags WARNING/CAUTION/DANGER lines whose body is only a cross-reference (See Figure / Refer to Section …) with no stated hazard or command.",
+    "specText": "Give the safety instruction or risk in the wording; do not rely on a reference alone (see Issue 9).",
+    "specCitation": "ASD-STE100 Issue 9 (STEMG-aligned summary), Rule 7.5",
+    "compliantExamples": [
+      {
+        "text": "WARNING: Do not remove the cover. See Figure 4 for the latch location."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "WARNING: See Figure 4.",
+        "reason": "Reference-only safety line (heuristic)."
+      }
+    ]
+  },
+  {
+    "id": "STE-8.1",
+    "name": "Semicolons",
+    "topic": 8,
+    "topicName": "Punctuation",
+    "description": "Do not use semicolons in STE. Use a full stop and a new sentence, or use 'and' or 'or' where appropriate.",
+    "specText": "Do not use semicolons.",
+    "compliantExamples": [
+      {
+        "text": "Before you start, check the oil level. Then start the engine."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Check the oil level; then start the engine.",
+        "reason": "Semicolon not allowed; use two sentences."
+      }
+    ]
+  },
+  {
+    "id": "STE-8.2",
+    "name": "Commas",
+    "topic": 8,
+    "topicName": "Punctuation",
+    "description": "This rule is part of the ASD-STE100 standard (Punctuation). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-8.3",
+    "name": "Hyphens",
+    "topic": 8,
+    "topicName": "Punctuation",
+    "description": "This rule is part of the ASD-STE100 standard (Punctuation). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-8.4",
+    "name": "Punctuation clarity",
+    "topic": 8,
+    "topicName": "Punctuation",
+    "description": "This rule is part of the ASD-STE100 standard (Punctuation). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-8.5",
+    "name": "Optional (s) plural notation",
+    "topic": 8,
+    "topicName": "Punctuation",
+    "description": "Avoid optional-plural **word(s)** notation; ADAM flags **\\w+(s)** patterns in text.",
+    "specText": "Do not use (s) optional plural notation for technical terms (see Issue 9 / project style).",
+    "specCitation": "ADAM heuristic (STEMG clarity practice)",
+    "compliantExamples": [
+      {
+        "text": "Remove the valve or the valves."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Remove the valve(s).",
+        "reason": "Optional (s) plural (heuristic STE-8.5)."
+      }
+    ]
+  },
+  {
+    "id": "STE-8.6",
+    "name": "Quotation marks",
+    "topic": 8,
+    "topicName": "Punctuation",
+    "description": "ADAM flags curly / smart quotation characters (Unicode U+201C–U+2019) for consistent ASCII STE source.",
+    "specText": "Use consistent quotation marks per ASD-STE100 Issue 9 and your style guide.",
+    "compliantExamples": [
+      {
+        "text": "The part number is 'ABC-123'."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "The term \u201capproved\u201d is used here.",
+        "reason": "Typographic quotation marks (heuristic STE-8.6)."
+      }
+    ]
+  },
+  {
+    "id": "STE-8.7",
+    "name": "Hyphens and dashes",
+    "topic": 8,
+    "topicName": "Punctuation",
+    "description": "ADAM flags em dash (—) or spaced double hyphen ( -- ) used as a sentence break; prefer full stop + new sentence or and/or.",
+    "specText": "Hyphenated words count as one word; avoid em dash as a clause break (see Issue 9).",
+    "compliantExamples": [
+      {
+        "text": "Open the valve. Then close the drain."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Open the valve -- then close the drain.",
+        "reason": "Double hyphen / dash as break (heuristic STE-8.7)."
+      }
+    ]
+  },
+  {
+    "id": "STE-9.1",
+    "name": "Cross-references",
+    "topic": 9,
+    "topicName": "References",
+    "description": "Refer to other sections or figures clearly. Use consistent numbering and wording.",
+    "specText": "Use a clear reference when you refer to another part of the document.",
+    "compliantExamples": [
+      {
+        "text": "See Section 4 for the tool list."
+      },
+      {
+        "text": "Refer to Figure 3-2."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Refer to the section that describes the tools.",
+        "reason": "Give the exact section number."
+      }
+    ]
+  },
+  {
+    "id": "STE-9.2",
+    "name": "Reference format",
+    "topic": 9,
+    "topicName": "References",
+    "description": "This rule is part of the ASD-STE100 standard (References). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-9.3",
+    "name": "Phrasal verbs",
+    "topic": 9,
+    "topicName": "References",
+    "description": "When you use two words together, do not make phrasal verbs (Issue 9). ADAM uses a small verb+particle denylist (e.g. carry out, find out); extend as needed.",
+    "specText": "When you use two words together, do not make phrasal verbs.",
+    "specCitation": "ASD-STE100 Issue 9, Rule 9.3",
+    "compliantExamples": [
+      {
+        "text": "OMIT the step."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "You must carry out the test.",
+        "reason": "Phrasal verb carry out (heuristic STE-9.3)."
+      }
+    ]
+  },
+  {
+    "id": "STE-9.4",
+    "name": "Cross-references",
+    "topic": 9,
+    "topicName": "References",
+    "description": "This rule is part of the ASD-STE100 standard (References). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-10.1",
+    "name": "Consistency",
+    "topic": 10,
+    "topicName": "Writing Practices",
+    "description": "Use the same word for the same thing throughout the document. Do not switch between synonyms (e.g. 'remove' and 'take off').",
+    "specText": "Use the same word for the same thing in the whole document.",
+    "compliantExamples": [
+      {
+        "text": "Remove the bolt. Remove the cover. (Same word used.)"
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Remove the bolt. Take off the cover.",
+        "reason": "Use 'Remove' for both; avoid synonyms."
+      }
+    ]
+  },
+  {
+    "id": "STE-10.2",
+    "name": "Abbreviations",
+    "topic": 10,
+    "topicName": "Writing Practices",
+    "description": "This rule is part of the ASD-STE100 standard (Writing Practices). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-10.3",
+    "name": "Symbols",
+    "topic": 10,
+    "topicName": "Writing Practices",
+    "description": "This rule is part of the ASD-STE100 standard (Writing Practices). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-10.4",
+    "name": "Spelling consistency",
+    "topic": 10,
+    "topicName": "Writing Practices",
+    "description": "This rule is part of the ASD-STE100 standard (Writing Practices). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-10.5",
+    "name": "Terminology",
+    "topic": 10,
+    "topicName": "Writing Practices",
+    "description": "This rule is part of the ASD-STE100 standard (Writing Practices). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-10.6",
+    "name": "Writing practices",
+    "topic": 10,
+    "topicName": "Writing Practices",
+    "description": "This rule is part of the ASD-STE100 standard (Writing Practices). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  },
+  {
+    "id": "STE-10.7",
+    "name": "Document consistency",
+    "topic": 10,
+    "topicName": "Writing Practices",
+    "description": "This rule is part of the ASD-STE100 standard (Writing Practices). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
+    "specText": "See ASD-STE100 Issue 9.",
+    "compliantExamples": [
+      {
+        "text": "Follow the approved wording and structure for this rule."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
+        "reason": "Official examples in the specification."
+      }
+    ]
+  }
+]

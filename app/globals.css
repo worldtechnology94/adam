@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   ADAM — Design tokens & global styles
+   Primary: #1A2B4A | Accent: #F59E0B | Success: #10B981 | Danger: #DC2626
+   ========================================================================== */
+
+/* Light theme (default) */
+:root,
+[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #1a2b4a;
+  --primary-foreground: #f8fafc;
+  --accent: #f59e0b;
+  --accent-foreground: #1a2b4a;
+  --success: #10b981;
+  --success-foreground: #ffffff;
+  --danger: #dc2626;
+  --danger-foreground: #ffffff;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+  --ring: #1a2b4a;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --primary: #1e3a5f;
+  --primary-foreground: #f8fafc;
+  --accent: #f59e0b;
+  --accent-foreground: #0f172a;
+  --success: #10b981;
+  --success-foreground: #ffffff;
+  --danger: #dc2626;
+  --danger-foreground: #ffffff;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --border: #334155;
+  --ring: #94a3b8;
+}
+
+/* High-contrast theme (WCAG 2.1 AA) */
+[data-theme="high-contrast"] {
+  --background: #ffffff;
+  --foreground: #000000;
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  --accent: #b45309;
+  --accent-foreground: #000000;
+  --success: #047857;
+  --success-foreground: #ffffff;
+  --danger: #b91c1c;
+  --danger-foreground: #ffffff;
+  --muted: #e5e7eb;
+  --muted-foreground: #374151;
+  --border: #000000;
+  --ring: #000000;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Base: min 14px, line height, focus ring for accessibility (WCAG 2.1 AA) */
+/* Layout uses rem/em so 200% zoom scales correctly; test with browser zoom. */
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Focus ring — visible for keyboard navigation (WCAG 2.1) */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Severity utility classes — color AND semantic (for color-blind safe) */
+.severity-critical {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.severity-critical-bg {
+  background-color: var(--danger);
+  color: var(--danger-foreground);
+}
+
+.severity-major {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.severity-major-bg {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.severity-minor {
+  color: var(--muted-foreground);
+}
+
+.severity-minor-bg {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+}
+
+/* Ensure interactive elements are keyboard-focusable */
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Skip link — visible on focus for keyboard users (WCAG 2.1) */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 9999;
+  padding: 0.75rem 1rem;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.375rem;
+  transition: left 0s;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Sidebar nav — smooth scroll and minimal scrollbar */
+.sidebar-nav {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}

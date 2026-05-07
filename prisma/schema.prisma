@@ -1,0 +1,144 @@
+// ADAM — Prisma schema (thesis T1.1: dictionary + analysis, no auth)
+// https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Dictionary (STE-1.1) ───────────────────────────────────────────────────
+
+model SteWord {
+  id         Int      @id @default(autoincrement())
+  word       String   @map("word") // lowercase headword
+  wordDisplay String? @map("word_display")
+  pos        String?  @map("pos") // v, adj, n, adv, prep, conj, pron, art
+  approved   Boolean  @map("approved")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  forms    SteWordForm[]
+  meanings SteMeaning[]
+  examples SteExample[]
+
+  @@map("ste_words")
+}
+
+model SteWordForm {
+  id     Int     @id @default(autoincrement())
+  wordId Int     @map("word_id")
+  form   String  @map("form") // lowercase form for lookup
+
+  word SteWord @relation(fields: [wordId], references: [id], onDelete: Cascade)
+
+  @@index([form])
+  @@map("ste_word_forms")
+}
+
+model SteMeaning {
+  id               Int     @id @default(autoincrement())
+  wordId           Int     @map("word_id")
+  meaning          String? @map("meaning")
+  approvedAsIs     Boolean  @default(true) @map("approved_as_is")
+  alternativeWord  String? @map("alternative_word")
+  alternativePos   String? @map("alternative_pos")
+
+  word SteWord @relation(fields: [wordId], references: [id], onDelete: Cascade)
+
+  @@map("ste_meanings")
+}
+
+model SteExample {
+  id          Int     @id @default(autoincrement())
+  wordId      Int     @map("word_id")
+  steText     String? @map("ste_text")
+  nonSteText  String? @map("non_ste_text")
+
+  word SteWord @relation(fields: [wordId], references: [id], onDelete: Cascade)
+
+  @@map("ste_examples")
+}
+
+model CustomWord {
+  id        Int      @id @default(autoincrement())
+  orgId     Int?     @map("org_id")
+  word      String   @map("word")
+  pos       String?  @map("pos")
+  approved  Boolean  @default(true) @map("approved")
+  note      String?  @map("note")
+
+  @@map("custom_words")
+}
+
+// ─── Analysis (documents, runs, violations) ──────────────────────────────────
+
+model Document {
+  id             Int      @id @default(autoincrement())
+  name           String   @map("name")
+  filePath       String   @map("file_path")
+  mimeType       String   @map("mime_type")
+  wordCount      Int?     @map("word_count")
+  sentenceCount  Int?     @map("sentence_count")
+  documentType   String?  @map("document_type") // procedure, description, warning, mixed
+  revision       String?  @map("revision")
+  author         String?  @map("author")
+  uploadedAt     DateTime @default(now()) @map("uploaded_at")
+
+  analysisRuns AnalysisRun[]
+
+  @@map("documents")
+}
+
+model AnalysisRun {
+  id                Int      @id @default(autoincrement())
+  documentId        Int      @map("document_id")
+  createdAt         DateTime @default(now()) @map("created_at")
+  complianceScore   Int?     @map("compliance_score")
+  totalViolations   Int?     @map("total_violations")
+  summary           Json?    @map("summary")
+
+  document  Document   @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  violations Violation[]
+
+  @@map("analysis_runs")
+}
+
+model Violation {
+  id              Int      @id @default(autoincrement())
+  analysisRunId   Int      @map("analysis_run_id")
+  sentenceExcerpt String   @map("sentence_excerpt")
+  ruleId          String   @map("rule_id")
+  ruleName        String   @map("rule_name")
+  sentenceType    String?  @map("sentence_type")
+  wordCount       Int?     @map("word_count")
+  severity        String   @map("severity") // critical, major, minor
+  positionStart   Int?     @map("position_start")
+  positionEnd     Int?     @map("position_end")
+  aiSuggestion    String?  @map("ai_suggestion")
+  paragraphContext String? @map("paragraph_context")
+  status          String   @default("pending") @map("status") // pending, accepted, rejected
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  analysisRun AnalysisRun @relation(fields: [analysisRunId], references: [id], onDelete: Cascade)
+
+  @@map("violations")
+}
+
+// ─── Rule Library (T4.3) ─────────────────────────────────────────────────────
+
+model Rule {
+  id                   Int    @id @default(autoincrement())
+  ruleId               String @unique @map("rule_id") // e.g. STE-1.1
+  name                 String @map("name")
+  topic                Int    @map("topic") // 1–10
+  topicName            String @map("topic_name")
+  description          String @map("description")
+  specText             String @map("spec_text")
+  compliantExamples    Json   @map("compliant_examples") // [{ text: string }]
+  nonCompliantExamples Json   @map("non_compliant_examples") // [{ text: string, reason?: string }]
+
+  @@map("rules")
+}

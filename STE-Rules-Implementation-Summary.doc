@@ -1,0 +1,211 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta charset="UTF-8">
+<title>ADAM – STE Rule Implementation Summary</title>
+<style>
+  body {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 10pt;
+    margin: 2cm;
+    color: #000;
+  }
+  h1 {
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2pt;
+  }
+  h2 {
+    font-size: 11pt;
+    font-weight: bold;
+    margin-top: 10pt;
+    margin-bottom: 2pt;
+    border-bottom: 1pt solid #333;
+  }
+  p.subtitle {
+    text-align: center;
+    font-size: 9pt;
+    color: #444;
+    margin-top: 0;
+    margin-bottom: 8pt;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    margin-bottom: 6pt;
+  }
+  th {
+    background-color: #1a1a2e;
+    color: #ffffff;
+    padding: 3pt 5pt;
+    text-align: left;
+    font-weight: bold;
+  }
+  td {
+    padding: 2pt 5pt;
+    border-bottom: 0.5pt solid #ccc;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td {
+    background-color: #f5f5f5;
+  }
+  .badge {
+    color: #1a7a1a;
+    font-weight: bold;
+  }
+  .note {
+    font-size: 8pt;
+    color: #555;
+    margin-top: 4pt;
+  }
+  .footer {
+    text-align: center;
+    font-size: 8pt;
+    color: #555;
+    margin-top: 10pt;
+    border-top: 0.5pt solid #ccc;
+    padding-top: 4pt;
+  }
+</style>
+</head>
+<body>
+
+<h1>ADAM — ASD-STE100 Rule Implementation Summary</h1>
+<p class="subtitle">Automated Document Analysis &amp; Management &nbsp;|&nbsp; All 60 Rules Implemented &nbsp;|&nbsp; ASD-STE100 Issue 9</p>
+
+<!-- TOPIC 1 -->
+<h2>Topic 1 — Words (7 rules)</h2>
+<table>
+  <tr><th>Rule</th><th>Name</th><th>Engine File</th><th>Status</th></tr>
+  <tr><td>STE-1.1</td><td>Approved word usage</td><td>ste11-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-1.2</td><td>Prohibited words</td><td>ste11-engine.ts (approved=false path)</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-1.3</td><td>Approved meanings</td><td>ste13-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-1.4</td><td>Technical noun form consistency</td><td>ste14-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-1.5</td><td>Approved word forms</td><td>ste11-engine.ts (allowedForms path)</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-1.6</td><td>Unapproved words outside technical noun context</td><td>ste16-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-1.7</td><td>Technical noun used as verb</td><td>ste17-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+</table>
+
+<!-- TOPIC 2 -->
+<h2>Topic 2 — Noun Clusters (3 rules)</h2>
+<table>
+  <tr><th>Rule</th><th>Name</th><th>Engine File</th><th>Status</th></tr>
+  <tr><td>STE-2.1</td><td>Noun cluster too long (4+ words)</td><td>ste21-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-2.2</td><td>Noun cluster clarity (3-word advisory)</td><td>ste22-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-2.3</td><td>Noun cluster consistency</td><td>ste23-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+</table>
+
+<!-- TOPIC 3 -->
+<h2>Topic 3 — Verbs &amp; Verb Phrases (9 rules)</h2>
+<table>
+  <tr><th>Rule</th><th>Name</th><th>Engine File</th><th>Status</th></tr>
+  <tr><td>STE-3.1</td><td>Verb form correctness</td><td>ste11-engine.ts (wrong verb form path)</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-3.2</td><td>Passive voice (be-passive)</td><td>ste32-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-3.3</td><td>Gerunds</td><td>ste33-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-3.4</td><td>Infinitives</td><td>ste34-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-3.5</td><td>Verb tense consistency</td><td>ste35-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-3.6</td><td>Prohibited auxiliary verbs</td><td>ste36-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-3.7</td><td>Phrasal verbs</td><td>ste37-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-3.8</td><td>Get-passive voice</td><td>ste38-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-3.9</td><td>Complex verb phrases</td><td>ste39-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+</table>
+
+<!-- TOPIC 4 -->
+<h2>Topic 4 — Procedures (8 rules)</h2>
+<table>
+  <tr><th>Rule</th><th>Name</th><th>Engine File</th><th>Status</th></tr>
+  <tr><td>STE-4.1</td><td>Imperative form for instructions</td><td>ste41-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-4.2</td><td>Sentence fragments</td><td>ste42-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-4.3</td><td>Dense instructions</td><td>ste43-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-4.4</td><td>Weak sentence openers</td><td>ste44-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-4.5</td><td>Article before noun in instructions</td><td>ste45-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-4.6</td><td>Lead-in and command structure</td><td>ste46-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-4.7</td><td>Notes used as instructions</td><td>ste47-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-4.8</td><td>Placeholder markers in instructions</td><td>ste48-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+</table>
+
+<!-- TOPIC 5 -->
+<h2>Topic 5 — Sentence Length (4 rules)</h2>
+<table>
+  <tr><th>Rule</th><th>Name</th><th>Engine File</th><th>Status</th></tr>
+  <tr><td>STE-5.1</td><td>Instructional sentence length (max 20 words)</td><td>ste5-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-5.2</td><td>Descriptive sentence length (max 25 words)</td><td>ste5-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-5.3</td><td>"You must/shall" → use imperative</td><td>ste53-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-5.4</td><td>One instruction per sentence</td><td>ste54-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+</table>
+
+<!-- TOPIC 6 -->
+<h2>Topic 6 — Structure (6 rules)</h2>
+<table>
+  <tr><th>Rule</th><th>Name</th><th>Engine File</th><th>Status</th></tr>
+  <tr><td>STE-6.1</td><td>Weak topic sentence</td><td>ste61-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-6.2</td><td>List structure (parallel items in prose)</td><td>ste62-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-6.3</td><td>Paragraph length (max 6 sentences)</td><td>ste63-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-6.4</td><td>Missing topic sentence</td><td>ste64-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-6.5</td><td>Logical order of steps</td><td>ste65-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-6.6</td><td>Structure clarity</td><td>ste66-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+</table>
+
+<!-- TOPIC 7 -->
+<h2>Topic 7 — Warnings &amp; Cautions (5 rules)</h2>
+<table>
+  <tr><th>Rule</th><th>Name</th><th>Engine File</th><th>Status</th></tr>
+  <tr><td>STE-7.1</td><td>Warning label format</td><td>ste71-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-7.2</td><td>Warning language</td><td>ste72-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-7.3</td><td>Warning content (risk and outcome)</td><td>ste73-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-7.4</td><td>Vague hedging in safety notices</td><td>ste74-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-7.5</td><td>Reference-only safety lines</td><td>ste75-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+</table>
+
+<!-- TOPIC 8 -->
+<h2>Topic 8 — Punctuation (7 rules)</h2>
+<table>
+  <tr><th>Rule</th><th>Name</th><th>Engine File</th><th>Status</th></tr>
+  <tr><td>STE-8.1</td><td>Semicolons</td><td>ste81-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-8.2</td><td>Serial comma</td><td>ste82-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-8.3</td><td>Hyphenated compound numbers</td><td>ste83-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-8.4</td><td>Contractions</td><td>ste84-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-8.5</td><td>Optional plural "(s)" notation</td><td>ste85-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-8.6</td><td>Curly/smart quotes</td><td>ste86-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-8.7</td><td>Em dash usage</td><td>ste87-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+</table>
+
+<!-- TOPIC 9 -->
+<h2>Topic 9 — References (4 rules)</h2>
+<table>
+  <tr><th>Rule</th><th>Name</th><th>Engine File</th><th>Status</th></tr>
+  <tr><td>STE-9.1</td><td>Vague cross-references</td><td>ste91-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-9.2</td><td>Cross-reference capitalisation</td><td>ste92-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-9.3</td><td>Phrasal verbs</td><td>ste93-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-9.4</td><td>Cross-reference format</td><td>ste94-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+</table>
+
+<!-- TOPIC 10 -->
+<h2>Topic 10 — Writing Practices (7 rules)</h2>
+<table>
+  <tr><th>Rule</th><th>Name</th><th>Engine File</th><th>Status</th></tr>
+  <tr><td>STE-10.1</td><td>Word consistency (synonym tracking)</td><td>ste101-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-10.2</td><td>Latin abbreviations</td><td>ste102-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-10.3</td><td>Symbol usage (&amp; and %)</td><td>ste10-writing-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-10.4</td><td>Spelling consistency (British/US)</td><td>ste10-writing-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-10.5</td><td>Terminology consistency</td><td>ste105-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-10.6</td><td>Ellipsis usage</td><td>ste10-writing-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+  <tr><td>STE-10.7</td><td>Document consistency (unit notation)</td><td>ste107-engine.ts</td><td class="badge">✓ Implemented</td></tr>
+</table>
+
+<p class="note">
+  * STE-1.2, STE-1.5, and STE-3.1 are enforced within <em>ste11-engine.ts</em> under separate ruleId values,
+  as they share the same dictionary lookup pipeline as STE-1.1.<br>
+  * STE-5.1 and STE-5.2 are both enforced within <em>ste5-engine.ts</em> with per-sentence-type branching.<br>
+  * STE-10.3, STE-10.4, and STE-10.6 are enforced within <em>ste10-writing-engine.ts</em>.
+</p>
+
+<div class="footer">
+  ADAM — Automated Document Analysis &amp; Management &nbsp;|&nbsp; 60 / 60 STE Rules Implemented &nbsp;|&nbsp; ASD-STE100 Issue 9
+</div>
+
+</body>
+</html>
