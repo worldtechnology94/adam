@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
     const err = e instanceof Error ? e : new Error(String(e));
     console.error("[upload]", new Date().toISOString(), "Error:", err.message);
     return NextResponse.json(
-      { error: "Upload failed", details: process.env.NODE_ENV !== "production" ? err.message : undefined },
+      { error: "Upload failed", details: err.message, stack: err.stack?.split("\n").slice(0, 3).join(" | ") },
       { status: 500 }
     );
   }
