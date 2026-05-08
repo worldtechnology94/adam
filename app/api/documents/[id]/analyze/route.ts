@@ -93,14 +93,26 @@ export async function POST(
       return NextResponse.json({ error: "Document not found" }, { status: 404 });
     }
 
-    log("Extracting text from", doc.filePath);
-    const { text, wordCount, sentenceCount } = await extractTextFromFile(doc.filePath);
-    log("Text extracted:", wordCount, "words,", sentenceCount, "sentences");
+    let text: string;
+    let wordCount: number;
+    let sentenceCount: number;
 
-    await prisma.document.update({
-      where: { id },
-      data: { wordCount, sentenceCount },
-    });
+    if (doc.rawText) {
+      log("Using stored rawText");
+      text = doc.rawText;
+      wordCount = doc.wordCount ?? 0;
+      sentenceCount = doc.sentenceCount ?? 0;
+    } else {
+      log("Extracting text from", doc.filePath);
+      const extracted = await extractTextFromFile(doc.filePath);
+      text = extracted.text;
+      wordCount = extracted.wordCount;
+      sentenceCount = extracted.sentenceCount;
+      await prisma.document.update({
+        where: { id },
+        data: { wordCount, sentenceCount },
+      });
+    }
 
     log("Tokenizing...");
     const tokenized = tokenizeText(text, { applyPosHeuristic: true });

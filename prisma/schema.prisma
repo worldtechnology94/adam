@@ -80,6 +80,7 @@ model Document {
   name           String   @map("name")
   filePath       String   @map("file_path")
   mimeType       String   @map("mime_type")
+  rawText        String?  @map("raw_text")
   wordCount      Int?     @map("word_count")
   sentenceCount  Int?     @map("sentence_count")
   documentType   String?  @map("document_type") // procedure, description, warning, mixed

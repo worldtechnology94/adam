@@ -42,18 +42,7 @@ export interface ExtractResult {
   sentenceCount: number;
 }
 
-/**
- * Extracts plain text from a file on disk and returns text plus simple word/sentence counts.
- * filePathOrRelative: either absolute path or relative like "uploads/demo/uuid.docx".
- */
-export async function extractTextFromFile(filePathOrRelative: string): Promise<ExtractResult> {
-  const absolutePath = path.isAbsolute(filePathOrRelative)
-    ? filePathOrRelative
-    : path.join(process.cwd(), filePathOrRelative);
-
-  const ext = path.extname(absolutePath).toLowerCase().replace(/^\./, "");
-  const buffer = await readFile(absolutePath);
-
+async function extractTextFromBuffer(buffer: Buffer, ext: string): Promise<ExtractResult> {
   let text: string;
 
   if (ext === "docx") {
@@ -62,7 +51,7 @@ export async function extractTextFromFile(filePathOrRelative: string): Promise<E
   } else if (ext === "txt" || ext === "md") {
     text = buffer.toString("utf-8");
   } else if (ext === "pdf") {
-    console.log("[extract-text]", new Date().toISOString(), "PDF: start parsing", absolutePath);
+    console.log("[extract-text]", new Date().toISOString(), "PDF: start parsing");
     const parser = new PDFParse({ data: new Uint8Array(buffer) });
     try {
       const result = await parser.getText();
@@ -80,9 +69,28 @@ export async function extractTextFromFile(filePathOrRelative: string): Promise<E
   const sentenceCount = sentences.length;
   const wordCount = sentences.reduce((acc, s) => acc + s.split(/\s+/).filter(Boolean).length, 0);
 
-  return {
-    text: trimmed,
-    wordCount,
-    sentenceCount,
-  };
+  return { text: trimmed, wordCount, sentenceCount };
+}
+
+/**
+ * Extracts plain text from a file on disk and returns text plus simple word/sentence counts.
+ * filePathOrRelative: either absolute path or relative like "uploads/demo/uuid.docx".
+ */
+export async function extractTextFromFile(filePathOrRelative: string): Promise<ExtractResult> {
+  const absolutePath = path.isAbsolute(filePathOrRelative)
+    ? filePathOrRelative
+    : path.join(process.cwd(), filePathOrRelative);
+
+  const ext = path.extname(absolutePath).toLowerCase().replace(/^\./, "");
+  const buffer = await readFile(absolutePath);
+  return extractTextFromBuffer(buffer, ext);
+}
+
+/**
+ * Extracts plain text directly from an in-memory buffer (no filesystem required).
+ * Used by the upload route on serverless environments like Vercel.
+ */
+export async function extractTextFromMemory(buffer: Buffer, filename: string): Promise<ExtractResult> {
+  const ext = filename.toLowerCase().split(".").pop() ?? "";
+  return extractTextFromBuffer(buffer, ext);
 }

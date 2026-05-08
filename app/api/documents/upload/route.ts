@@ -8,10 +8,10 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import { randomUUID } from "crypto";
 import { prisma } from "@/app/lib/db";
+import { extractTextFromMemory } from "@/app/lib/documents/extract-text";
 
 const MAX_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB
 const UPLOAD_DIR = "uploads/demo";
@@ -75,23 +75,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const dir = path.join(process.cwd(), UPLOAD_DIR);
-    await mkdir(dir, { recursive: true });
-
     const uuid = randomUUID();
     const filename = `${uuid}.${ext}`;
-    const filePath = path.join(dir, filename);
     const buffer = Buffer.from(await file.arrayBuffer());
-    await writeFile(filePath, buffer);
-
-    const relativePath = `${UPLOAD_DIR}/${filename}`;
     const mimeType = EXT_TO_MIME[ext] ?? file.type;
+
+    log("Extracting text in memory...");
+    const { text, wordCount, sentenceCount } = await extractTextFromMemory(buffer, file.name);
+    log("Extracted:", wordCount, "words,", sentenceCount, "sentences");
 
     const doc = await prisma.document.create({
       data: {
         name: file.name,
-        filePath: relativePath,
+        filePath: filename,
         mimeType,
+        rawText: text,
+        wordCount,
+        sentenceCount,
       },
     });
 
