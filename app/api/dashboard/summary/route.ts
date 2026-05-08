@@ -64,19 +64,16 @@ export async function GET(request: NextRequest) {
     const major = violationsList.filter((v: { severity: string }) => v.severity === "major").length;
     const minor = violationsList.filter((v: { severity: string }) => v.severity === "minor").length;
 
-    const byRule = violationsList.reduce(
-      (acc: Record<string, { ruleId: string; ruleName: string; count: number }>, v: { ruleId: string; ruleName: string; severity: string }) => {
-        const key = v.ruleId;
-        if (!acc[key]) acc[key] = { ruleId: v.ruleId, ruleName: v.ruleName, count: 0 };
-        acc[key].count++;
-        return acc;
-      },
-      {} as Record<string, { ruleId: string; ruleName: string; count: number }>
-    );
+    type RuleCount = { ruleId: string; ruleName: string; count: number };
+    const byRule: Record<string, RuleCount> = {};
+    for (const v of violationsList as Array<{ ruleId: string; ruleName: string; severity: string }>) {
+      if (!byRule[v.ruleId]) byRule[v.ruleId] = { ruleId: v.ruleId, ruleName: v.ruleName, count: 0 };
+      byRule[v.ruleId].count++;
+    }
     const topViolatedRules = Object.values(byRule)
-      .sort((a, b) => b.count - a.count)
+      .sort((a: RuleCount, b: RuleCount) => b.count - a.count)
       .slice(0, 5);
-    const violationDistribution = Object.values(byRule).sort((a, b) => b.count - a.count);
+    const violationDistribution = Object.values(byRule).sort((a: RuleCount, b: RuleCount) => b.count - a.count);
 
     const recentRuns = await prisma.analysisRun.findMany({
       where: { documentId },
