@@ -32,7 +32,7 @@ function setPdfWorkerPath(): void {
 }
 
 // Set worker path once when this module loads in Node so PDFParse works in API routes.
-if (typeof process !== "undefined" && process.cwd) {
+if (typeof process !== "undefined" && typeof process.cwd === "function") {
   setPdfWorkerPath();
 }
 
