@@ -81,7 +81,7 @@ export async function GET(request: NextRequest) {
       take: 5,
       include: { document: true },
     });
-    const recentActivity = recentRuns.map((r, i) => ({
+    const recentActivity = recentRuns.map((r: (typeof recentRuns)[0]) => ({
       id: String(r.id),
       timestamp: r.createdAt.toISOString(),
       action: "analysis_completed",
