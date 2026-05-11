@@ -140,7 +140,8 @@ export default function UploadPage() {
           });
           if (!uploadRes.ok) {
             const err = await uploadRes.json().catch(() => ({}));
-            throw new Error(err.error ?? `Upload failed: ${file.name}`);
+            const detail = err.details ? ` — ${err.details}` : "";
+            throw new Error((err.error ?? `Upload failed: ${file.name}`) + detail);
           }
           const uploadData = await uploadRes.json();
           const docId = uploadData.id;
