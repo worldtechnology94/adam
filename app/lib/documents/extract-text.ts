@@ -9,30 +9,12 @@ export interface ExtractResult {
   sentenceCount: number;
 }
 
-function polyfillDOMMatrix() {
-  if (typeof globalThis.DOMMatrix !== "undefined") return;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (globalThis as any).DOMMatrix = class DOMMatrix {
-    a=1;b=0;c=0;d=1;e=0;f=0;
-    is2D=true;isIdentity=true;
-    multiply(){ return this; }
-    translate(){ return this; }
-    scale(){ return this; }
-    rotate(){ return this; }
-    inverse(){ return this; }
-    transformPoint(p: unknown){ return p; }
-    toString(){ return "matrix(1,0,0,1,0,0)"; }
-  };
-}
-
 async function extractPdfText(buffer: Buffer): Promise<string> {
-  polyfillDOMMatrix();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const mod = await import("pdf-parse") as any;
-  const pdfParse = mod.default ?? mod;
-  const data = await pdfParse(buffer);
-  console.log("[extract-text] PDF pages:", data.numpages, "chars:", data.text.length);
-  return data.text;
+  const { getDocumentProxy, extractText } = await import("unpdf");
+  const pdf = await getDocumentProxy(new Uint8Array(buffer));
+  const { text } = await extractText(pdf, { mergePages: true });
+  console.log("[extract-text] PDF pages:", pdf.numPages, "chars:", text.length);
+  return text;
 }
 
 async function extractTextFromBuffer(buffer: Buffer, ext: string): Promise<ExtractResult> {
