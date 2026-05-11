@@ -1,20 +1,9 @@
-/**
- * T3.1 — POST /api/documents/upload
- *
- * Multipart form with field "file". Accepts .docx, .txt, .md. Max 5 MB.
- * Saves to uploads/demo/<uuid>.<ext> and creates a Document record.
- *
- * @see thesisplan.md T3.1 — File upload and storage
- */
-
 import { NextRequest, NextResponse } from "next/server";
-import path from "path";
 import { randomUUID } from "crypto";
 import { prisma } from "@/app/lib/db";
 import { extractTextFromMemory } from "@/app/lib/documents/extract-text";
 
-const MAX_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB
-const UPLOAD_DIR = "uploads/demo";
+const MAX_SIZE_BYTES = 10 * 1024 * 1024; // 10 MB
 
 const ALLOWED_TYPES: Record<string, string> = {
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document": "docx",
