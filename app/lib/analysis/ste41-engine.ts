@@ -10,11 +10,11 @@
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID = "STE-4.1";
-const RULE_NAME = "Use imperative in procedures";
+const RULE_ID = "STE-5.3";
+const RULE_NAME = "Write instructions in the imperative form";
 const SUGGESTION = "Use imperative form. For example, instead of 'The technician should open the valve', write 'Open the valve'.";
 
-const PROCEDURAL_MODALS = new Set(["should", "must", "shall"]);
+const PROCEDURAL_MODALS = new Set(["should", "must", "shall", "can"]);
 
 /** Violation shape compatible with analyze route (persistence). */
 export interface Ste41Violation {

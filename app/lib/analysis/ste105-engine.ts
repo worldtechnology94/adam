@@ -19,8 +19,8 @@
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID   = "STE-10.5";
-const RULE_NAME = "Terminology consistency";
+const RULE_ID   = "STE-9.4";
+const RULE_NAME = "Use a consistent style";
 
 const ACRONYM_RE = /^[A-Z]{2,8}\d*$/;
 const TITLE_RE   = /^[A-Z][a-z]{2,}/;

@@ -53,20 +53,14 @@ async function main() {
   const rules = loadRules();
   console.log(`Seeding ${rules.length} rules from ${RULES_PATH}...`);
 
+  // Clear all existing rules so legacy entries (STE-10.x, STE-2.3, etc.) are removed.
+  const deleted = await prisma.rule.deleteMany({});
+  console.log(`Deleted ${deleted.count} existing rules.`);
+
   for (const r of rules) {
-    await prisma.rule.upsert({
-      where: { ruleId: r.id },
-      create: {
+    await prisma.rule.create({
+      data: {
         ruleId: r.id,
-        name: r.name,
-        topic: r.topic,
-        topicName: r.topicName,
-        description: r.description,
-        specText: r.specText,
-        compliantExamples: r.compliantExamples as object,
-        nonCompliantExamples: r.nonCompliantExamples as object,
-      },
-      update: {
         name: r.name,
         topic: r.topic,
         topicName: r.topicName,

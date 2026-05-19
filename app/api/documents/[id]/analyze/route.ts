@@ -66,6 +66,9 @@ import {
   runSte54Check,
   runSte105Check,
   runSte107Check,
+  runSte110Check,
+  runSte113Check,
+  runSte84ListCheck,
   createBatchedPrismaLookup,
 } from "@/app/lib/analysis";
 
@@ -128,9 +131,9 @@ export async function POST(
     const ste5Result = runSte5Check(tokenized);
     log("STE-5.3...");
     const ste53Result = runSte53Check(tokenized);
-    log("STE-3.2...");
+    log("STE-3.6 (ste32 engine — active voice)...");
     const ste32Result = runSte32Check(tokenized);
-    log("STE-4.1...");
+    log("STE-5.3 (ste41 engine — imperative)...");
     const ste41Result = runSte41Check(tokenized);
     log("STE-4.2...");
     const ste42Result = runSte42Check(tokenized);
@@ -140,13 +143,13 @@ export async function POST(
     const ste44Result = runSte44Check(tokenized);
     log("STE-4.5...");
     const ste45Result = runSte45Check(tokenized);
-    log("STE-4.6...");
+    log("STE-5.4 (ste46 engine — condition+comma)...");
     const ste46Result = runSte46Check(tokenized);
-    log("STE-4.7...");
+    log("STE-5.5 (ste47 engine — notes info only)...");
     const ste47Result = runSte47Check(tokenized);
-    log("STE-4.8...");
+    log("STE-4.1 (ste48 engine — incomplete procedures)...");
     const ste48Result = runSte48Check(tokenized);
-    log("STE-6.1...");
+    log("STE-6.1 (ste61 engine — give information gradually, no overloaded sentences)...");
     const ste61Result = runSte61Check(tokenized);
     log("STE-7.1...");
     const ste71Result = runSte71Check(tokenized);
@@ -154,78 +157,84 @@ export async function POST(
     const ste72Result = runSte72Check(tokenized);
     log("STE-7.3...");
     const ste73Result = runSte73Check(tokenized);
-    log("STE-7.4...");
+    log("STE-7.2 (ste74 engine — clear safety language)...");
     const ste74Result = runSte74Check(tokenized);
-    log("STE-7.5...");
+    log("STE-7.3 (ste75 engine — reference-only warning)...");
     const ste75Result = runSte75Check(tokenized);
     log("STE-2.1...");
     const ste21Result = runSte21Check(tokenized);
-    log("STE-8.2...");
+    log("STE-8.2 (ste82 engine — compound modifier hyphens)...");
     const ste82Result = runSte82Check(tokenized);
-    log("STE-8.3...");
+    log("STE-8.3 (ste83 engine — parenthetical clause with finite verb)...");
     const ste83Result = runSte83Check(tokenized);
-    log("STE-8.4...");
+    log("STE-4.2 (ste84 engine — contractions)...");
     const ste84Result = runSte84Check(tokenized);
-    log("STE-8.5...");
+    log("STE-8.5 (ste85 engine — overlong parenthetical phrase hiding word count)...");
     const ste85Result = runSte85Check(tokenized);
-    log("STE-8.6...");
+    log("STE-8.6 (ste86 engine — abbreviation not defined on first use)...");
     const ste86Result = runSte86Check(tokenized);
-    log("STE-8.7...");
+    log("STE-8.1 (ste87 engine — em dash or double hyphen joining clauses)...");
     const ste87Result = runSte87Check(tokenized);
-    log("STE-9.1...");
+    log("STE-9.1 (ste91 engine — ambiguous pronoun reference at sentence start)...");
     const ste91Result = runSte91Check(tokenized);
-    log("STE-9.2...");
+    log("STE-9.2 (ste92 engine — misused or incorrectly used approved words)...");
     const ste92Result = runSte92Check(tokenized);
     log("STE-9.3...");
     const ste93Result = runSte93Check(tokenized);
-    log("STE-10.2...");
+    log("STE-9.2 (ste102 engine — Latin abbreviations, use each approved word correctly)...");
     const ste102Result = runSte102Check(tokenized);
-    log("STE-10 writing...");
+    log("STE-1.14/STE-10 writing (spelling, symbols, ellipsis)...");
     const ste10WritingResult = runSte10WritingCheck(tokenized);
-    log("STE-1.4...");
+    log("STE-1.11 (ste14 engine — TN consistency)...");
     const ste14Result = runSte14Check(tokenized);
     log("STE-2.2...");
     const ste22Result = runSte22Check(tokenized);
-    log("STE-2.3...");
+    log("STE-2.2 (ste23 engine — long multi-word noun)...");
     const ste23Result = runSte23Check(tokenized);
-    log("STE-6.2...");
+    log("STE-6.2 (ste62 engine — key-word linkage between consecutive sentences)...");
     const ste62Result = runSte62Check(tokenized);
     log("STE-1.6...");
     const ste16Result = await runSte16Check(tokenized, lookup);
     log("STE-1.7...");
     const ste17Result = await runSte17Check(tokenized, lookup);
-    log("STE-3.3...");
+    log("STE-3.5 (ste33 engine — -ing form)...");
     const ste33Result = runSte33Check(tokenized);
-    log("STE-3.4...");
+    log("STE-3.2 (ste34 engine — present perfect: have/has + past participle)...");
     const ste34Result = runSte34Check(tokenized);
-    log("STE-3.8...");
+    log("STE-3.6 (ste38 engine — get-passive/active voice extension)...");
     const ste38Result = runSte38Check(tokenized);
-    log("STE-3.6...");
+    log("STE-3.4 (ste36 engine — prohibited auxiliaries + modal passive + is-to-be)...");
     const ste36Result = runSte36Check(tokenized);
-    log("STE-3.7...");
+    log("STE-9.3 (ste37 engine — phrasal verbs)...");
     const ste37Result = runSte37Check(tokenized);
-    log("STE-3.9...");
+    log("STE-3.7 (ste39 engine — complex verb phrases)...");
     const ste39Result = runSte39Check(tokenized);
-    log("STE-3.5...");
+    log("STE-3.2 (ste35 engine — progressive tenses and past perfect)...");
     const ste35Result = runSte35Check(tokenized);
-    log("STE-6.3...");
+    log("STE-6.6 (ste63 engine — paragraph sentence count)...");
     const ste63Result = runSte63Check(tokenized);
     log("STE-6.4...");
     const ste64Result = runSte64Check(tokenized);
-    log("STE-6.5...");
+    log("STE-6.5 (ste65 engine — one topic per paragraph)...");
     const ste65Result = runSte65Check(tokenized);
-    log("STE-6.6...");
+    log("STE-6.4 (ste66 engine — paragraph fragmentation)...");
     const ste66Result = runSte66Check(tokenized);
     log("STE-9.4...");
     const ste94Result = runSte94Check(tokenized);
-    log("STE-10.1...");
+    log("STE-1.11 (ste101 engine — TN consistency doc-level)...");
     const ste101Result = runSte101Check(tokenized);
-    log("STE-5.4...");
+    log("STE-5.2 (ste54 engine — one instruction per sentence)...");
     const ste54Result = runSte54Check(tokenized);
-    log("STE-10.5...");
+    log("STE-9.4 (ste105 engine — consistent style)...");
     const ste105Result = runSte105Check(tokenized);
-    log("STE-10.7...");
+    log("STE-1.11 (ste107 engine — doc-level TN consistency)...");
     const ste107Result = runSte107Check(tokenized);
+    log("STE-1.10 (ste110 engine — regional, slang, and jargon as technical nouns)...");
+    const ste110Result = runSte110Check(tokenized);
+    log("STE-1.13 (ste113 engine — technical verbs used as nouns)...");
+    const ste113Result = runSte113Check(tokenized);
+    log("STE-8.4 (ste84list engine — colon before vertical list)...");
+    const ste84ListResult = runSte84ListCheck(tokenized);
 
     const allViolations = [
       ...ste11Result.violations,
@@ -282,6 +291,9 @@ export async function POST(
       ...ste54Result.violations,
       ...ste105Result.violations,
       ...ste107Result.violations,
+      ...ste110Result.violations,
+      ...ste113Result.violations,
+      ...ste84ListResult.violations,
     ];
     // Severity-weighted, density-normalised score.
     // Weight: critical=5, major=3, minor=1. Normalised against total word count.

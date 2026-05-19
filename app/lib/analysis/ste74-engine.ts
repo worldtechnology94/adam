@@ -11,8 +11,8 @@
 import type { TokenizedDocument } from "./types";
 import { STE7_SAFETY_LABEL_LINE } from "./ste7-patterns";
 
-const RULE_ID = "STE-7.4";
-const RULE_NAME = "Warning language";
+const RULE_ID = "STE-7.2";
+const RULE_NAME = "Start safety instruction with a clear command or condition";
 
 const SUGGESTION =
   "Use clear, direct language for safety text; avoid vague hedging (perhaps, maybe, hopefully, sort of) in the warning body.";

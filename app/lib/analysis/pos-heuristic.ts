@@ -24,7 +24,10 @@ export type POSCode = "v" | "adj" | "n" | "adv" | "prep" | "conj" | "pron" | "ar
  */
 const SUFFIX_RULES: { pattern: RegExp | string; pos: POSCode }[] = [
   // Verbs: common imperative (base form) for STE-5 instructional detection
-  { pattern: /^(?:open|close|check|press|turn|set|start|stop|remove|install|connect|disconnect|use|run|add|hold|push|pull|wait|read|write|tighten|loosen)$/, pos: "v" },
+  { pattern: /^(?:open|close|check|press|turn|set|start|stop|remove|install|connect|disconnect|use|run|add|hold|push|pull|wait|read|write|tighten|loosen|put|get|make|take|give|move|place|apply|attach|align|measure|adjust|replace|lift|fix|clean|test|inspect|secure|lock|unlock|release|engage|disengage|activate|deactivate|reset|enable|disable|enter|select|load|insert|extract|mount|detach|drain|fill|position|verify|confirm|ensure|note|ream|bleed|flush|purge|prime|lubricate|torque|trim|solder|rinse|hone|lap|grind|deburr)$/, pos: "v" },
+  // Technical nouns that would be mis-tagged by the generic verb-suffix rules (-ing → v, -s → v)
+  // or that return "unknown" due to no matching suffix. Listed before suffix rules to take priority.
+  { pattern: /^(?:housing|casing|wiring|tubing|piping|coupling|couplings|bearing|bearings|fitting|fittings|mounting|lining|coating|sealing|bonding|shielding|ducting|bolt|bolts|nut|nuts|seal|seals|ring|rings|spring|springs|engine|engines|shaft|shafts|bracket|brackets|rail|rails|drum|drums|rotor|rotors|stator|stators|piston|pistons|nozzle|nozzles|manifold|manifolds|orifice|orifices|inlet|inlets|outlet|outlets|port|ports|disk|disks|cap|caps|pin|pins|clip|clips|pad|pads|strap|straps|clamp|clamps|washer|washers|gasket|gaskets|joint|joints|hinge|hinges|lever|levers|pedal|pedals|knob|knobs|slot|slots|flange|flanges|bushing|bushings|gland|glands|plug|plugs|socket|sockets|collet|collets|shim|shims|spacer|spacers|key|keys|groove|grooves|thread|threads)$/, pos: "n" },
   // Verbs: past tense / past participle
   { pattern: /ed$/, pos: "v" },
   { pattern: /(?:ing)$/, pos: "v" },

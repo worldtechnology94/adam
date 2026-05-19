@@ -178,7 +178,7 @@ function RulesPageContent() {
             Rule Reference Library
           </h1>
           <p className="mt-1 text-sm text-[var(--muted-foreground)]">
-            Searchable library of STE rules with examples and test sandbox.
+            53 ASD-STE100 Issue 9 writing rules — searchable by section, with examples.
           </p>
         </div>
         <span
@@ -204,10 +204,10 @@ function RulesPageContent() {
           className="rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm focus:border-[var(--ring)] focus:outline-none focus:ring-1 focus:ring-[var(--ring)]"
           aria-label="Filter by STE topic"
         >
-          <option value="">All topics (1–10)</option>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((t) => (
+          <option value="">All sections (1–9)</option>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((t) => (
             <option key={t} value={t}>
-              STE-{t}
+              Section {t}
             </option>
           ))}
         </select>

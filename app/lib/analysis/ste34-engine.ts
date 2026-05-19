@@ -1,37 +1,70 @@
 /**
- * ADAM — STE-3.4 rule engine (Infinitives)
+ * ADAM — STE-3.2 rule engine (Present Perfect detection)
  *
- * ASD-STE100 Issue 9: Use an infinitive only to express the purpose of an action.
- * Do not use an infinitive as the subject of a sentence, and do not split infinitives.
+ * ASD-STE100 Issue 9 Rule 3.2: Use only approved verb forms and tenses.
+ * Approved forms: infinitive, imperative, simple present, simple past,
+ *                 simple future, past participle used as an adjective.
+ * NOT approved:   present perfect (have/has + past participle),
+ *                 past perfect, progressive tenses.
  *
- * STE-compliant (purpose clause — allowed):
- *   "To remove the panel, undo the six screws."
- *   "Use the torque wrench to tighten the bolt."
+ * This engine detects PRESENT PERFECT constructions: have/has + past participle.
  *
- * Non-compliant examples:
- *   "To remove the panel is the first step."    (infinitive as subject — major)
- *   "You need to carefully inspect the valve."  (split infinitive — minor)
+ *   Non-STE: "The operator has adjusted the linkage."
+ *   STE:     "The operator adjusted the linkage."
  *
- * Two detection patterns:
+ *   Non-STE: "The technician has already installed the filter."
+ *   STE:     "The technician already installed the filter."
  *
- *   Pattern 1 — Infinitive as sentence subject (major)
- *     Sentence starts with word token "to" followed immediately by a non-ing word,
- *     AND no comma appears in the first 10 tokens (which would signal a purpose clause).
- *     A purpose clause like "To remove the panel, ..." always has an early comma.
+ * Also detects present-perfect passive: have/has + been + past participle.
+ *   Non-STE: "The valve has been replaced."
+ *   STE:     "Replace the valve." (imperative) or "The valve was replaced." (simple past passive)
  *
- *   Pattern 2 — Split infinitive (minor)
- *     Word token "to" followed by an adverb (posHeuristic "adv", i.e. ends in -ly)
- *     followed by a third word token — "to carefully remove", "to quickly check".
- *     Only flagged when "to" is NOT the first word of the sentence (to avoid overlap
- *     with Pattern 1 or purpose-clause openings).
+ * False-positive avoidance:
+ *   - "have/has" followed by an article (a/an/the) → main verb ("have a look"), skip
+ *   - "have/has" followed by a pronoun or "to" → main verb or "have to" (ste36), skip
  *
- * @see remaining-ste-rules.md — STE-3.4
+ * @see ste35-engine.ts — STE-3.2 (progressive and past perfect)
+ * @see ste36-engine.ts — STE-3.4 (complex verb constructions)
  */
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID   = "STE-3.4";
-const RULE_NAME = "Incorrect use of infinitive";
+const RULE_ID   = "STE-3.2";
+const RULE_NAME = "Use only approved verb forms and tenses";
+
+const HAVE_HAS = new Set(["have", "has"]);
+
+/** Words that, when following "have/has", indicate it is a main verb (not auxiliary). */
+const MAIN_VERB_SIGNALS = new Set([
+  "a", "an", "the",
+  "i", "you", "he", "she", "it", "we", "they", "me", "him", "her", "us", "them",
+  "to",   // "have to" = prohibited auxiliary, handled by ste36
+  "no",   // "have no idea" etc.
+  "not",  // "have not" = present perfect negative, but catch via next word
+  "your", "my", "our", "their", "its", "his", "her",
+  "this", "that", "these", "those",
+  "what", "some", "any", "enough", "more", "less",
+]);
+
+/**
+ * Irregular past participles that do not end in -ed.
+ * Deliberately limited to unambiguous forms in technical writing.
+ */
+const IRREGULAR_PAST_PARTICIPLES = new Set([
+  "been", "done", "gone", "known", "seen", "taken", "given", "made",
+  "come", "become", "begun", "broken", "brought", "built", "bought",
+  "caught", "chosen", "driven", "fallen", "felt", "found", "forgotten",
+  "grown", "held", "kept", "left", "lost", "met", "paid", "proven",
+  "put", "run", "said", "sent", "shown", "shut", "spoken", "stolen",
+  "stood", "told", "thought", "thrown", "understood", "worn", "written",
+  "blown", "drawn", "eaten", "flown", "frozen", "hidden", "ridden",
+  "risen", "shaken", "sunk", "swum", "sworn", "torn", "woken",
+]);
+
+function isPastParticiple(norm: string): boolean {
+  if (norm.length >= 4 && norm.endsWith("ed")) return true;
+  return IRREGULAR_PAST_PARTICIPLES.has(norm);
+}
 
 export interface Ste34Violation {
   sentenceIndex:   number;
@@ -57,87 +90,112 @@ export function runSte34Check(doc: TokenizedDocument): Ste34EngineResult {
 
   for (const sentence of doc.sentences) {
     const docStart  = sentence.offsetInDocument.start;
-    const allTokens = sentence.tokens; // includes punctuation
-    const words     = allTokens.filter((t) => t.isWord);
+    const words     = sentence.tokens.filter((t) => t.isWord);
     const wordCount = words.length;
 
     if (wordCount < 2) continue;
 
-    // ── Pattern 1 ─────────────────────────────────────────────────────────
-    // Infinitive as sentence subject:
-    //   First word token is "to", second word token is not an -ing form,
-    //   and no comma appears in the first 10 tokens (all tokens, not just words).
-    const firstWord  = words[0]!;
-    const secondWord = words[1]!;
+    for (let i = 0; i < words.length - 1; i++) {
+      const w    = words[i]!;
+      const norm = w.normalized.toLowerCase();
 
-    if (firstWord.normalized.toLowerCase() === "to") {
-      const secondNorm = secondWord.normalized.toLowerCase();
+      if (!HAVE_HAS.has(norm)) continue;
 
-      // Skip if second word is an -ing form (that would be "to + gerund", a different issue)
-      // or another "to" (double-to is uncommon but skip it)
-      if (!secondNorm.endsWith("ing") && secondNorm !== "to") {
-        // Check for a purpose-clause comma within the first 10 raw tokens
-        const first10 = allTokens.slice(0, Math.min(10, allTokens.length));
-        const hasPurposeComma = first10.some((t) => !t.isWord && t.raw.trim() === ",");
+      const next1     = words[i + 1]!;
+      const next1Norm = next1.normalized.toLowerCase();
 
-        if (!hasPurposeComma) {
+      // "have/has" followed by a main-verb signal word → not an auxiliary
+      if (MAIN_VERB_SIGNALS.has(next1Norm)) continue;
+
+      // "have/has" + "not" + past participle → present perfect negative ("has not adjusted")
+      if (next1Norm === "not" && i + 2 < words.length) {
+        const next2Norm = words[i + 2]!.normalized.toLowerCase();
+        if (isPastParticiple(next2Norm)) {
           violations.push({
             sentenceIndex:   sentence.index,
             sentenceExcerpt: sentence.text,
-            tokenRaw:        `${firstWord.raw} ${secondWord.raw}`,
-            tokenNormalized: `to ${secondNorm}`,
-            positionStart:   docStart + firstWord.offsetInSentence.start,
-            positionEnd:     docStart + secondWord.offsetInSentence.end,
+            tokenRaw:        `${w.raw} ${next1.raw} ${words[i + 2]!.raw}`,
+            tokenNormalized: `${norm} not ${next2Norm}`,
+            positionStart:   docStart + w.offsetInSentence.start,
+            positionEnd:     docStart + words[i + 2]!.offsetInSentence.end,
             ruleId:          RULE_ID,
             ruleName:        RULE_NAME,
             severity:        "major",
-            reason:          "infinitive_as_subject",
+            reason:          "present_perfect_tense",
             suggestion:
-              "Do not use an infinitive as the subject of a sentence. " +
-              "Use an infinitive only to express purpose, always followed by a comma: " +
-              "e.g. 'To remove the panel, undo the screws.' " +
-              "Rewrite this sentence with a direct verb or a noun as the subject.",
+              `'${w.raw} ${next1.raw} ${words[i + 2]!.raw}' is present perfect tense, which is not ` +
+              `approved by ASD-STE100 Rule 3.2. Use simple past tense instead ` +
+              `(e.g. 'did not adjust', 'was not adjusted').`,
+            wordCount,
+          });
+        }
+        continue;
+      }
+
+      // Pattern A: have/has + past participle (present perfect active)
+      //   "has adjusted", "have removed", "has been"
+      if (isPastParticiple(next1Norm)) {
+        let spanRaw  = `${w.raw} ${next1.raw}`;
+        let spanNorm = `${norm} ${next1Norm}`;
+        let endPos   = docStart + next1.offsetInSentence.end;
+
+        // Special case: "have/has been + past participle" (present perfect passive)
+        if (next1Norm === "been" && i + 2 < words.length) {
+          const next2Norm = words[i + 2]!.normalized.toLowerCase();
+          if (isPastParticiple(next2Norm)) {
+            spanRaw  = `${w.raw} ${next1.raw} ${words[i + 2]!.raw}`;
+            spanNorm = `${norm} been ${next2Norm}`;
+            endPos   = docStart + words[i + 2]!.offsetInSentence.end;
+          }
+        }
+
+        violations.push({
+          sentenceIndex:   sentence.index,
+          sentenceExcerpt: sentence.text,
+          tokenRaw:        spanRaw,
+          tokenNormalized: spanNorm,
+          positionStart:   docStart + w.offsetInSentence.start,
+          positionEnd:     endPos,
+          ruleId:          RULE_ID,
+          ruleName:        RULE_NAME,
+          severity:        "major",
+          reason:          "present_perfect_tense",
+          suggestion:
+            `'${spanRaw}' is present perfect tense, which is not approved by ASD-STE100 Rule 3.2. ` +
+            `Use simple past tense instead (e.g. replace '${spanRaw}' with the simple past form).`,
+          wordCount,
+        });
+        continue;
+      }
+
+      // Pattern B: have/has + adverb(-ly) + past participle
+      //   "has already adjusted", "have never seen"
+      if (
+        i + 2 < words.length &&
+        (next1Norm.endsWith("ly") || next1Norm === "already" || next1Norm === "never" ||
+         next1Norm === "just" || next1Norm === "recently" || next1Norm === "finally" ||
+         next1Norm === "always")
+      ) {
+        const next2Norm = words[i + 2]!.normalized.toLowerCase();
+        if (isPastParticiple(next2Norm)) {
+          violations.push({
+            sentenceIndex:   sentence.index,
+            sentenceExcerpt: sentence.text,
+            tokenRaw:        `${w.raw} ${next1.raw} ${words[i + 2]!.raw}`,
+            tokenNormalized: `${norm} ${next1Norm} ${next2Norm}`,
+            positionStart:   docStart + w.offsetInSentence.start,
+            positionEnd:     docStart + words[i + 2]!.offsetInSentence.end,
+            ruleId:          RULE_ID,
+            ruleName:        RULE_NAME,
+            severity:        "major",
+            reason:          "present_perfect_tense",
+            suggestion:
+              `'${w.raw} ${next1.raw} ${words[i + 2]!.raw}' is present perfect tense, which is not ` +
+              `approved by ASD-STE100 Rule 3.2. Use simple past tense instead.`,
             wordCount,
           });
         }
       }
-    }
-
-    // ── Pattern 2 ─────────────────────────────────────────────────────────
-    // Split infinitive: "to" + adverb (-ly word) + third word
-    // Only scan from position 1 onwards to avoid overlapping with Pattern 1.
-    for (let i = 1; i < words.length - 2; i++) {
-      const w0 = words[i]!;
-      const w1 = words[i + 1]!;
-      const w2 = words[i + 2]!;
-
-      if (w0.normalized.toLowerCase() !== "to") continue;
-
-      // Middle word must be an adverb (ends in -ly per the heuristic)
-      const midNorm = w1.normalized.toLowerCase();
-      if (!midNorm.endsWith("ly")) continue;
-
-      // Third word should not itself be an adverb (avoid "to very carefully remove" edge)
-      const thirdNorm = w2.normalized.toLowerCase();
-      if (thirdNorm.endsWith("ly")) continue;
-
-      violations.push({
-        sentenceIndex:   sentence.index,
-        sentenceExcerpt: sentence.text,
-        tokenRaw:        `${w0.raw} ${w1.raw} ${w2.raw}`,
-        tokenNormalized: `to ${midNorm} ${thirdNorm}`,
-        positionStart:   docStart + w0.offsetInSentence.start,
-        positionEnd:     docStart + w2.offsetInSentence.end,
-        ruleId:          RULE_ID,
-        ruleName:        RULE_NAME,
-        severity:        "minor",
-        reason:          "split_infinitive",
-        suggestion:
-          `Do not split the infinitive 'to ${thirdNorm}' with an adverb. ` +
-          `Move '${w1.raw}' before 'to' or after '${w2.raw}': ` +
-          `e.g. '${w1.raw} to ${thirdNorm}' or 'to ${thirdNorm} ${w1.raw}'.`,
-        wordCount,
-      });
     }
   }
 

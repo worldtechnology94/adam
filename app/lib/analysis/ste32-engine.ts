@@ -9,8 +9,8 @@
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID = "STE-3.2";
-const RULE_NAME = "No passive voice";
+const RULE_ID = "STE-3.6";
+const RULE_NAME = "Use the active voice";
 const SUGGESTION = "Use active voice. For example, instead of 'The valve was opened', write 'Open the valve'.";
 
 const BE_FORMS = new Set(["is", "are", "was", "were", "am", "be", "been", "being"]);

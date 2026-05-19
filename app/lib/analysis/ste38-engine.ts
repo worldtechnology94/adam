@@ -24,8 +24,8 @@
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID   = "STE-3.8";
-const RULE_NAME = "Get-passive voice";
+const RULE_ID   = "STE-3.6";
+const RULE_NAME = "Use the active voice";
 
 const SUGGESTION =
   "Use the active voice. Rewrite the sentence so the subject performs the action. " +

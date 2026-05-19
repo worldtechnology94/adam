@@ -1,1201 +1,1195 @@
 [
   {
     "id": "STE-1.1",
-    "name": "Approved words only",
+    "name": "Use only approved words, technical nouns, and technical verbs",
     "topic": 1,
     "topicName": "Words",
-    "description": "Use only words that are on the official STE approved word list, and use each word only in the part of speech (noun, verb, adjective, etc.) for which it is approved. If you need a meaning that is not approved, use a different word or phrase from the list.",
-    "specText": "Use only approved words in their approved part of speech. See the dictionary.",
+    "description": "Use only words that are in the STE dictionary. If a word is not in the dictionary, use it only as a technical noun or technical verb. Do not use words that are not approved and are not technical nouns or technical verbs.",
+    "specText": "Use approved words. If a word is not approved, use it only as a technical noun or a technical verb.",
     "compliantExamples": [
       {
-        "text": "Remove the cover."
+        "text": "The word 'use' is an approved verb in the dictionary."
       },
       {
-        "text": "The pressure is correct."
+        "text": "The word 'engine' is a technical noun."
       }
     ],
     "nonCompliantExamples": [
       {
         "text": "Utilize the correct tool.",
-        "reason": "'Utilize' is not on the approved list; use 'Use'."
-      },
-      {
-        "text": "The pressure was observed to be correct.",
-        "reason": "Passive and wordy; use active, approved words."
+        "reason": "'Utilize' is not an approved word; use 'Use'."
       }
     ]
   },
   {
     "id": "STE-1.2",
-    "name": "Prohibited words",
+    "name": "Use approved words only as their specified part of speech",
     "topic": 1,
     "topicName": "Words",
-    "description": "Do not use words that are explicitly listed as not approved. The dictionary gives approved alternatives for each.",
-    "specText": "Do not use words that are not in the approved word list.",
+    "description": "Each word in the STE dictionary has a specified part of speech (noun, verb, adjective, etc.). Use the word only in that role. Do not use a noun as a verb, or an adjective as a noun, for example.",
+    "specText": "Use each approved word only as the part of speech that is given in the dictionary.",
     "compliantExamples": [
       {
-        "text": "Before you start, check the oil level."
+        "text": "Test B is an alternative to test A."
+      },
+      {
+        "text": "Do the leak test of the system."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "Prior to starting the engine, check the oil.",
-        "reason": "'Prior to' is not approved; use 'Before'."
+        "text": "Test the system for leaks.",
+        "reason": "'Test' is approved as a noun, not a verb in this context."
+      },
+      {
+        "text": "Dim the lights.",
+        "reason": "'Dim' is an approved adjective but not an approved verb."
       }
     ]
   },
   {
     "id": "STE-1.3",
-    "name": "Approved meanings",
+    "name": "Use approved words only with their approved meanings",
     "topic": 1,
     "topicName": "Words",
-    "description": "Use each approved dictionary word only in the meaning(s) given for that word. If the writer needs a different sense, use the alternative word or construction from the dictionary (meaning rows).",
-    "specText": "Use approved words only with their approved meanings.",
-    "specCitation": "ASD-STE100 Simplified Technical English Issue 9 (January 2025), Rule 1.3 — Words, Part 1",
+    "description": "The STE dictionary lists which meanings are approved for each word. Use a word only with those approved meanings; do not use a word with a meaning that is not listed in the dictionary.",
+    "specText": "Use each approved word only with the meaning given in the dictionary.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "Do the procedures that follow."
+      },
+      {
+        "text": "Obey the safety instructions."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
+        "text": "Assure that the pressure is correct.",
+        "reason": "'Assure' means to tell a person not to worry; it requires a person as the object. Use 'Ensure' or 'Make sure that' when referring to a condition or fact."
       }
     ]
   },
   {
     "id": "STE-1.4",
-    "name": "Technical nouns",
+    "name": "Use only approved forms of verbs and adjectives",
     "topic": 1,
     "topicName": "Words",
-    "description": "This rule is part of the ASD-STE100 standard (Words). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "description": "For each approved verb or adjective, the dictionary lists which forms are allowed (e.g. infinitive, imperative, simple past). Do not use forms that are not listed, such as the present perfect or progressive.",
+    "specText": "Use only the forms of verbs and adjectives that the dictionary permits.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "(To) Remove / Remove / Remove(s) / Removed / Removed (past participle as adjective)"
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
+        "text": "The operator has adjusted the linkage.",
+        "reason": "Present perfect tense is not an approved form."
+      },
+      {
+        "text": "The technician is adjusting the valve.",
+        "reason": "Progressive tense is not an approved form."
       }
     ]
   },
   {
     "id": "STE-1.5",
-    "name": "Word forms",
+    "name": "Use only approved technical noun categories",
     "topic": 1,
     "topicName": "Words",
-    "description": "This rule is part of the ASD-STE100 standard (Words). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "description": "When you use a word as a technical noun, it must belong to one of the approved technical noun categories. These categories include official parts, vehicles, tools, materials, and others. Your company or project must approve the word for its category.",
+    "specText": "Use a word as a technical noun only if it belongs to an approved technical noun category.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "bolt, cable, clip, conductor, contact, engine, screw, switch (category 1 — official parts)"
+      },
+      {
+        "text": "aircraft, cockpit, fuselage, helicopter, wing (category 2 — vehicles or machines)"
       }
     ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
+    "nonCompliantExamples": []
   },
   {
     "id": "STE-1.6",
-    "name": "Unapproved words only as technical nouns",
+    "name": "Use unapproved words only as technical nouns",
     "topic": 1,
     "topicName": "Words",
-    "description": "Use a word that is not in the approved dictionary only when it functions as a technical noun (TN) or as part of a technical noun. Other uses of unapproved words violate this rule.",
-    "specText": "Use a word that is not approved in the dictionary only when it is a technical noun or part of a technical noun.",
-    "specCitation": "ASD-STE100 Simplified Technical English Issue 9 (January 2025), Rule 1.6 — Words, Part 1",
+    "description": "If a word is not in the STE dictionary, you can use it only as a technical noun. You cannot use it as a verb, adjective, or in any other part of speech. The technical noun must be approved by your company, industry, or subject field.",
+    "specText": "If a word is not in the dictionary, you can use it only as a technical noun.",
     "compliantExamples": [
       {
-        "text": "The LRU must agree with the IPC."
+        "text": "Do the backup of the computer at regular intervals. ('Backup' is a technical noun, category 19.)"
       },
       {
-        "text": "Install the widget assembly as shown."
+        "text": "The base of the triangle is 5 cm. ('Base' is a technical noun, category 7.)"
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "Utilize the correct procedure.",
-        "reason": "'Utilize' is not an approved dictionary word and is not used as or inside a technical noun; use an approved verb such as 'Use'."
+        "text": "The ECU interfaces with the sensor.",
+        "reason": "'Interface' is approved only as a technical noun; it must not be used as a verb. Write 'The ECU connects to the sensor' or 'The ECU communicates with the sensor'."
       }
     ]
   },
   {
     "id": "STE-1.7",
-    "name": "Do not use a technical noun as a verb",
+    "name": "Do not use technical nouns as verbs",
     "topic": 1,
     "topicName": "Words",
-    "description": "A technical noun must not be used as a verb. Use an approved verb (or an approved technical verb where applicable) to express the action.",
+    "description": "A word that is approved as a technical noun must not be used as a verb (unless the same word is also an approved technical verb or dictionary verb). Use a different sentence construction with the technical noun.",
     "specText": "Do not use a technical noun as a verb.",
-    "specCitation": "ASD-STE100 Simplified Technical English Issue 9 (January 2025), Rule 1.7 — Words, Part 1",
     "compliantExamples": [
       {
-        "text": "Torque the bolt to 20 Nm."
+        "text": "Apply oil to the steel surfaces."
       },
       {
-        "text": "Apply the sealant to the joint."
+        "text": "If you think that snow will fall, make sure that the vehicle is in the applicable configuration."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "Bracket the pipe to the frame.",
-        "reason": "If 'bracket' is a technical noun in your nomenclature, do not use it as a verb; rephrase with an approved verb (e.g. attach, install) per Rule 1.7."
+        "text": "The fault impacts the system performance.",
+        "reason": "'Impact' is a technical noun; do not use it as a verb. Write 'The fault affects the system performance'."
+      },
+      {
+        "text": "This condition impacts the fuel flow.",
+        "reason": "'Impact' is a technical noun; do not use it as a verb. Write 'This condition affects the fuel flow'."
+      }
+    ]
+  },
+  {
+    "id": "STE-1.8",
+    "name": "Use technical nouns approved in your industry or subject field",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "Some technical nouns are not in the STE dictionary but are approved in your company, industry, or subject field. You can use these words as technical nouns if they are approved in the relevant context.",
+    "specText": "You can use technical nouns that are approved in your company, industry, or subject field.",
+    "compliantExamples": [
+      {
+        "text": "The front panel of the phone has a touchscreen and a home button. ('Touchscreen' and 'home button' are approved technical nouns in the consumer electronics industry.)"
+      }
+    ],
+    "nonCompliantExamples": []
+  },
+  {
+    "id": "STE-1.9",
+    "name": "Select short and easy-to-understand technical nouns",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "When you select a technical noun, choose a word that is short and easy for your reader to understand. Add one or two adjectives if needed to make the noun clearer, but do not use unnecessarily long or complex technical noun groups.",
+    "specText": "Select technical nouns that are short and easy to understand.",
+    "compliantExamples": [
+      {
+        "text": "Remove the four screws (10) that attach the flange (15) to the cover (20)."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Remove the four stainless steel pan head machine screws (10) that attach the metallic machined flange (15) to the front housing cover (20).",
+        "reason": "Unnecessarily complex noun groups; use shorter, simpler technical nouns."
+      }
+    ]
+  },
+  {
+    "id": "STE-1.10",
+    "name": "Do not use regional, slang, or jargon as technical nouns",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "Do not use regional expressions, slang, or jargon as technical nouns. These words are not clear to all readers. Use standard technical nouns that are understood internationally.",
+    "specText": "Do not use regional expressions, slang, or jargon as technical nouns.",
+    "compliantExamples": [
+      {
+        "text": "During logging operations, attach a cable to the heavy machinery to hold the logs in their position."
+      },
+      {
+        "text": "Remove your tools and equipment from the work area."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "During logging operations, attach a choker to the heavy machinery.",
+        "reason": "'Choker' is a regional term; use 'cable'."
+      },
+      {
+        "text": "Remove your gear from the work area.",
+        "reason": "'Gear' is jargon; use 'tools and equipment'."
+      }
+    ]
+  },
+  {
+    "id": "STE-1.11",
+    "name": "Do not use different technical nouns for the same item",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "Use the same technical noun consistently throughout a document to refer to the same item. Do not alternate between two or more different terms for the same part or concept.",
+    "specText": "Use the same technical noun each time you refer to the same item.",
+    "compliantExamples": [
+      {
+        "text": "1. Make sure that the actuator is in the open position. 2. Do the operational test of the actuator. 3. Disconnect the actuator from the test rig."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Inspect the pump assembly. Examine the seal for wear.",
+        "reason": "'Inspect' and 'Examine' are synonyms; use one term consistently throughout the document (ASD-STE100 Rule 1.11)."
+      }
+    ]
+  },
+  {
+    "id": "STE-1.12",
+    "name": "Use only approved technical verb categories",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "When you use a word as a technical verb, it must belong to one of the approved technical verb categories. Use technical verbs only when they are necessary and correct in context. Prefer approved dictionary verbs where possible.",
+    "specText": "Use a word as a technical verb only if it belongs to an approved technical verb category.",
+    "compliantExamples": [
+      {
+        "text": "Ream the hole until it has a diameter of 8.00 +/- 0.003 mm."
+      },
+      {
+        "text": "Put clamps on the cable to hold it in position."
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Machine the hole until it has a diameter of 8.00 mm.",
+        "reason": "'Machine' is not an approved technical verb in this context."
+      },
+      {
+        "text": "Grease the fasteners.",
+        "reason": "'Grease' is a technical noun; do not use it as a technical verb."
+      }
+    ]
+  },
+  {
+    "id": "STE-1.13",
+    "name": "Do not use technical verbs as nouns",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "A word that is approved as a technical verb must not be used as a noun (unless the same word is also approved as a technical noun or dictionary noun). Rewrite the sentence so that the technical verb is used as a verb.",
+    "specText": "Do not use a technical verb as a noun.",
+    "compliantExamples": [
+      {
+        "text": "Ream the hole to a 0.20-inch dimension."
+      },
+      {
+        "text": "Lubricate the reamed hole. ('Reamed' is the past participle of technical verb 'ream', used as an adjective.)"
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "Give the hole a 0.20-inch ream.",
+        "reason": "'Ream' is a technical verb; do not use it as a noun. Write: 'Ream the hole to 0.20 inch'."
+      }
+    ]
+  },
+  {
+    "id": "STE-1.14",
+    "name": "Use American English spelling",
+    "topic": 1,
+    "topicName": "Words",
+    "description": "Use American English spelling unless a different spelling is specified by your company or client. For example, write 'color' not 'colour', 'center' not 'centre', 'realize' not 'realise'.",
+    "specText": "Use American English spelling unless another directive applies.",
+    "compliantExamples": [
+      {
+        "text": "color, center, realize, organize, behavior, favor"
+      }
+    ],
+    "nonCompliantExamples": [
+      {
+        "text": "colour, centre, realise, organise, behaviour, favour",
+        "reason": "British English spelling; use American English spelling."
       }
     ]
   },
   {
     "id": "STE-2.1",
-    "name": "Noun clusters (max 3 words)",
+    "name": "Multi-word noun: three words maximum",
     "topic": 2,
-    "topicName": "Noun Clusters",
-    "description": "Do not use more than three words in a row as a noun cluster (e.g. 'the hydraulic pressure pump assembly' is four words). Break into shorter phrases or use the dictionary-approved terms.",
-    "specText": "Use a maximum of three words in a noun cluster.",
+    "topicName": "Multi-word nouns",
+    "description": "A technical noun that consists of more than one word (a multi-word noun) must have a maximum of three words. If you need more than three words, rewrite the noun using prepositions or hyphens, or give it a shorter form.",
+    "specText": "A multi-word noun must have three words or fewer.",
     "compliantExamples": [
       {
-        "text": "Remove the fuel pump."
+        "text": "Calibration of the resistance of the runway light connection. (1 word, 1 word, and 3 words)"
       },
       {
-        "text": "The hydraulic pump is on the left."
+        "text": "Install the terminal tags on the forward overheat thermocouple of the turbine. (2 words and 3 words)"
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "Remove the high-pressure fuel pump assembly component.",
-        "reason": "Noun cluster has more than three words."
+        "text": "Inspect the connection resistance indicator.",
+        "reason": "Four-word noun cluster (connection resistance indicator); restructure using a preposition, e.g. \"indicator for connection resistance\"."
+      },
+      {
+        "text": "Check the indicator tolerance measurement.",
+        "reason": "Four-word noun cluster (indicator tolerance measurement); restructure, e.g. \"measurement of indicator tolerance\"."
       }
     ]
   },
   {
     "id": "STE-2.2",
-    "name": "Noun cluster clarity",
+    "name": "Write long technical nouns in full, then shorten with hyphens or abbreviation",
     "topic": 2,
-    "topicName": "Noun Clusters",
-    "description": "This rule is part of the ASD-STE100 standard (Noun Clusters). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Multi-word nouns",
+    "description": "When a technical noun has more than three words, write it in full the first time. Then you can use a shorter form, hyphens between words used as one unit, or an approved abbreviation. This makes the technical noun clear to the reader.",
+    "specText": "When a technical noun has more than three words, write it in full the first time, then use a shorter form.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "Constant Speed Drive (CSD) — write in full first, then use 'CSD'."
+      },
+      {
+        "text": "Use hyphens between words used as a unit: air-conditioned compartment."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
-  },
-  {
-    "id": "STE-2.3",
-    "name": "Noun cluster requirements",
-    "topic": 2,
-    "topicName": "Noun Clusters",
-    "description": "This rule is part of the ASD-STE100 standard (Noun Clusters). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
-    "compliantExamples": [
-      {
-        "text": "Follow the approved wording and structure for this rule."
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
+        "text": "Check the actuator indicator.",
+        "reason": "Three-word noun cluster; clarify the relationship with a preposition: write 'indicator for the actuator'."
       }
     ]
   },
   {
     "id": "STE-3.1",
-    "name": "Verb tense",
+    "name": "Use only the verb forms given in the dictionary",
     "topic": 3,
-    "topicName": "Verbs & Verb Phrases",
-    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Verbs",
+    "description": "For each verb in the STE dictionary, the dictionary lists which forms are approved (e.g. infinitive, imperative, simple present, simple past, future). Use only those forms. Do not use verb forms that are not given in the dictionary entry.",
+    "specText": "Use only the verb forms that the dictionary gives.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "REMOVE (v): (To) Remove / Remove / Remove(s) / Removed / Removed (past participle as adjective)"
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
+        "text": "The technician has installed the component.",
+        "reason": "Present perfect tense (has installed) is not an approved verb form; use simple past: \"The technician installed the component.\""
+      },
+      {
+        "text": "The operator was checking the pressure.",
+        "reason": "Progressive tense (was checking) is not an approved verb form; use simple past: \"The operator checked the pressure.\""
       }
     ]
   },
   {
     "id": "STE-3.2",
-    "name": "Passive voice",
+    "name": "Use only the approved verb forms and tenses",
     "topic": 3,
-    "topicName": "Verbs & Verb Phrases",
-    "description": "In procedures, use active voice so the reader knows who performs the action. In descriptive text, passive is sometimes allowed but prefer active when possible.",
-    "specText": "Do not use passive voice in procedural sentences.",
+    "topicName": "Verbs",
+    "description": "Only these verb forms and tenses are approved: infinitive, imperative, simple present, simple past, future ('will + verb'). Do not use the present perfect, past perfect, or progressive (continuous) tenses.",
+    "specText": "Use only the approved tenses: infinitive, imperative, simple present, simple past, and future.",
     "compliantExamples": [
       {
-        "text": "Install the new seal."
+        "text": "Adjust + object / You adjust / It adjusts / You adjusted / It adjusted / You will adjust"
       },
       {
-        "text": "The technician checks the pressure."
+        "text": "Give + object / You give / It gives / You gave / It gave / You will give"
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "The seal was installed.",
-        "reason": "Passive voice; use 'Install the seal' or 'The technician installed the seal'."
+        "text": "The operator has adjusted the linkage.",
+        "reason": "Present perfect tense is not approved."
+      },
+      {
+        "text": "The operator had adjusted the linkage.",
+        "reason": "Past perfect tense is not approved."
+      },
+      {
+        "text": "The operator is adjusting the linkage.",
+        "reason": "Progressive tense is not approved."
       }
     ]
   },
   {
     "id": "STE-3.3",
-    "name": "Gerunds",
+    "name": "Use the past participle only as an adjective",
     "topic": 3,
-    "topicName": "Verbs & Verb Phrases",
-    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Verbs",
+    "description": "You can use the past participle form of an approved verb as an adjective, either before a noun or after the verb 'to be'. Do not use the past participle as a verb form in a compound tense.",
+    "specText": "You can use the past participle of an approved verb only as an adjective.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "Examine all parts of the disassembled unit for damage. ('Disassembled' is an adjective before the noun 'unit'.)"
+      },
+      {
+        "text": "When the unit is fully disassembled, clean all the parts. ('Disassembled' is an adjective after the verb 'to be'.)"
       }
     ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
+    "nonCompliantExamples": []
   },
   {
     "id": "STE-3.4",
-    "name": "Infinitives",
+    "name": "Do not use auxiliary verbs for complex verb constructions",
     "topic": 3,
-    "topicName": "Verbs & Verb Phrases",
-    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Verbs",
+    "description": "Do not use the past participle as a verb together with an auxiliary verb (e.g. have/has, is/are to be, can be, must be). These constructions create unapproved tenses and passive voice constructions. Use simple tenses and the active voice instead.",
+    "specText": "Do not use auxiliary verbs to make complex verb constructions.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "The operator adjusted the linkage. (Simple past, approved.)"
+      },
+      {
+        "text": "Before you install the cushion, install the seat."
+      },
+      {
+        "text": "You can adjust the volume control."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
+        "text": "The operator should check the linkage.",
+        "reason": "'Should' is a prohibited auxiliary; use 'must' for obligation."
+      },
+      {
+        "text": "The seat is to be installed before you install the cushion.",
+        "reason": "Complex passive construction; use active voice."
+      },
+      {
+        "text": "The volume control can be adjusted.",
+        "reason": "Passive; rewrite in active voice."
       }
     ]
   },
   {
     "id": "STE-3.5",
-    "name": "Verb consistency",
+    "name": "Use the -ing form only as a technical noun or modifier in a technical noun",
     "topic": 3,
-    "topicName": "Verbs & Verb Phrases",
-    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Verbs",
+    "description": "Do not use the -ing form of a verb in a gerund construction (as a noun or in a clause). You can use the -ing form only when it is part of an approved technical noun or as a modifier in a technical noun group.",
+    "specText": "Use the -ing form of a verb only as a technical noun or as a modifier in a technical noun.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "When you do this procedure, obey all the safety precautions."
+      },
+      {
+        "text": "Before you use dangerous materials, obey these precautions."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
+        "text": "After installing the filter, bleed the hydraulic system.",
+        "reason": "Gerund after preposition 'after'; write 'After you install the filter, bleed the hydraulic system'."
+      },
+      {
+        "text": "Cleaning the unit is required before storage.",
+        "reason": "Gerund as sentence subject; write 'Clean the unit before you store it'."
       }
     ]
   },
   {
     "id": "STE-3.6",
-    "name": "Auxiliary verbs",
+    "name": "Use the active voice",
     "topic": 3,
-    "topicName": "Verbs & Verb Phrases",
-    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Verbs",
+    "description": "Write sentences in the active voice. The subject of the sentence performs the action. You can use the passive voice in descriptive writing only when the agent is unknown or unimportant. In procedural writing, use the imperative form.",
+    "specText": "Use the active voice. Use the passive voice in descriptive writing only when the agent is unknown.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "A switching relay connects the circuits. (Active)"
+      },
+      {
+        "text": "The computer calculates the energy consumption from these values. (Active)"
+      },
+      {
+        "text": "Continue the test. (Active imperative)"
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
+        "text": "The circuits are connected by a switching relay. (Passive)",
+        "reason": "Agent is known; use active voice."
+      },
+      {
+        "text": "These values are used by the computer to calculate the energy consumption. (Passive)",
+        "reason": "Agent is known; use active voice."
+      },
+      {
+        "text": "The test can be continued by the operator. (Passive)",
+        "reason": "Use imperative: 'Continue the test'."
       }
     ]
   },
   {
     "id": "STE-3.7",
-    "name": "Phrasal verbs",
+    "name": "Use an approved verb to describe an action",
     "topic": 3,
-    "topicName": "Verbs & Verb Phrases",
-    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Verbs",
+    "description": "Use an approved verb (from the dictionary) to describe an action. Do not replace an approved verb with a noun-based construction (nominalization) such as 'make a decision' instead of 'decide', or 'perform an inspection' instead of 'inspect'.",
+    "specText": "Use an approved verb to describe an action. Do not replace a verb with a noun construction.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "Decide on the best method."
+      },
+      {
+        "text": "Inspect the component."
+      },
+      {
+        "text": "Verify the torque value."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
-  },
-  {
-    "id": "STE-3.8",
-    "name": "Verb voice",
-    "topic": 3,
-    "topicName": "Verbs & Verb Phrases",
-    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
-    "compliantExamples": [
+        "text": "Make a decision on the best method.",
+        "reason": "Nominalization; use 'decide'."
+      },
       {
-        "text": "Follow the approved wording and structure for this rule."
-      }
-    ],
-    "nonCompliantExamples": [
+        "text": "Perform an inspection of the component.",
+        "reason": "Nominalization; use 'inspect'."
+      },
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
-  },
-  {
-    "id": "STE-3.9",
-    "name": "Verb phrases",
-    "topic": 3,
-    "topicName": "Verbs & Verb Phrases",
-    "description": "This rule is part of the ASD-STE100 standard (Verbs & Verb Phrases). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
-    "compliantExamples": [
-      {
-        "text": "Follow the approved wording and structure for this rule."
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
+        "text": "Do a verification of the torque value.",
+        "reason": "Nominalization; use 'verify'."
       }
     ]
   },
   {
     "id": "STE-4.1",
-    "name": "Active voice (procedures)",
+    "name": "Write short and clear sentences",
     "topic": 4,
-    "topicName": "Procedures (Instructions)",
-    "description": "Write procedural steps in active voice with the imperative form (e.g. 'Remove the cap', not 'The cap should be removed').",
-    "specText": "Use the imperative form in procedural sentences.",
+    "topicName": "Procedures",
+    "description": "Write sentences that are short and easy to understand. Each sentence must have one main topic. If a sentence contains more than one topic, write separate sentences for each topic.",
+    "specText": "Write short and clear sentences. Write one topic per sentence.",
     "compliantExamples": [
       {
-        "text": "Open the valve. Check the pressure."
+        "text": "1. Remove the cover assembly (9) as follows: A. Remove the four screws (10). B. Remove the cover (11) from the housing (12). C. Remove and discard the preformed packing (13)."
+      },
+      {
+        "text": "The side stay assembly has two folding toggles. The folding toggles are attached together with hinges. These folding toggles are also attached between the main gear strut and the side stay bracket."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "The technician should open the valve.",
-        "reason": "Use imperative: 'Open the valve'."
+        "text": "It is important to check the oil level.",
+        "reason": "Impersonal abstract construction; write 'Check the oil level' as a direct imperative instruction."
+      },
+      {
+        "text": "No leaks are permitted.",
+        "reason": "Abstract passive negative that hides responsibility; write 'Make sure that there are no leaks'."
       }
     ]
   },
   {
     "id": "STE-4.2",
-    "name": "Do not omit words",
+    "name": "Do not omit words or use contractions",
     "topic": 4,
-    "topicName": "Procedures (Instructions)",
-    "description": "Do not omit words or use contractions to make your sentences shorter. Contractions are flagged under STE-8.4. ADAM flags sentence fragments that start with And/But/Or (omitted subject).",
-    "specText": "Do not omit words or use contractions to make your sentences shorter.",
-    "specCitation": "ASD-STE100 Issue 9 (STEMG-aligned summary), Rule 4.2",
+    "topicName": "Procedures",
+    "description": "Write every word that the reader needs to understand the sentence. Do not omit verbs, subjects, or articles. Do not use contractions (e.g. 'don't', 'can't', 'it's'); write the full forms instead.",
+    "specText": "Do not omit words. Do not use contractions.",
     "compliantExamples": [
       {
-        "text": "Open the valve."
+        "text": "Set the rotary switch to INPUT."
       },
       {
-        "text": "Open the valve and close it."
+        "text": "If shims are installed, remove them."
+      },
+      {
+        "text": "Cracks can have a maximum length of five inches."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "And open the valve.",
-        "reason": "Standalone sentence should not start with And/But/Or (omitted words). Contractions: see STE-8.4."
+        "text": "And connect the test unit.",
+        "reason": "Sentence starts with conjunction 'And'; begin with the imperative verb instead."
+      },
+      {
+        "text": "Use the correct tool & check the result.",
+        "reason": "Symbol '&' is not approved; write 'and'."
+      },
+      {
+        "text": "Don't use that part.",
+        "reason": "Contraction; write 'Do not'."
+      },
+      {
+        "text": "The duct efficiency is 80%.",
+        "reason": "Symbol '%' is not approved; write 'percent'."
       }
     ]
   },
   {
     "id": "STE-4.3",
-    "name": "Vertical list for complex text",
+    "name": "Use a vertical list for complex information",
     "topic": 4,
-    "topicName": "Procedures (Instructions)",
-    "description": "ASD-STE100 Issue 9 (STEMG-aligned summary): Use a vertical list for complex text. ADAM uses a heuristic on instructional sentences (verb-first): long sentences with many commas may be easier to read as a vertical list.",
-    "specText": "Use a vertical list for complex text (ASD-STE100 Issue 9).",
+    "topicName": "Procedures",
+    "description": "When you have complex texts with parallel items (parts, work steps, conditions), use a vertical list. Vertical lists are easier to read than long sentences with multiple elements. Use letters or numbers to identify each item.",
+    "specText": "Use a vertical list when the text is complex and has parallel items.",
     "compliantExamples": [
       {
-        "text": "Open the valve."
+        "text": "The wheel assembly has these parts: - The tire - The tube - The spokes - The spoke fittings - The valve - The hub."
       },
       {
-        "text": "- Remove the cover.\n- Disconnect the wiring.\n- Inspect the area."
+        "text": "If the Ram Air Turbine (RAT) is retracted: (a) Remove the tag. (b) Open the isolating valves. (c) Slowly and fully extend the RAT."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "Remove the cover, disconnect the wiring, release the latch, inspect the area for damage, and make sure the surface is clean before you continue.",
-        "reason": "Very dense instructional sentence; may be clearer as a vertical list (heuristic check)."
+        "text": "The wheel assembly comprises the tire, the tube, the spokes, the spoke fittings, the valve, and the hub.",
+        "reason": "Long inline list; use a vertical list."
+      },
+      {
+        "text": "If the RAT is retracted, remove the tag, open the isolating valves and, ensuring that there is no possibility of fouling, slowly extend the RAT to its full stroke.",
+        "reason": "Multiple actions in one sentence; use a vertical list."
       }
     ]
   },
   {
     "id": "STE-4.4",
-    "name": "Connecting words and phrases",
+    "name": "Use connecting words and phrases for related sentences",
     "topic": 4,
-    "topicName": "Procedures (Instructions)",
-    "description": "ASD-STE100 Issue 9 (STEMG-aligned summary): Use connecting words and phrases to connect sentences that contain related topics. ADAM flags weak sentence-initial openers after another sentence (e.g. Additionally, Furthermore) and repeated “The + noun” at the start of consecutive descriptive sentences.",
-    "specText": "Use connecting words and phrases to connect sentences that contain related topics.",
-    "specCitation": "ASD-STE100 Issue 9, Rule 4.4",
+    "topicName": "Procedures",
+    "description": "Use approved connecting words and phrases (e.g. 'and', 'but', 'thus', 'if', 'this', 'these') to show the relationship between sentences and paragraphs. Connecting words help the reader follow the logic of the text.",
+    "specText": "Use connecting words and phrases to show the relationship between sentences.",
     "compliantExamples": [
       {
-        "text": "The localizer is aligned with the runway. And the glideslope path is at a constant angle."
+        "text": "The localizer course aligns with the centerline of the runway. And the glideslope path is at a constant angle to the threshold of the runway."
       },
       {
-        "text": "The valve is open. This valve supplies hydraulic pressure to the actuator."
+        "text": "If the pressure increases, it changes the electrical currents in the transmitter. Thus, the power unit supplies more current."
       }
     ],
-    "nonCompliantExamples": [
-      {
-        "text": "The pressure increases. Furthermore the indicator shows a fault.",
-        "reason": "Weak opener; prefer a clearer STEMG-style connector or pronoun (heuristic)."
-      },
-      {
-        "text": "The valve is open. The valve is closed.",
-        "reason": "Same article + noun repeated; link with This valve, It, or an approved connector (heuristic)."
-      }
-    ]
+    "nonCompliantExamples": []
   },
   {
     "id": "STE-4.5",
-    "name": "Article or demonstrative before a noun",
+    "name": "Use an article or demonstrative adjective before a noun",
     "topic": 4,
-    "topicName": "Procedures (Instructions)",
-    "description": "When applicable, use an article (A/AN/THE) or demonstrative adjective (THIS/THAT/THESE/THOSE) before a noun. ADAM flags instructional sentences that open with imperative + bare noun (heuristic).",
-    "specText": "When applicable, use an article or a demonstrative adjective before a noun.",
-    "specCitation": "ASD-STE100 Issue 9 (STEMG-aligned summary), Rule 4.5",
+    "topicName": "Procedures",
+    "description": "Use an article (the, a, an) or a demonstrative adjective (this, that, these, those) before a noun or multi-word noun when applicable. Omitting articles can cause ambiguity and makes the text harder to read.",
+    "specText": "Use an article or demonstrative adjective before a noun or multi-word noun when applicable.",
     "compliantExamples": [
       {
-        "text": "Open the valve."
+        "text": "Remove the cover."
       },
       {
-        "text": "Remove the connection."
+        "text": "Install a new O-ring."
+      },
+      {
+        "text": "Use these fasteners."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "Open valve.",
-        "reason": "Bare noun after imperative; use THE or A/AN when applicable."
-      }
-    ]
-  },
-  {
-    "id": "STE-4.6",
-    "name": "Descriptive lead-in and command (comma)",
-    "topic": 4,
-    "topicName": "Procedures (Instructions)",
-    "description": "Maps to ASD-STE100 Issue 9 **rule 5.4** (same topic in the STEMG): when you start an instruction with a descriptive statement, divide that statement from the command with a comma. ADAM flags subordinate openers (If/When/…) with no comma and a later command verb (heuristic).",
-    "specText": "When you start an instruction with a descriptive statement, divide that statement from the command with a comma.",
-    "specCitation": "ASD-STE100 Issue 9 (rule 5.4 in Issue 9 structure; catalog id STE-4.6)",
-    "compliantExamples": [
+        "text": "Remove cover.",
+        "reason": "Article 'the' omitted before noun; write 'Remove the cover'."
+      },
       {
-        "text": "When the light is on, open the valve."
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "When the light is on open the valve.",
-        "reason": "Missing comma between descriptive lead-in and command (heuristic)."
-      }
-    ]
-  },
-  {
-    "id": "STE-4.7",
-    "name": "Notes: information only",
-    "topic": 4,
-    "topicName": "Procedures (Instructions)",
-    "description": "Maps to ASD-STE100 Issue 9 **rule 5.5**: write notes only to give information, not instructions. ADAM flags sentences beginning with NOTE: when the text after the colon reads as an instruction (verb-first or cues like must/shall).",
-    "specText": "Write notes only to give information, not instructions.",
-    "specCitation": "ASD-STE100 Issue 9 (rule 5.5; catalog id STE-4.7)",
-    "compliantExamples": [
-      {
-        "text": "NOTE: The pressure is high when the temperature exceeds 80 degrees."
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "NOTE: Open the valve.",
-        "reason": "Instruction in a note; use a procedural step or descriptive wording."
-      }
-    ]
-  },
-  {
-    "id": "STE-4.8",
-    "name": "Procedure completeness",
-    "topic": 4,
-    "topicName": "Procedures (Instructions)",
-    "description": "Heuristic: instructional sentences must not contain obvious placeholders (TBD, TBC, …) that leave the procedure incomplete.",
-    "specText": "Do not leave procedural steps as placeholders; complete the instruction or remove the step until content is known.",
-    "specCitation": "ADAM heuristic (STEMG completeness practice; catalog id STE-4.8)",
-    "compliantExamples": [
-      {
-        "text": "Remove the four bolts. Discard the seal."
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "Tighten the bolts TBD.",
-        "reason": "TBD placeholder in an imperative sentence (heuristic)."
+        "text": "Install O-ring.",
+        "reason": "Article 'an' omitted before noun; write 'Install an O-ring'."
       }
     ]
   },
   {
     "id": "STE-5.1",
-    "name": "Sentence length (instruction)",
+    "name": "Maximum 20 words per instructional sentence",
     "topic": 5,
-    "topicName": "Sentence Length",
-    "description": "Keep procedural sentences to a maximum of 20 words. Short sentences are easier to follow and reduce the risk of misunderstanding.",
-    "specText": "Use a maximum of 20 words in an instructional sentence.",
+    "topicName": "Procedure sentences",
+    "description": "An instructional sentence must not have more than 20 words. Count all words in the sentence (see Section 8 for word-count rules). If a sentence is too long, divide it into shorter sentences or use a vertical list.",
+    "specText": "An instructional sentence must have no more than 20 words.",
     "compliantExamples": [
       {
-        "text": "Remove the four bolts. Discard the seal."
+        "text": "Install the three auxiliary screws (2) in the flange of the motor assembly (9). [9 words]"
+      },
+      {
+        "text": "CAUTION: WHEN YOU REMOVE THE SHROUD (26), BE CAREFUL NOT TO CAUSE DAMAGE TO THE SURFACE OF THE FLANGE ASSEMBLY (22). [20 words]"
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "You must remove the four bolts that hold the cover in place and then discard the old seal before you install the new one.",
-        "reason": "Sentence exceeds 20 words."
+        "text": "Put preservation oil into the unit through the vent hole until the oil level is approximately 6 mm (0.24 inches) below the surface of the flange cover.",
+        "reason": "More than 20 words; divide into two sentences."
       }
     ]
   },
   {
     "id": "STE-5.2",
-    "name": "Sentence length (descriptive)",
+    "name": "Write only one instruction per sentence",
     "topic": 5,
-    "topicName": "Sentence Length",
-    "description": "In descriptive text, use a maximum of 25 words per sentence.",
-    "specText": "Use a maximum of 25 words in a descriptive sentence.",
+    "topicName": "Procedure sentences",
+    "description": "Each instructional sentence must give only one instruction (one action). If two actions must occur at the same time, you can write both in one sentence. If the actions occur at different times, write separate sentences.",
+    "specText": "Write only one instruction per sentence, unless two actions must occur at the same time.",
     "compliantExamples": [
       {
-        "text": "The pump is on the left side of the unit. It has a red cap."
+        "text": "(1) Set the TEST switch to the middle position. (2) Make sure that all the switches on the control panel are OFF."
+      },
+      {
+        "text": "Hold the panel in its open position and install the fastener. (Two simultaneous actions — permitted.)"
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "The pump that supplies hydraulic fluid to the system is located on the left side of the unit and has a red cap that must be removed before maintenance.",
-        "reason": "More than 25 words."
+        "text": "Set the TEST switch to the middle position and release the SHORT-CIRCUIT TEST switch.",
+        "reason": "Two separate actions in one sentence; write as two steps."
       }
     ]
   },
   {
     "id": "STE-5.3",
-    "name": "Instructions in imperative form",
+    "name": "Write instructions in the imperative form",
     "topic": 5,
-    "topicName": "Sentence Length",
-    "description": "ASD-STE100 Issue 9 (Topic 5): Write instructions in the imperative (command) form. ADAM flags a common non-imperative pattern: You + modal + verb (e.g. You must open).",
-    "specText": "Write instructions in the imperative (command) form.",
-    "specCitation": "ASD-STE100 Issue 9, Rule 5.3",
+    "topicName": "Procedure sentences",
+    "description": "Write each instruction as an imperative (command). The imperative form gives a clear, direct instruction to the reader. Do not use 'must', 'shall', or passive constructions for instructions unless it is necessary for safety emphasis.",
+    "specText": "Write each instruction in the imperative form.",
     "compliantExamples": [
       {
-        "text": "Open the valve."
+        "text": "Set the switch to ON."
+      },
+      {
+        "text": "Remove the four bolts."
+      },
+      {
+        "text": "Increase the pressure to 60 psi."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "You must open the valve.",
-        "reason": "Prefer imperative Open the valve (heuristic STE-5.3)."
+        "text": "The test can be continued.",
+        "reason": "Not imperative; write 'Continue the test'."
+      },
+      {
+        "text": "Oil and grease must be removed with a degreasing agent.",
+        "reason": "Modal-passive construction, not imperative; write 'Remove oil and grease with a degreasing agent'."
       }
     ]
   },
   {
     "id": "STE-5.4",
-    "name": "Word count limits",
+    "name": "Put the condition before the command, with a comma between them",
     "topic": 5,
-    "topicName": "Sentence Length",
-    "description": "This rule is part of the ASD-STE100 standard (Sentence Length). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Procedure sentences",
+    "description": "When a sentence has a condition and a command, write the condition first, then put a comma after it, then write the command. This structure prevents ambiguity about which part of the sentence the adverb or modifier belongs to.",
+    "specText": "Write the condition before the command. Use a comma after the condition.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "If the Constant Speed Drive (CSD) does not operate correctly, disconnect it from the gearbox."
+      }
+    ],
+    "nonCompliantExamples": []
+  },
+  {
+    "id": "STE-5.5",
+    "name": "Write notes only to give information",
+    "topic": 5,
+    "topicName": "Procedure sentences",
+    "description": "A NOTE must give information only, not instructions. If you need to give an instruction, use an imperative sentence or a numbered work step, not a NOTE. Do not use a NOTE to repeat a safety instruction.",
+    "specText": "Use a NOTE only to give information. Do not write instructions in a NOTE.",
+    "compliantExamples": [
+      {
+        "text": "NOTE: The pressure reading will vary with altitude."
+      },
+      {
+        "text": "NOTE: This procedure applies only to units manufactured after January 2020."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
+        "text": "NOTE: Remove the cover before you start.",
+        "reason": "An instruction must not be in a NOTE; use a numbered step."
       }
     ]
   },
   {
     "id": "STE-6.1",
-    "name": "Paragraph structure",
+    "name": "Give information gradually",
     "topic": 6,
-    "topicName": "Structure",
-    "description": "Start each paragraph with a topic sentence that states the main idea. One main idea per paragraph.",
-    "specText": "Start each paragraph with a topic sentence.",
+    "topicName": "Descriptive writing",
+    "description": "In descriptive writing, give information to the reader in a logical, gradual way. Start with the most general or important information, then add specific details. Do not begin with specific details before you have introduced the topic.",
+    "specText": "Give information gradually from the most general to the most specific.",
     "compliantExamples": [
       {
-        "text": "The filter must be replaced every 500 hours. Remove the cover to get access."
+        "text": "Instrument Landing System. The Instrument Landing System (the system) on the aircraft shows data that helps the pilot during the approach to the runway. This system shows the pilot the deviations from the localizer course and the glideslope path. The localizer course aligns with the centerline of the runway."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "Remove the cover. The filter is inside. Replace it every 500 hours.",
-        "reason": "Topic sentence should introduce the main idea first."
+        "text": "The hydraulic system, which controls the landing gear and was designed for 3000 psi operation, requires monthly inspection. Inspect it every month.",
+        "reason": "Specific detail packed into the first sentence before the topic is introduced; give general information first, then add detail in subsequent sentences."
       }
     ]
   },
   {
     "id": "STE-6.2",
-    "name": "List structure",
+    "name": "Use key words and phrases to show logical structure",
     "topic": 6,
-    "topicName": "Structure",
-    "description": "This rule is part of the ASD-STE100 standard (Structure). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Descriptive writing",
+    "description": "In descriptive writing, use key words and phrases to connect sentences and paragraphs. Repeat key words from one sentence to the next to show the reader how sentences are related and to build a logical structure.",
+    "specText": "Use key words and phrases from sentence to sentence to show the logical structure.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "The Instrument Landing System (the system) on the aircraft shows data that helps the pilot. This system shows the pilot the deviations from the localizer course. (Key words 'system' and 'pilot' are repeated to link the sentences.)"
       }
     ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
+    "nonCompliantExamples": []
   },
   {
     "id": "STE-6.3",
-    "name": "Paragraph length",
+    "name": "Maximum 25 words per descriptive sentence",
     "topic": 6,
-    "topicName": "Structure",
-    "description": "This rule is part of the ASD-STE100 standard (Structure). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Descriptive writing",
+    "description": "A descriptive sentence must not have more than 25 words. Count all words in the sentence (see Section 8 for word-count rules). If a sentence is too long, divide it into shorter sentences.",
+    "specText": "A descriptive sentence must have no more than 25 words.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "During the approach to the runway, deviation pointers in the course indicators show the pilot in which direction the aircraft must go."
+      },
+      {
+        "text": "A smartphone is a cellular telephone that has an integrated computer and many other functions. It includes an operating system and an internet browser, and it can also operate software applications."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
+        "text": "A smartphone is a cellular telephone that has an integrated computer and many other functions, such as an operating system, internet browsing as well as the ability to run software applications.",
+        "reason": "More than 25 words; divide into two sentences."
       }
     ]
   },
   {
     "id": "STE-6.4",
-    "name": "Topic sentences",
+    "name": "Use paragraphs to show related information",
     "topic": 6,
-    "topicName": "Structure",
-    "description": "This rule is part of the ASD-STE100 standard (Structure). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Descriptive writing",
+    "description": "Group related sentences into paragraphs. Each paragraph must contain sentences that are closely related to the same topic. Use a new paragraph when you change to a different topic.",
+    "specText": "Use paragraphs to group related information. Start a new paragraph when the topic changes.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "1. Lightning Strike. A. General. (1) A lightning strike can cause damage to the aircraft. The damage usually occurs at the attachment points. (2) From the attachment points, the lightning current moves..."
       }
     ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
+    "nonCompliantExamples": []
   },
   {
     "id": "STE-6.5",
-    "name": "Logical order",
+    "name": "Write one topic per paragraph",
     "topic": 6,
-    "topicName": "Structure",
-    "description": "This rule is part of the ASD-STE100 standard (Structure). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Descriptive writing",
+    "description": "Each paragraph must have only one main topic. All sentences in the paragraph must relate to that topic. If you need to describe a different topic, start a new paragraph.",
+    "specText": "Write about only one topic in each paragraph.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "The Instrument Landing System (the system) on the aircraft shows data that helps the pilot during the approach to the runway. This system shows the pilot the deviations from the localizer course and the glideslope path. The localizer course aligns with the centerline of the runway. And the glideslope path is at a constant angle to the threshold of the runway."
       }
     ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
+    "nonCompliantExamples": []
   },
   {
     "id": "STE-6.6",
-    "name": "Structure clarity",
+    "name": "Maximum six sentences per paragraph",
     "topic": 6,
-    "topicName": "Structure",
-    "description": "This rule is part of the ASD-STE100 standard (Structure). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Descriptive writing",
+    "description": "A descriptive paragraph must not have more than six sentences. If a paragraph is too long, divide it into shorter paragraphs, each with one topic.",
+    "specText": "A paragraph must have no more than six sentences.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "A paragraph with no more than six sentences about the Instrument Landing System."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
+        "text": "The hydraulic system controls all primary flight surfaces. The pump provides pressure to the actuators. The actuators move the control surfaces. The relief valve prevents overpressure. The filter removes contamination from the fluid. The reservoir stores the hydraulic fluid. The pressure gauge indicates the system pressure.",
+        "reason": "Seven sentences in one paragraph; divide into two paragraphs of six sentences or fewer."
       }
     ]
   },
   {
     "id": "STE-7.1",
-    "name": "Warnings format",
+    "name": "Use the applicable safety word for the level of risk",
     "topic": 7,
-    "topicName": "Warnings & Cautions",
-    "description": "Start warnings with the word WARNING in capital letters. Use approved words only and keep the message clear.",
-    "specText": "Start a warning with the word WARNING in capital letters.",
+    "topicName": "Safety instructions",
+    "description": "Use the correct safety word (WARNING, CAUTION, or DANGER) for the level of risk. WARNING is for risk of injury or death. CAUTION is for risk of damage to equipment. DANGER is for immediate risk of death. Do not use WARNING when you mean CAUTION, or vice versa.",
+    "specText": "Use the applicable safety word (WARNING, CAUTION, DANGER) for the level of risk.",
     "compliantExamples": [
       {
-        "text": "WARNING: Do not touch the hot surface. You can get burned."
+        "text": "WARNING: BEFORE YOU FILL THE LIQUID OXYGEN SYSTEM, PUT ON A FACE MASK AND PROTECTIVE CLOTHING. LIQUID OXYGEN CAN CAUSE IRRITATION OF THE RESPIRATORY TRACT AND EYE IRRITATION."
+      },
+      {
+        "text": "WARNING: MAKE SURE THAT THE OXYGEN TUBES ARE FULLY CLEAN. OXYGEN AND GREASE MAKE AN EXPLOSIVE MIXTURE. AN EXPLOSION CAN CAUSE INJURY OR DEATH."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "Caution: The surface might be extremely hot during operation.",
-        "reason": "Use 'WARNING' and approved words (e.g. 'can be very hot')."
+        "text": "CAUTION: EXTREME CLEANLINESS OF OXYGEN TUBES IS IMPERATIVE.",
+        "reason": "Risk of explosion/death requires WARNING, not CAUTION."
       }
     ]
   },
   {
     "id": "STE-7.2",
-    "name": "Safety instruction command or condition",
+    "name": "Start a safety instruction with a clear command or condition",
     "topic": 7,
-    "topicName": "Warnings & Cautions",
-    "description": "Start a safety instruction with a clear command or condition. ADAM flags common narrative lead-ins (e.g. Note that, It is important) immediately after WARNING/CAUTION/DANGER; verify full text against ASD-STE100 Issue 9.",
-    "specText": "Start a safety instruction with a clear and accurate command or condition.",
-    "specCitation": "ASD-STE100 Issue 9 (STEMG-aligned summary), Rule 7.2",
+    "topicName": "Safety instructions",
+    "description": "The safety instruction must start with a clear command (imperative) or a condition (if-clause). The reader must immediately understand what action to take or what situation applies. Do not start with vague or unclear language.",
+    "specText": "Start each safety instruction with a clear command or condition.",
     "compliantExamples": [
       {
-        "text": "WARNING: Do not touch the hot surface."
+        "text": "WARNING: DO NOT SWALLOW THE SOLVENT. ALWAYS MAKE SURE THAT YOU KNOW THE SAFETY PRECAUTIONS AND FIRST AID INSTRUCTIONS FOR SOLVENTS. SOLVENTS ARE POISONOUS AND CAN CAUSE INJURY OR DEATH."
       },
       {
-        "text": "WARNING: If the light is on, do not remove the cover."
+        "text": "CAUTION: DO NOT USE BLEACH OR CLEANSERS THAT CONTAIN CHLORINE TO CLEAN THE UNIT. THESE CLEANING AGENTS CAN CAUSE CORROSION."
       }
     ],
-    "nonCompliantExamples": [
-      {
-        "text": "WARNING: Note that the surface can be very hot.",
-        "reason": "Lead-in delays the command or condition (heuristic STE-7.2 check)."
-      }
-    ]
+    "nonCompliantExamples": []
   },
   {
     "id": "STE-7.3",
-    "name": "Risk or result explanation",
+    "name": "Give an explanation to show the risk or possible result",
     "topic": 7,
-    "topicName": "Warnings & Cautions",
-    "description": "Give an explanation that shows the risk or possible result. ADAM uses a heuristic on longer WARNING/CAUTION/DANGER lines: expect risk/outcome vocabulary or causal wording unless the line is short or starts with If/When. Verify against ASD-STE100 Issue 9.",
-    "specText": "Give an explanation to show the risk or possible result.",
-    "specCitation": "ASD-STE100 Issue 9 (STEMG-aligned summary), Rule 7.3",
+    "topicName": "Safety instructions",
+    "description": "A safety instruction must explain the risk or possible result of not following the instruction. Do not use only a cross-reference (e.g. 'See Figure 1' or 'Refer to Section 3') without also stating the hazard or consequence.",
+    "specText": "Give an explanation of the risk or possible result in the safety instruction itself.",
     "compliantExamples": [
       {
-        "text": "WARNING: Do not touch the hot surface. You can get burned."
+        "text": "WARNING: DO NOT SWALLOW THE SOLVENT. SOLVENTS ARE POISONOUS AND CAN CAUSE INJURY OR DEATH. (Explains the risk.)"
       },
       {
-        "text": "WARNING: You can get an injury if you do not use the guard."
+        "text": "CAUTION: WHEN YOU ASSEMBLE THE UNIT, DO NOT LET THE PARTS FALL. IF THEY FALL, PERMANENT DAMAGE TO THE PARTS CAN OCCUR. (Explains the result.)"
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "WARNING: Make sure you remove all tools from the work area before you start the engine and check the area for loose objects.",
-        "reason": "Long procedural text without stating risk or outcome (heuristic STE-7.3)."
-      }
-    ]
-  },
-  {
-    "id": "STE-7.4",
-    "name": "Warning language",
-    "topic": 7,
-    "topicName": "Warnings & Cautions",
-    "description": "Use clear, appropriate language for safety text. ADAM flags vague hedging (perhaps, maybe, hopefully, sort of, …) in the body after WARNING/CAUTION/DANGER.",
-    "specText": "Use clear language for warnings and cautions (verify wording against ASD-STE100 Issue 9).",
-    "specCitation": "ASD-STE100 Issue 9 (STEMG-aligned summary), Rule 7.4",
-    "compliantExamples": [
-      {
-        "text": "WARNING: Do not touch the hot surface. You can get burned."
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "WARNING: Perhaps the surface is hot.",
-        "reason": "Vague hedging weakens the safety message (heuristic)."
-      }
-    ]
-  },
-  {
-    "id": "STE-7.5",
-    "name": "Warnings and cautions",
-    "topic": 7,
-    "topicName": "Warnings & Cautions",
-    "description": "Safety information must be actionable. ADAM flags WARNING/CAUTION/DANGER lines whose body is only a cross-reference (See Figure / Refer to Section …) with no stated hazard or command.",
-    "specText": "Give the safety instruction or risk in the wording; do not rely on a reference alone (see Issue 9).",
-    "specCitation": "ASD-STE100 Issue 9 (STEMG-aligned summary), Rule 7.5",
-    "compliantExamples": [
-      {
-        "text": "WARNING: Do not remove the cover. See Figure 4 for the latch location."
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "WARNING: See Figure 4.",
-        "reason": "Reference-only safety line (heuristic)."
+        "text": "WARNING: DO NOT remove the safety panel while the equipment is in use.",
+        "reason": "Does not explain the risk or possible result; add a sentence stating the hazard (e.g. 'Removal can cause injury')."
       }
     ]
   },
   {
     "id": "STE-8.1",
-    "name": "Semicolons",
+    "name": "Use standard punctuation; do not use semicolons",
     "topic": 8,
-    "topicName": "Punctuation",
-    "description": "Do not use semicolons in STE. Use a full stop and a new sentence, or use 'and' or 'or' where appropriate.",
-    "specText": "Do not use semicolons.",
+    "topicName": "Punctuation and word count",
+    "description": "Use standard punctuation marks (period, comma, colon, hyphen, parentheses). Do not use the semicolon (;). If you need a semicolon, write two separate sentences instead.",
+    "specText": "Use standard punctuation. Do not use semicolons.",
     "compliantExamples": [
       {
-        "text": "Before you start, check the oil level. Then start the engine."
+        "text": "(1) Examine the removed parts for damage. (2) Replace the damaged part(s)."
+      },
+      {
+        "text": "Users cannot replace the battery. Only specialists at approved service stations can replace it."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "Check the oil level; then start the engine.",
-        "reason": "Semicolon not allowed; use two sentences."
+        "text": "(1) Examine the removed parts; replace the damaged ones.",
+        "reason": "Semicolon used; write as two separate sentences."
+      },
+      {
+        "text": "The battery is not user-replaceable; it can only be replaced by an approved service station.",
+        "reason": "Semicolon used; write as two separate sentences."
       }
     ]
   },
   {
     "id": "STE-8.2",
-    "name": "Commas",
+    "name": "Use hyphens between directly related words",
     "topic": 8,
-    "topicName": "Punctuation",
-    "description": "This rule is part of the ASD-STE100 standard (Punctuation). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Punctuation and word count",
+    "description": "Use a hyphen (-) to connect two or more words that you use as one unit (a compound modifier or part of a technical noun). Hyphens help the reader understand which words are directly related.",
+    "specText": "Use hyphens to connect directly related words that you use as one unit.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "low-altitude flight"
+      },
+      {
+        "text": "high-pressure chamber"
+      },
+      {
+        "text": "air-conditioned compartment"
+      },
+      {
+        "text": "transmitter-receiver system"
+      },
+      {
+        "text": "quick-release fastener"
       }
     ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
+    "nonCompliantExamples": []
   },
   {
     "id": "STE-8.3",
-    "name": "Hyphens",
+    "name": "Use parentheses only for their allowed purposes",
     "topic": 8,
-    "topicName": "Punctuation",
-    "description": "This rule is part of the ASD-STE100 standard (Punctuation). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Punctuation and word count",
+    "description": "Use parentheses only for: (1) references to figures, tables, paragraphs; (2) numbers or letters that identify items in illustrations; (3) work-step identifiers in procedures; (4) abbreviations; (5) singular and plural forms of nouns at the same time (e.g. 'part(s)').",
+    "specText": "Use parentheses only for references, identifiers, abbreviations, or the singular/plural notation.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "Remove the valve (10, Figure 1). (Reference to figure/item number)"
+      },
+      {
+        "text": "A Liquid Crystal Display (LCD) is a flat-panel display... (Abbreviation)"
+      },
+      {
+        "text": "Replace the damaged part(s). (Singular/plural notation)"
       }
     ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
+    "nonCompliantExamples": []
   },
   {
     "id": "STE-8.4",
-    "name": "Punctuation clarity",
+    "name": "Use a colon before a vertical list",
     "topic": 8,
-    "topicName": "Punctuation",
-    "description": "This rule is part of the ASD-STE100 standard (Punctuation). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Punctuation and word count",
+    "description": "Use a colon (:) at the end of the introductory sentence or phrase that precedes a vertical list. The introductory text must be a complete thought. Do not use a colon if the list continues the sentence grammatically without a break.",
+    "specText": "Use a colon before a vertical list.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "To extinguish a possible fire, portable fire extinguishers are installed in these areas: - The cockpit - The cabin - The cabin sub-compartment - The crew rest compartment."
       }
     ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
+    "nonCompliantExamples": []
   },
   {
     "id": "STE-8.5",
-    "name": "Optional (s) plural notation",
+    "name": "Count parenthetical text as one word",
     "topic": 8,
-    "topicName": "Punctuation",
-    "description": "Avoid optional-plural **word(s)** notation; ADAM flags **\\w+(s)** patterns in text.",
-    "specText": "Do not use (s) optional plural notation for technical terms (see Issue 9 / project style).",
-    "specCitation": "ADAM heuristic (STEMG clarity practice)",
+    "topicName": "Punctuation and word count",
+    "description": "When you count words in a sentence, count all text in parentheses as one word, regardless of how many words it contains. This rule applies to word-count checks for rules 5.1 and 6.3.",
+    "specText": "Count any text in parentheses as one word when you count words.",
     "compliantExamples": [
       {
-        "text": "Remove the valve or the valves."
+        "text": "Make sure that the EMER pushbutton switch is released (the EMER legend is off). [This sentence has 10 words, because the text in parentheses counts as one word.]"
+      },
+      {
+        "text": "Remove the safety pin (10). [5 words; the identifier in parentheses counts as one word.]"
       }
     ],
-    "nonCompliantExamples": [
-      {
-        "text": "Remove the valve(s).",
-        "reason": "Optional (s) plural (heuristic STE-8.5)."
-      }
-    ]
+    "nonCompliantExamples": []
   },
   {
     "id": "STE-8.6",
-    "name": "Quotation marks",
+    "name": "Count numbers, units, abbreviations, and identifiers as one word each",
     "topic": 8,
-    "topicName": "Punctuation",
-    "description": "ADAM flags curly / smart quotation characters (Unicode U+201C–U+2019) for consistent ASCII STE source.",
-    "specText": "Use consistent quotation marks per ASD-STE100 Issue 9 and your style guide.",
+    "topicName": "Punctuation and word count",
+    "description": "When you count words in a sentence, count each number, unit of measurement, abbreviation, alphanumeric identifier, or quoted text as one word, regardless of its length or complexity.",
+    "specText": "Count each number, unit, abbreviation, identifier, and quoted text as one word.",
     "compliantExamples": [
       {
-        "text": "The part number is 'ABC-123'."
+        "text": "Torque the bolt to 4.20 Nm. [4.20 counts as one word, Nm counts as one word.]"
+      },
+      {
+        "text": "Set the switch to ON. ['ON' counts as one word.]"
       }
     ],
-    "nonCompliantExamples": [
-      {
-        "text": "The term \u201capproved\u201d is used here.",
-        "reason": "Typographic quotation marks (heuristic STE-8.6)."
-      }
-    ]
+    "nonCompliantExamples": []
   },
   {
     "id": "STE-8.7",
-    "name": "Hyphens and dashes",
+    "name": "Count hyphenated words as one word",
     "topic": 8,
-    "topicName": "Punctuation",
-    "description": "ADAM flags em dash (—) or spaced double hyphen ( -- ) used as a sentence break; prefer full stop + new sentence or and/or.",
-    "specText": "Hyphenated words count as one word; avoid em dash as a clause break (see Issue 9).",
+    "topicName": "Punctuation and word count",
+    "description": "When you count words in a sentence, count a hyphenated compound as one word. For example, 'air-conditioned' counts as one word, and 'quick-release' counts as one word.",
+    "specText": "Count a hyphenated compound as one word when you count words.",
     "compliantExamples": [
       {
-        "text": "Open the valve. Then close the drain."
+        "text": "Install the quick-release fastener. ['quick-release' counts as one word.]"
+      },
+      {
+        "text": "Check the low-altitude flight parameters. ['low-altitude' counts as one word.]"
       }
     ],
-    "nonCompliantExamples": [
-      {
-        "text": "Open the valve -- then close the drain.",
-        "reason": "Double hyphen / dash as break (heuristic STE-8.7)."
-      }
-    ]
+    "nonCompliantExamples": []
   },
   {
     "id": "STE-9.1",
-    "name": "Cross-references",
+    "name": "Use a different sentence construction when word-for-word replacement fails",
     "topic": 9,
-    "topicName": "References",
-    "description": "Refer to other sections or figures clearly. Use consistent numbering and wording.",
-    "specText": "Use a clear reference when you refer to another part of the document.",
+    "topicName": "Writing practices",
+    "description": "When you replace an unapproved word with an approved alternative, make sure the meaning of the sentence does not change. If word-for-word replacement changes the meaning, use a different sentence construction that preserves the original meaning.",
+    "specText": "Use a different sentence construction if a direct word replacement changes the meaning.",
     "compliantExamples": [
       {
-        "text": "See Section 4 for the tool list."
+        "text": "Connect the pump to the valve. Lubricate the pump before connection."
       },
       {
-        "text": "Refer to Figure 3-2."
+        "text": "Remove the cover and the retaining clip. Discard the retaining clip."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "Refer to the section that describes the tools.",
-        "reason": "Give the exact section number."
+        "text": "Connect the pump to the valve. It must be lubricated first.",
+        "reason": "'It' could refer to the pump or the valve; name the referent explicitly to remove the ambiguity."
+      },
+      {
+        "text": "Remove the cover and the retaining clip. This can be discarded.",
+        "reason": "'This' is ambiguous — it could refer to the cover or the retaining clip; write 'Discard the retaining clip'."
       }
     ]
   },
   {
     "id": "STE-9.2",
-    "name": "Reference format",
+    "name": "Use each approved word correctly",
     "topic": 9,
-    "topicName": "References",
-    "description": "This rule is part of the ASD-STE100 standard (References). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Writing practices",
+    "description": "Use each approved word only with its approved meaning and in a context where the meaning is correct. Do not use an approved word if its approved meaning does not match what you want to say in the sentence.",
+    "specText": "Use each approved word correctly — in the right context and with the right meaning.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "Use (or put on) protective clothing. ('Wear' has the approved meaning 'to become damaged by friction'; use 'put on' for clothing.)"
+      },
+      {
+        "text": "This regulation is applicable to all units. ('Extend' approved meaning is 'to increase in dimension'; do not use it here.)"
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
+        "text": "Wear protective clothing.",
+        "reason": "'Wear' is not approved with the meaning of 'to dress in'; use 'put on' or 'use'."
+      },
+      {
+        "text": "Utilize the correct tool for the procedure.",
+        "reason": "'Utilize' should be replaced with 'use'; it is not an approved STE word."
       }
     ]
   },
   {
     "id": "STE-9.3",
-    "name": "Phrasal verbs",
+    "name": "Do not use phrasal verbs",
     "topic": 9,
-    "topicName": "References",
-    "description": "When you use two words together, do not make phrasal verbs (Issue 9). ADAM uses a small verb+particle denylist (e.g. carry out, find out); extend as needed.",
-    "specText": "When you use two words together, do not make phrasal verbs.",
-    "specCitation": "ASD-STE100 Issue 9, Rule 9.3",
+    "topicName": "Writing practices",
+    "description": "Do not use phrasal verbs (a verb combined with a preposition or adverb that creates a new meaning different from the approved dictionary meaning of each word). Instead, use a single approved verb with the same meaning.",
+    "specText": "Do not use phrasal verbs. Use a single approved verb instead.",
     "compliantExamples": [
       {
-        "text": "OMIT the step."
+        "text": "After you extinguish the fire, close the valve on the fire extinguisher."
+      },
+      {
+        "text": "This compound can release poisonous fumes."
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "You must carry out the test.",
-        "reason": "Phrasal verb carry out (heuristic STE-9.3)."
+        "text": "After you put out the fire, close the valve on the fire extinguisher.",
+        "reason": "'Put out' is a phrasal verb; use 'extinguish'."
+      },
+      {
+        "text": "This compound can give off poisonous fumes.",
+        "reason": "'Give off' is a phrasal verb; use 'release'."
       }
     ]
   },
   {
     "id": "STE-9.4",
-    "name": "Cross-references",
+    "name": "Use consistent terminology and wording",
     "topic": 9,
-    "topicName": "References",
-    "description": "This rule is part of the ASD-STE100 standard (References). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
+    "topicName": "Writing practices",
+    "description": "Use the same words and sentence structures each time you describe the same action, concept, or situation. Do not alternate between different words or sentence structures for the same meaning. Consistency helps the reader understand and remember the information.",
+    "specText": "Use consistent terminology and sentence structure throughout the document.",
     "compliantExamples": [
       {
-        "text": "Follow the approved wording and structure for this rule."
+        "text": "See Figure 1 for the valve assembly diagram."
+      },
+      {
+        "text": "Install the LRU in the rack. Check the LRU for damage. (Term 'LRU' capitalised consistently.)"
       }
     ],
     "nonCompliantExamples": [
       {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
-  },
-  {
-    "id": "STE-10.1",
-    "name": "Consistency",
-    "topic": 10,
-    "topicName": "Writing Practices",
-    "description": "Use the same word for the same thing throughout the document. Do not switch between synonyms (e.g. 'remove' and 'take off').",
-    "specText": "Use the same word for the same thing in the whole document.",
-    "compliantExamples": [
+        "text": "See fig. 1 for the valve assembly diagram.",
+        "reason": "Abbreviated cross-reference; spell out and capitalise: write 'Figure 1'."
+      },
       {
-        "text": "Remove the bolt. Remove the cover. (Same word used.)"
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "Remove the bolt. Take off the cover.",
-        "reason": "Use 'Remove' for both; avoid synonyms."
-      }
-    ]
-  },
-  {
-    "id": "STE-10.2",
-    "name": "Abbreviations",
-    "topic": 10,
-    "topicName": "Writing Practices",
-    "description": "This rule is part of the ASD-STE100 standard (Writing Practices). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
-    "compliantExamples": [
-      {
-        "text": "Follow the approved wording and structure for this rule."
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
-  },
-  {
-    "id": "STE-10.3",
-    "name": "Symbols",
-    "topic": 10,
-    "topicName": "Writing Practices",
-    "description": "This rule is part of the ASD-STE100 standard (Writing Practices). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
-    "compliantExamples": [
-      {
-        "text": "Follow the approved wording and structure for this rule."
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
-  },
-  {
-    "id": "STE-10.4",
-    "name": "Spelling consistency",
-    "topic": 10,
-    "topicName": "Writing Practices",
-    "description": "This rule is part of the ASD-STE100 standard (Writing Practices). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
-    "compliantExamples": [
-      {
-        "text": "Follow the approved wording and structure for this rule."
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
-  },
-  {
-    "id": "STE-10.5",
-    "name": "Terminology",
-    "topic": 10,
-    "topicName": "Writing Practices",
-    "description": "This rule is part of the ASD-STE100 standard (Writing Practices). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
-    "compliantExamples": [
-      {
-        "text": "Follow the approved wording and structure for this rule."
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
-  },
-  {
-    "id": "STE-10.6",
-    "name": "Writing practices",
-    "topic": 10,
-    "topicName": "Writing Practices",
-    "description": "This rule is part of the ASD-STE100 standard (Writing Practices). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
-    "compliantExamples": [
-      {
-        "text": "Follow the approved wording and structure for this rule."
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
-      }
-    ]
-  },
-  {
-    "id": "STE-10.7",
-    "name": "Document consistency",
-    "topic": 10,
-    "topicName": "Writing Practices",
-    "description": "This rule is part of the ASD-STE100 standard (Writing Practices). See ASD-STE100 Issue 9 for the official specification, explanation, and examples.",
-    "specText": "See ASD-STE100 Issue 9.",
-    "compliantExamples": [
-      {
-        "text": "Follow the approved wording and structure for this rule."
-      }
-    ],
-    "nonCompliantExamples": [
-      {
-        "text": "See ASD-STE100 Issue 9 for non-compliant examples.",
-        "reason": "Official examples in the specification."
+        "text": "Install the LRU in the rack. Check the Lru for damage.",
+        "reason": "Inconsistent capitalisation of the same term ('LRU' vs 'Lru'); use one form consistently throughout."
       }
     ]
   }

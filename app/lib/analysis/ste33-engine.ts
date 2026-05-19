@@ -28,8 +28,8 @@
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID   = "STE-3.3";
-const RULE_NAME = "Gerund (verb -ing form used as noun)";
+const RULE_ID   = "STE-3.5";
+const RULE_NAME = "Use the -ing form only as a technical noun or modifier";
 
 const SUGGESTION =
   "Do not use the -ing form of a verb as a noun. " +
@@ -53,6 +53,7 @@ const GERUND_PREPOSITIONS = new Set([
   "of",    // "the process of checking"
   "for",   // "a method for testing"
   "while", // "while operating" (non-STE; STE says "while you operate")
+  "when",  // "when doing X" = gerund phrase; correct form is "when you do X"
   "during", // "during testing" → STE prefers "during the test"
 ]);
 

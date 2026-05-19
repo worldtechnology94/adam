@@ -1,70 +1,71 @@
 /**
- * ADAM — STE-3.5 rule engine (Verb tense consistency)
+ * ADAM — STE-3.2 rule engine (Progressive tense and Past Perfect detection)
  *
- * ASD-STE100 Issue 9: Use the same verb tense throughout a technical text.
- * In descriptive text, always use simple present tense.
- * Do not mix past tense and present tense in the same type of text.
+ * ASD-STE100 Issue 9 Rule 3.2: Use only approved verb forms and tenses.
+ * Approved forms: infinitive, imperative, simple present, simple past,
+ *                 simple future, past participle used as an adjective.
+ * NOT approved:   progressive tenses (be + -ing), past perfect (had + past participle).
  *
- * Strategy (document-level):
- *   1. Process DESCRIPTIVE sentences only (first word token NOT posHeuristic "v",
- *      since instructional sentences use the imperative base form).
- *   2. Within descriptive sentences, identify past-tense verb signals:
- *        a. Word token ends in "-ed" (regular past) and is NOT immediately
- *           preceded by a BE form (which would indicate passive voice —
- *           already handled by STE-3.2).
- *        b. Word token is in the PAST_IRREGULAR set.
- *   3. Separately count tokens that look like present-tense verbs:
- *        posHeuristic === "v" and NOT an -ed / irregular past form.
- *   4. Emit violations for past-tense tokens only when:
- *        present-tense verb count > 2 × past-tense verb count
- *        (i.e. past tense is a minority — the document is predominantly present tense).
- *      This avoids penalising documents intentionally written in past tense.
+ * This engine detects:
  *
- * Severity: major.
+ * Pattern 1 — Present/Past progressive: is/are/was/were/am + -ing verb
+ *   Non-STE: "The technician is adjusting the valve."
+ *   STE:     "The technician adjusts the valve." (or simple past if action is completed)
  *
- * @see ste32-engine.ts — STE-3.2 (passive voice — be + past participle)
- * @see remaining-ste-rules.md — STE-3.5
+ *   Non-STE: "The pump was leaking oil."
+ *   STE:     "The pump leaked oil."
+ *
+ * Pattern 2 — Past perfect: had + past participle
+ *   Non-STE: "The operator had adjusted the linkage before the inspection."
+ *   STE:     "The operator adjusted the linkage before the inspection."
+ *
+ * False-positive avoidance:
+ *   - Common -ing words used as adjectives or nouns in technical documents
+ *     (e.g. "existing", "following", "remaining") are excluded.
+ *   - "had to" is a prohibited auxiliary bigram handled by ste36, not flagged here.
+ *   - Progressive passive "is being adjusted" is caught as "is + being" first,
+ *     since "being" ends in -ing.
+ *
+ * @see ste34-engine.ts — STE-3.2 (present perfect: have/has + past participle)
+ * @see ste36-engine.ts — STE-3.4 (complex verb constructions, prohibited auxiliaries)
  */
 
-import type { TokenizedDocument, Sentence, Token } from "./types";
+import type { TokenizedDocument } from "./types";
 
-const RULE_ID   = "STE-3.5";
-const RULE_NAME = "Inconsistent verb tense";
+const RULE_ID   = "STE-3.2";
+const RULE_NAME = "Use only approved verb forms and tenses";
 
-const BE_FORMS = new Set([
-  "is", "are", "was", "were", "am", "be", "been", "being",
-]);
+const PROGRESSIVE_BE_FORMS = new Set(["is", "are", "was", "were", "am"]);
 
 /**
- * Irregular past-tense forms that are unambiguous in technical writing context.
- * Excludes forms that are commonly present-tense in other meanings (e.g. "read").
+ * -ing words that are almost always adjectives or nouns in technical writing
+ * and therefore do not signal a progressive verb construction.
  */
-const PAST_IRREGULAR = new Set([
-  "was", "were", "had", "went", "came", "took", "gave", "got",
-  "began", "broke", "chose", "drew", "drove", "froze", "grew",
-  "knew", "spoke", "threw", "wore", "wrote", "flew", "fell",
-  "held", "kept", "lost", "sent", "stood", "told", "sold", "found",
+const ING_ADJECTIVE_EXCEPTIONS = new Set([
+  "existing", "following", "remaining", "resulting", "corresponding",
+  "ongoing", "leading", "increasing", "decreasing", "operating",
+  "mounting", "rotating", "moving", "locking", "sealing", "loading",
+  "supporting", "connecting", "covering", "protecting", "cooling",
+  "heating", "bleeding", "draining", "filling", "housing", "opening",
+  "closing", "manufacturing", "processing", "surrounding", "affecting",
+  "indicating", "including", "excluding", "according", "regarding",
+  "during", "concerning", "following", "preceding", "outstanding",
 ]);
 
-function isDescriptive(sentence: Sentence): boolean {
-  const firstWord = sentence.tokens.find((t) => t.isWord);
-  if (!firstWord) return true;
-  return (firstWord.posHeuristic ?? "unknown") !== "v";
-}
+const IRREGULAR_PAST_PARTICIPLES = new Set([
+  "been", "done", "gone", "known", "seen", "taken", "given", "made",
+  "come", "become", "begun", "broken", "brought", "built", "bought",
+  "caught", "chosen", "driven", "fallen", "felt", "found", "forgotten",
+  "grown", "held", "kept", "left", "lost", "met", "paid", "proven",
+  "put", "run", "said", "sent", "shown", "shut", "spoken", "stolen",
+  "stood", "told", "thought", "thrown", "understood", "worn", "written",
+  "blown", "drawn", "eaten", "flown", "frozen", "hidden", "ridden",
+  "risen", "shaken", "sunk", "swum", "sworn", "torn", "woken",
+]);
 
-function isPastTenseEd(
-  token: Token,
-  words: Token[],
-  idx: number,
-): boolean {
-  const norm = token.normalized.toLowerCase();
-  if (!norm.endsWith("ed") || norm.length < 4) return false;
-  // Skip if previous word is a BE form → passive voice (STE-3.2 territory)
-  if (idx > 0) {
-    const prev = words[idx - 1]!.normalized.toLowerCase();
-    if (BE_FORMS.has(prev)) return false;
-  }
-  return true;
+function isPastParticiple(norm: string): boolean {
+  if (norm.length >= 4 && norm.endsWith("ed")) return true;
+  return IRREGULAR_PAST_PARTICIPLES.has(norm);
 }
 
 export interface Ste35Violation {
@@ -87,74 +88,95 @@ export interface Ste35EngineResult {
 }
 
 export function runSte35Check(doc: TokenizedDocument): Ste35EngineResult {
-  // Pass 1: collect past-tense candidates and count present-tense verbs
-  type Candidate = {
-    sentence:   Sentence;
-    token:      Token;
-    tokenIndex: number; // index in 'words' array of the sentence
-  };
-
-  const pastCandidates:   Candidate[] = [];
-  let   presentVerbCount  = 0;
+  const violations: Ste35Violation[] = [];
 
   for (const sentence of doc.sentences) {
-    if (!isDescriptive(sentence)) continue;
-
-    const words     = sentence.tokens.filter((t) => t.isWord);
-
-    for (let i = 0; i < words.length; i++) {
-      const token = words[i]!;
-      const norm  = token.normalized.toLowerCase();
-
-      if (PAST_IRREGULAR.has(norm)) {
-        pastCandidates.push({ sentence, token, tokenIndex: i });
-        continue;
-      }
-
-      if (isPastTenseEd(token, words, i)) {
-        pastCandidates.push({ sentence, token, tokenIndex: i });
-        continue;
-      }
-
-      // Count present-tense verbs (posHeuristic "v", not past-tense)
-      if (token.posHeuristic === "v") {
-        presentVerbCount++;
-      }
-    }
-  }
-
-  // Pass 2: emit violations only when past is a minority (document is predominantly present)
-  const pastCount = pastCandidates.length;
-  if (pastCount === 0) return { violations: [] };
-  if (presentVerbCount <= 2 * pastCount) return { violations: [] }; // document is not predominantly present
-
-  const violations: Ste35Violation[] = pastCandidates.map(({ sentence, token }) => {
     const docStart  = sentence.offsetInDocument.start;
     const words     = sentence.tokens.filter((t) => t.isWord);
     const wordCount = words.length;
-    const norm      = token.normalized.toLowerCase();
-    const isPastIrr = PAST_IRREGULAR.has(norm);
 
-    return {
-      sentenceIndex:   sentence.index,
-      sentenceExcerpt: sentence.text,
-      tokenRaw:        token.raw,
-      tokenNormalized: norm,
-      positionStart:   docStart + token.offsetInSentence.start,
-      positionEnd:     docStart + token.offsetInSentence.end,
-      ruleId:          RULE_ID,
-      ruleName:        RULE_NAME,
-      severity:        "major",
-      reason:          "inconsistent_verb_tense",
-      suggestion:
-        isPastIrr
-          ? `'${token.raw}' is past tense. Use simple present tense consistently ` +
-            "in descriptive text (e.g. 'is', 'operates', 'provides')."
-          : `'${token.raw}' appears to be past tense (-ed form). Use simple present tense ` +
-            "consistently in descriptive text.",
-      wordCount,
-    };
-  });
+    if (wordCount < 2) continue;
+
+    for (let i = 0; i < words.length - 1; i++) {
+      const w    = words[i]!;
+      const norm = w.normalized.toLowerCase();
+
+      // ── Pattern 1: Progressive tense (be-form + -ing word) ──────────────
+      if (PROGRESSIVE_BE_FORMS.has(norm)) {
+        const next     = words[i + 1]!;
+        const nextNorm = next.normalized.toLowerCase();
+
+        if (
+          nextNorm.endsWith("ing") &&
+          nextNorm.length >= 5 &&
+          !ING_ADJECTIVE_EXCEPTIONS.has(nextNorm)
+        ) {
+          const isPassiveProgressive = nextNorm === "being" && i + 2 < words.length;
+          let spanRaw  = `${w.raw} ${next.raw}`;
+          let spanNorm = `${norm} ${nextNorm}`;
+          let endPos   = docStart + next.offsetInSentence.end;
+
+          // "is being + past participle" = progressive passive
+          if (isPassiveProgressive) {
+            const next2Norm = words[i + 2]!.normalized.toLowerCase();
+            if (isPastParticiple(next2Norm)) {
+              spanRaw  = `${w.raw} ${next.raw} ${words[i + 2]!.raw}`;
+              spanNorm = `${norm} being ${next2Norm}`;
+              endPos   = docStart + words[i + 2]!.offsetInSentence.end;
+            }
+          }
+
+          violations.push({
+            sentenceIndex:   sentence.index,
+            sentenceExcerpt: sentence.text,
+            tokenRaw:        spanRaw,
+            tokenNormalized: spanNorm,
+            positionStart:   docStart + w.offsetInSentence.start,
+            positionEnd:     endPos,
+            ruleId:          RULE_ID,
+            ruleName:        RULE_NAME,
+            severity:        "major",
+            reason:          "progressive_tense",
+            suggestion:
+              `'${spanRaw}' is progressive tense, which is not approved by ASD-STE100 Rule 3.2. ` +
+              `Use simple present or simple past tense instead ` +
+              `(e.g. replace '${spanRaw}' with the simple form of the verb).`,
+            wordCount,
+          });
+        }
+        continue;
+      }
+
+      // ── Pattern 2: Past perfect (had + past participle) ─────────────────
+      if (norm === "had") {
+        const next     = words[i + 1]!;
+        const nextNorm = next.normalized.toLowerCase();
+
+        // "had to" is handled by ste36 as a prohibited auxiliary bigram
+        if (nextNorm === "to") continue;
+
+        if (isPastParticiple(nextNorm)) {
+          violations.push({
+            sentenceIndex:   sentence.index,
+            sentenceExcerpt: sentence.text,
+            tokenRaw:        `${w.raw} ${next.raw}`,
+            tokenNormalized: `had ${nextNorm}`,
+            positionStart:   docStart + w.offsetInSentence.start,
+            positionEnd:     docStart + next.offsetInSentence.end,
+            ruleId:          RULE_ID,
+            ruleName:        RULE_NAME,
+            severity:        "major",
+            reason:          "past_perfect_tense",
+            suggestion:
+              `'${w.raw} ${next.raw}' is past perfect tense, which is not approved by ASD-STE100 Rule 3.2. ` +
+              `Use simple past tense instead ` +
+              `(e.g. replace '${w.raw} ${next.raw}' with just the simple past form).`,
+            wordCount,
+          });
+        }
+      }
+    }
+  }
 
   return { violations };
 }

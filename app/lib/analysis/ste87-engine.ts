@@ -1,37 +1,56 @@
 /**
- * ADAM — STE-8.7 rule engine (hyphen / dash characters)
+ * ADAM — STE-8.1 rule engine (Em dash and double hyphen as sentence joiners)
  *
- * ASD-STE100 Issue 9 punctuation: hyphenated words count as one word; avoid
- * **em dash** or **double hyphen** as a sentence separator in STE prose.
+ * ASD-STE100 Issue 9 Rule 8.1: Do not use a semicolon. Write short sentences.
+ * Like semicolons, em dashes (—) and double hyphens (--) are used in general
+ * English to join two independent clauses into one sentence. This violates
+ * the STE principle of short, simple sentences — each clause should be its
+ * own sentence.
  *
- * Heuristic: flag ** -- ** (spaced double hyphen) or **—** (Unicode em dash).
+ * ASD-STE100 Rule 8.7 clarifies that hyphenated compounds count as one word
+ * for word-count purposes (e.g. "soap-and-water" = one word). The current
+ * engine does NOT flag standard compound hyphens; it flags only em dashes
+ * and spaced double hyphens used as clause separators.
  *
- * @see data/ste-rules.json — STE-8.7
+ * Violations:
+ *   — (Unicode em dash)          — joins two clauses, obscures sentence boundary
+ *   ` -- ` (spaced double hyphen) — informal em-dash substitute, same problem
+ *
+ * Non-STE: "Remove the panel — then disconnect the wiring harness."
+ * STE:     "Remove the panel. Disconnect the wiring harness."
+ *
+ * Non-STE: "Check the oil level -- it must be above the MIN mark."
+ * STE:     "Check the oil level. The oil level must be above the MIN mark."
+ *
+ * @see ste81-engine.ts — STE-8.1 (semicolons)
  */
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID = "STE-8.7";
-const RULE_NAME = "Hyphens and dashes";
+const RULE_ID   = "STE-8.1";
+const RULE_NAME = "Do not join clauses with em dashes or double hyphens";
 
 const SUGGESTION =
-  "Use a full stop and a new sentence, or 'and' / 'or', instead of an em dash or double hyphen as a break in the sentence.";
+  "Em dashes (—) and double hyphens (--) join independent clauses and make sentences complex " +
+  "(ASD-STE100 Rule 8.1). Replace with a full stop and start a new sentence, " +
+  "or use an approved connector (and, but, then, so).";
 
-const EM_OR_DOUBLE_HYPHEN = /(?:—|\s--\s)/;
+/** Matches spaced em dash or spaced double hyphen used as a clause separator. */
+const EM_OR_DOUBLE_HYPHEN = /(?:—|\s--\s)/g;
 
 export interface Ste87Violation {
-  sentenceIndex: number;
+  sentenceIndex:   number;
   sentenceExcerpt: string;
-  tokenRaw: string;
+  tokenRaw:        string;
   tokenNormalized: string;
-  positionStart: number;
-  positionEnd: number;
-  ruleId: string;
-  ruleName: string;
-  severity: "critical" | "major" | "minor";
-  reason: string;
-  suggestion: string;
-  wordCount: number;
+  positionStart:   number;
+  positionEnd:     number;
+  ruleId:          string;
+  ruleName:        string;
+  severity:        "critical" | "major" | "minor";
+  reason:          string;
+  suggestion:      string;
+  wordCount:       number;
 }
 
 export interface Ste87EngineResult {
@@ -42,30 +61,31 @@ export function runSte87Check(doc: TokenizedDocument): Ste87EngineResult {
   const violations: Ste87Violation[] = [];
 
   for (const sentence of doc.sentences) {
-    const t = sentence.text;
-    if (!EM_OR_DOUBLE_HYPHEN.test(t)) continue;
+    const text      = sentence.text;
+    const wordCount = sentence.tokens.filter((t) => t.isWord).length;
 
-    const m = t.match(EM_OR_DOUBLE_HYPHEN);
-    const relStart = m && m.index != null ? m.index : 0;
-    const relEnd = relStart + (m?.[0].length ?? 1);
+    EM_OR_DOUBLE_HYPHEN.lastIndex = 0;
+    let match: RegExpExecArray | null;
 
-    const start = sentence.offsetInDocument.start + relStart;
-    const end = sentence.offsetInDocument.start + relEnd;
+    while ((match = EM_OR_DOUBLE_HYPHEN.exec(text)) !== null) {
+      const relStart = match.index;
+      const relEnd   = relStart + match[0].length;
 
-    violations.push({
-      sentenceIndex: sentence.index,
-      sentenceExcerpt: sentence.text,
-      tokenRaw: m?.[0] ?? "",
-      tokenNormalized: "",
-      positionStart: start,
-      positionEnd: end,
-      ruleId: RULE_ID,
-      ruleName: RULE_NAME,
-      severity: "minor",
-      reason: "em_dash_or_double_hyphen",
-      suggestion: SUGGESTION,
-      wordCount: sentence.tokens.filter((w) => w.isWord).length,
-    });
+      violations.push({
+        sentenceIndex:   sentence.index,
+        sentenceExcerpt: sentence.text,
+        tokenRaw:        match[0].trim(),
+        tokenNormalized: match[0].trim() === "—" ? "em_dash" : "double_hyphen",
+        positionStart:   sentence.offsetInDocument.start + relStart,
+        positionEnd:     sentence.offsetInDocument.start + relEnd,
+        ruleId:          RULE_ID,
+        ruleName:        RULE_NAME,
+        severity:        "minor",
+        reason:          "em_dash_joins_clauses",
+        suggestion:      SUGGESTION,
+        wordCount,
+      });
+    }
   }
 
   return { violations };

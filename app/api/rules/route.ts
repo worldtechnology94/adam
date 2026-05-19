@@ -39,8 +39,8 @@ export async function GET(request: NextRequest) {
     const where: { topic?: number } = {};
     if (topicParam !== null && topicParam !== "") {
       const topic = parseInt(topicParam, 10);
-      if (Number.isNaN(topic) || topic < 1 || topic > 10) {
-        return NextResponse.json({ error: "topic must be 1–10" }, { status: 400 });
+      if (Number.isNaN(topic) || topic < 1 || topic > 9) {
+        return NextResponse.json({ error: "topic must be 1–9" }, { status: 400 });
       }
       where.topic = topic;
     }

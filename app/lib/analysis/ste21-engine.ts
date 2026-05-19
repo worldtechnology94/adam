@@ -11,7 +11,7 @@
 import type { TokenizedDocument, Token } from "./types";
 
 const RULE_ID = "STE-2.1";
-const RULE_NAME = "Noun cluster length";
+const RULE_NAME = "Multi-word noun — three words maximum";
 const MAX_NOUN_CLUSTER_WORDS = 3;
 
 const NOUN_CLUSTER_POS = new Set(["art", "adj", "n"]);

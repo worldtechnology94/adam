@@ -1,76 +1,108 @@
 /**
- * ADAM — STE-8.3 rule engine (Hyphens — compound numbers)
+ * ADAM — STE-8.3 rule engine (Parentheses usage)
  *
- * Spelled-out numbers 21–99 should be hyphenated (e.g. twenty-one, not twenty one).
- * Detects consecutive tokens "twenty" + "one" through "ninety" + "nine".
+ * ASD-STE100 Issue 9 Rule 8.3: You can use parentheses for:
+ *   (a) References           — (Section 4), (Figure 2-1)
+ *   (b) Identifiers          — (P/N 12345), (serial number: 001)
+ *   (c) Abbreviations        — Electronic Control Unit (ECU), or ECU (Electronic Control Unit)
+ *   (d) Singular/plural      — bolt(s), valve(s)
+ *   (e) Alternatives         — (or), (and/or)
  *
- * @see ruleplan.md — STE-8.3
+ * Violation: Using parentheses to contain a full explanatory clause —
+ * text with a finite verb that should be its own sentence or a note.
+ *
+ *   Non-STE: "Remove the panel (which protects the hydraulic lines)."
+ *   STE:     "Remove the panel. The panel protects the hydraulic lines."
+ *
+ *   Non-STE: "Adjust the valve (the pressure must not exceed 3000 psi)."
+ *   STE:     "Adjust the valve. Make sure that the pressure does not exceed 3000 psi."
+ *
+ * Detection: parenthetical content that contains a finite verb — indicating
+ * a full clause rather than a brief reference, identifier, or abbreviation.
+ * Cross-reference openers (see, refer to, go to) are excluded as they are
+ * valid references.
+ *
+ * @see ste85-engine.ts — STE-8.5 (overlong parenthetical phrase without a verb)
  */
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID = "STE-8.3";
-const RULE_NAME = "Hyphens";
+const RULE_ID   = "STE-8.3";
+const RULE_NAME = "Use parentheses only for approved purposes";
 
-const TENS = new Set(["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]);
-const UNITS = new Set(["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]);
+/**
+ * Finite verbs that, when found inside parentheses, indicate a full clause
+ * (not a brief reference, identifier, or abbreviation).
+ * Excludes cross-reference imperatives: see, refer, go.
+ */
+const CLAUSE_VERB_RE =
+  /\b(is|are|was|were|will|shall|can|may|must|does|did|have|has|had|been|being|exceeds|prevents|causes|indicates|requires|means|shows|results|occurs|increases|decreases|contains|includes|provides|operates|applies|affects|controls|allows|enables|triggers|activates|supplies|measures|indicates|depends)\b/i;
 
-/** Violation shape compatible with analyze route (persistence). */
+/** Cross-reference openers inside parentheses — these are valid. */
+const XREF_OPENER_RE = /^\s*(see|refer\s+to|go\s+to|refer|check)\b/i;
+
+/** Matches content inside any pair of parentheses. */
+const PAREN_CONTENT_RE = /\(([^)]{4,})\)/g;
+
 export interface Ste83Violation {
-  sentenceIndex: number;
+  sentenceIndex:   number;
   sentenceExcerpt: string;
-  tokenRaw: string;
+  tokenRaw:        string;
   tokenNormalized: string;
-  positionStart: number;
-  positionEnd: number;
-  ruleId: string;
-  ruleName: string;
-  severity: "critical" | "major" | "minor";
-  reason: string;
-  suggestion: string;
-  wordCount: number;
+  positionStart:   number;
+  positionEnd:     number;
+  ruleId:          string;
+  ruleName:        string;
+  severity:        "critical" | "major" | "minor";
+  reason:          string;
+  suggestion:      string;
+  wordCount:       number;
 }
 
 export interface Ste83EngineResult {
   violations: Ste83Violation[];
 }
 
-/**
- * Runs STE-8.3 check: hyphenate compound numbers (twenty-one through ninety-nine).
- */
 export function runSte83Check(doc: TokenizedDocument): Ste83EngineResult {
   const violations: Ste83Violation[] = [];
 
   for (const sentence of doc.sentences) {
-    const docStart = sentence.offsetInDocument.start;
-    const sentenceWordCount = sentence.tokens.filter((t) => t.isWord).length;
-    const tokens = sentence.tokens;
+    const text      = sentence.text;
+    const docStart  = sentence.offsetInDocument.start;
+    const wordCount = sentence.tokens.filter((t) => t.isWord).length;
 
-    for (let i = 0; i < tokens.length - 1; i++) {
-      const t0 = tokens[i];
-      const t1 = tokens[i + 1];
-      if (!t0.isWord || !t1.isWord || !t0.normalized || !t1.normalized) continue;
+    PAREN_CONTENT_RE.lastIndex = 0;
+    let m: RegExpExecArray | null;
 
-      const n0 = t0.normalized.toLowerCase();
-      const n1 = t1.normalized.toLowerCase();
-      if (!TENS.has(n0) || !UNITS.has(n1)) continue;
+    while ((m = PAREN_CONTENT_RE.exec(text)) !== null) {
+      const innerText = m[1]!;
 
-      const positionStart = docStart + t0.offsetInSentence.start;
-      const positionEnd = docStart + t1.offsetInSentence.end;
-      const suggested = `${n0}-${n1}`;
+      // Skip cross-reference openers — these are valid parenthetical references
+      if (XREF_OPENER_RE.test(innerText)) continue;
+
+      // Flag only when the inner text contains a finite verb (= is a clause)
+      if (!CLAUSE_VERB_RE.test(innerText)) continue;
+
+      const matchStart = m.index;
+      const matchEnd   = matchStart + m[0].length;
+
       violations.push({
-        sentenceIndex: sentence.index,
+        sentenceIndex:   sentence.index,
         sentenceExcerpt: sentence.text,
-        tokenRaw: t0.raw + " " + t1.raw,
-        tokenNormalized: n0 + " " + n1,
-        positionStart,
-        positionEnd,
-        ruleId: RULE_ID,
-        ruleName: RULE_NAME,
-        severity: "minor",
-        reason: "compound_number_hyphen",
-        suggestion: `Use a hyphen in compound numbers: write "${suggested}" instead of "${n0} ${n1}".`,
-        wordCount: sentenceWordCount,
+        tokenRaw:        m[0],
+        tokenNormalized: m[0].toLowerCase(),
+        positionStart:   docStart + matchStart,
+        positionEnd:     docStart + matchEnd,
+        ruleId:          RULE_ID,
+        ruleName:        RULE_NAME,
+        severity:        "minor",
+        reason:          "parenthetical_clause",
+        suggestion:
+          `The parenthetical '${m[0]}' contains a full clause (ASD-STE100 Rule 8.3). ` +
+          `Parentheses are approved only for brief references, identifiers, abbreviations, ` +
+          `and singular/plural alternatives. Move the clause outside: write it as a separate ` +
+          `sentence or a NOTE.`,
+        wordCount,
       });
     }
   }

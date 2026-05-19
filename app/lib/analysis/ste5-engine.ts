@@ -14,9 +14,9 @@ const MAX_WORDS_INSTRUCTIONAL = 20;
 const MAX_WORDS_DESCRIPTIVE = 25;
 
 const RULE_ID_51 = "STE-5.1";
-const RULE_NAME_51 = "Sentence length (instructional)";
-const RULE_ID_52 = "STE-5.2";
-const RULE_NAME_52 = "Sentence length (descriptive)";
+const RULE_NAME_51 = "Maximum 20 words per instructional sentence";
+const RULE_ID_52 = "STE-6.3";
+const RULE_NAME_52 = "Maximum 25 words per descriptive sentence";
 
 export type SentenceType = "instructional" | "descriptive";
 
@@ -59,7 +59,10 @@ export function runSte5Check(doc: TokenizedDocument): Ste5EngineResult {
   const violations: Ste5Violation[] = [];
 
   for (const sentence of doc.sentences) {
-    const wordCount = sentence.tokens.filter((t) => t.isWord).length;
+    // Count letter-words plus standalone numeric tokens (e.g. "6 mm" → 2 words per STE)
+    const wordCount = sentence.tokens.filter(
+      (t) => t.isWord || (t.normalized !== "" && /^\d+(?:[.,]\d+)?$/.test(t.normalized))
+    ).length;
     const sentenceType = classifySentenceType(sentence);
     const start = sentence.offsetInDocument.start;
     const end = sentence.offsetInDocument.end;

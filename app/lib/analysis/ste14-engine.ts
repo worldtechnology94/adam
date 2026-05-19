@@ -30,8 +30,8 @@
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID   = "STE-1.4";
-const RULE_NAME = "Technical noun inconsistent form";
+const RULE_ID   = "STE-1.11";
+const RULE_NAME = "Do not use different technical nouns for the same item";
 
 /** Matches ALL-CAPS acronyms (2–8 uppercase letters, optional trailing digits). */
 const ACRONYM_RE = /^[A-Z]{2,8}\d*$/;

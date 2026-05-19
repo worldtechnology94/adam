@@ -11,7 +11,7 @@
 import type { TokenizedDocument } from "./types";
 
 const RULE_ID = "STE-7.1";
-const RULE_NAME = "WARNING format";
+const RULE_NAME = "Identify the level of risk with WARNING or CAUTION";
 const SUGGESTION = "Start the sentence with 'WARNING:' in capitals, followed by a space and the warning text.";
 
 /** Compliant: sentence starts with "WARNING:" (optional space after colon). */

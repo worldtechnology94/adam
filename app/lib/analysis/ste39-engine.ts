@@ -13,8 +13,8 @@
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID = "STE-3.9";
-const RULE_NAME = "Complex verb phrase";
+const RULE_ID = "STE-3.7";
+const RULE_NAME = "Use an approved verb to describe an action";
 
 const ARTICLES = new Set(["a", "an", "the"]);
 
@@ -59,10 +59,11 @@ const COMPLEX_PHRASES: [string, string, string][] = [
   ["take", "reading",     "Use 'read' instead of 'take a reading'."],
   ["take", "sample",      "Use 'sample' instead of 'take a sample'."],
   // do + noun
-  ["do", "analysis",   "Use 'analyze' instead of 'do an analysis'."],
-  ["do", "inspection", "Use 'inspect' instead of 'do an inspection'."],
-  ["do", "check",      "Use 'check' instead of 'do a check'."],
-  ["do", "test",       "Use 'test' instead of 'do a test'."],
+  ["do", "analysis",      "Use 'analyze' instead of 'do an analysis'."],
+  ["do", "inspection",    "Use 'inspect' instead of 'do an inspection'."],
+  ["do", "check",         "Use 'check' instead of 'do a check'."],
+  ["do", "test",          "Use 'test' instead of 'do a test'."],
+  ["do", "verification",  "Use 'verify' instead of 'do a verification'."],
 ];
 
 export interface Ste39Violation {

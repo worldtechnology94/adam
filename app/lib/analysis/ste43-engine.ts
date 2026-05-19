@@ -62,7 +62,7 @@ export function runSte43Check(doc: TokenizedDocument): Ste43EngineResult {
 
     if (LOOKS_LIKE_LIST_LINE.test(trimmed)) continue;
 
-    if (classifySentenceRole(sentence) !== "instructional") continue;
+    if (classifySentenceRole(sentence) === "warning_like") continue;
 
     const wordCount = sentence.tokens.filter((t) => t.isWord).length;
     if (wordCount < MIN_WORDS) continue;

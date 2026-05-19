@@ -25,7 +25,7 @@ import type { TokenizedDocument } from "./types";
 import { getParagraphSpans, paragraphIndexForOffset } from "./paragraph";
 
 const RULE_ID   = "STE-6.4";
-const RULE_NAME = "Missing topic sentence";
+const RULE_NAME = "Use paragraphs to show related information";
 
 const CONNECTOR_WORDS = new Set([
   "also", "however", "furthermore", "additionally", "moreover",

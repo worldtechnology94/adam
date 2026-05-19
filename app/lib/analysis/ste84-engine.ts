@@ -9,8 +9,8 @@
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID = "STE-8.4";
-const RULE_NAME = "Apostrophes";
+const RULE_ID = "STE-4.2";
+const RULE_NAME = "Do not use contractions";
 
 /** Common contractions (lowercase) → expanded form for suggestion. */
 const CONTRACTIONS: Record<string, string> = {

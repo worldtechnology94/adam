@@ -17,7 +17,7 @@
 import type { TokenizedDocument } from "./types";
 
 const RULE_ID = "STE-4.2";
-const RULE_NAME = "Do not omit words";
+const RULE_NAME = "Do not omit words or use contractions";
 const SUGGESTION =
   "Write a complete sentence with an explicit subject where required. Do not start a standalone sentence with And, But, or Or (omitted words).";
 

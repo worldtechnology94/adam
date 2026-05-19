@@ -12,8 +12,8 @@
 import type { TokenizedDocument } from "./types";
 import { STE7_SAFETY_LABEL_LINE } from "./ste7-patterns";
 
-const RULE_ID = "STE-7.5";
-const RULE_NAME = "Warnings and cautions";
+const RULE_ID = "STE-7.3";
+const RULE_NAME = "Give an explanation to show the risk or possible result";
 
 const SUGGESTION =
   "State the hazard or required action in the safety line itself; do not use only a figure/section reference without a clear safety instruction or risk wording.";

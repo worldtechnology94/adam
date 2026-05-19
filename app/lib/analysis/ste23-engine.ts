@@ -25,8 +25,8 @@
 
 import type { TokenizedDocument, Token } from "./types";
 
-const RULE_ID   = "STE-2.3";
-const RULE_NAME = "Noun cluster consistency";
+const RULE_ID   = "STE-2.2";
+const RULE_NAME = "Multi-word noun — use a shorter form or hyphens if more than three words";
 
 const NOUN_CLUSTER_POS = new Set(["art", "adj", "n"]);
 const MIN_CLUSTER = 2;

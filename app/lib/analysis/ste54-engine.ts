@@ -15,8 +15,8 @@
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID   = "STE-5.4";
-const RULE_NAME = "Multiple instructions per sentence";
+const RULE_ID   = "STE-5.2";
+const RULE_NAME = "Write only one instruction per sentence";
 
 const CONNECTORS = new Set(["and", "or"]);
 const ARTICLES   = new Set(["a", "an", "the"]);

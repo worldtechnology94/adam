@@ -15,8 +15,8 @@
 import type { Sentence, Token, TokenizedDocument } from "./types";
 import { tokenizeText } from "./tokenize";
 
-const RULE_ID = "STE-4.7";
-const RULE_NAME = "Notes: information only";
+const RULE_ID = "STE-5.5";
+const RULE_NAME = "Write notes only to give information";
 
 const SUGGESTION =
   "Write notes only to give information, not instructions. Move commands to a procedural step or rephrase as descriptive information.";

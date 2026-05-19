@@ -17,8 +17,8 @@
 import type { TokenizedDocument } from "./types";
 import { getParagraphSpans, paragraphIndexForOffset } from "./paragraph";
 
-const RULE_ID   = "STE-6.3";
-const RULE_NAME = "Paragraph length";
+const RULE_ID   = "STE-6.6";
+const RULE_NAME = "No more than six sentences per paragraph";
 const MAX_SENTENCES = 6;
 
 export interface Ste63Violation {

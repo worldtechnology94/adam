@@ -17,8 +17,8 @@
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID   = "STE-10.1";
-const RULE_NAME = "Inconsistent word choice";
+const RULE_ID   = "STE-1.11";
+const RULE_NAME = "Do not use different technical nouns for the same item";
 
 /**
  * Each inner array is a cluster of near-synonyms in technical procedure writing.

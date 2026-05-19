@@ -27,7 +27,7 @@
 import type { TokenizedDocument } from "./types";
 
 const RULE_ID   = "STE-9.4";
-const RULE_NAME = "Cross-reference format";
+const RULE_NAME = "Use a consistent style";
 
 interface RefPattern {
   regex:       RegExp;

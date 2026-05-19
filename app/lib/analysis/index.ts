@@ -149,6 +149,12 @@ export { runSte105Check } from "./ste105-engine";
 export type { Ste105Violation, Ste105EngineResult } from "./ste105-engine";
 export { runSte107Check } from "./ste107-engine";
 export type { Ste107Violation, Ste107EngineResult } from "./ste107-engine";
+export { runSte110Check } from "./ste110-engine";
+export type { Ste110Violation, Ste110EngineResult } from "./ste110-engine";
+export { runSte113Check } from "./ste113-engine";
+export type { Ste113Violation, Ste113EngineResult } from "./ste113-engine";
+export { runSte84ListCheck } from "./ste84list-engine";
+export type { Ste84ListViolation, Ste84ListEngineResult } from "./ste84list-engine";
 export { createPrismaLookup, createBatchedPrismaLookup } from "./dictionary-lookup";
 export type {
   DictionaryLookupResult,

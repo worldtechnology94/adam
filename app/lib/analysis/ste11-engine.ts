@@ -19,9 +19,9 @@ import type { DictionaryLookup, Ste11Violation, Ste11EngineResult } from "./ste1
 const RULE_ID_APPROVED = "STE-1.1";
 const RULE_NAME_APPROVED = "Use only approved words in their approved part of speech";
 const RULE_ID_PROHIBITED = "STE-1.2";
-const RULE_NAME_PROHIBITED = "Prohibited words";
-const RULE_ID_WORD_FORMS = "STE-1.5";
-const RULE_NAME_WORD_FORMS = "Word forms";
+const RULE_NAME_PROHIBITED = "Use approved words only as their specified part of speech";
+const RULE_ID_WORD_FORMS = "STE-1.4";
+const RULE_NAME_WORD_FORMS = "Use only approved forms of verbs and adjectives";
 const RULE_ID_VERB_FORMS = "STE-3.1";
 const RULE_NAME_VERB_FORMS = "Use only dictionary verb forms";
 

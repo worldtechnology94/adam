@@ -25,8 +25,8 @@
 import type { TokenizedDocument } from "./types";
 import { getParagraphSpans, paragraphIndexForOffset } from "./paragraph";
 
-const RULE_ID              = "STE-6.6";
-const RULE_NAME            = "Structure clarity";
+const RULE_ID              = "STE-6.4";
+const RULE_NAME            = "Use paragraphs to show related information";
 const MIN_CONSECUTIVE_SOLO = 3; // flag when this many single-sentence paragraphs appear in a row
 
 export interface Ste66Violation {

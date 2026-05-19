@@ -1,16 +1,33 @@
 /**
- * ADAM — STE-10.2 rule engine (Abbreviations)
+ * ADAM — STE-9.2 rule engine (Latin abbreviations — use each approved word correctly)
  *
- * STE prefers full forms over Latin and other abbreviations.
- * Flags e.g., i.e., etc., and similar; suggests the full form.
+ * ASD-STE100 Issue 9 Rule 9.2: Use each approved word correctly.
  *
- * @see ruleplan.md — STE-10.2
+ * Latin abbreviations (i.e., e.g., etc., cf., vs., viz.) are not approved
+ * words in the STE Controlled Language Dictionary. Using them violates Rule 9.2
+ * because the writer is substituting a non-approved Latin form for the correct
+ * English expression.
+ *
+ * ASD-STE100 also includes this as General Recommendation 6 (GR-6): avoid
+ * Latin abbreviations and use their full English equivalents instead.
+ *
+ *   Non-STE: "Check the oil level, e.g. with a dipstick."
+ *   STE:     "Check the oil level, for example with a dipstick."
+ *
+ *   Non-STE: "Remove the filter, i.e. the one behind the panel."
+ *   STE:     "Remove the filter, that is the one behind the panel."
+ *             (Better: "Remove the filter that is behind the panel.")
+ *
+ *   Non-STE: "Tighten all bolts, etc."
+ *   STE:     "Tighten all bolts." (list them explicitly if needed)
+ *
+ * @see ste92-engine.ts — STE-9.2 (other misused words)
  */
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID = "STE-10.2";
-const RULE_NAME = "Abbreviations";
+const RULE_ID = "STE-9.2";
+const RULE_NAME = "Use each approved word correctly";
 
 /** Latin/common abbreviations (lowercase, with or without period) → full form. */
 const ABBREVIATIONS: Record<string, string> = {
@@ -85,7 +102,7 @@ export function runSte102Check(doc: TokenizedDocument): Ste102EngineResult {
         ruleName: RULE_NAME,
         severity: "minor",
         reason: "abbreviation",
-        suggestion: `Use the full form in STE. Write "${expansion}" instead of "${token.raw}".`,
+        suggestion: `Use the full English form (ASD-STE100 Rule 9.2: use each approved word correctly — Latin abbreviations are not approved STE words). Write "${expansion}" instead of "${token.raw}".`,
         wordCount: sentenceWordCount,
       });
     }

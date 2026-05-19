@@ -14,7 +14,7 @@
 import type { TokenizedDocument } from "./types";
 
 const RULE_ID = "STE-5.3";
-const RULE_NAME = "Instructions in imperative form";
+const RULE_NAME = "Write instructions in the imperative form";
 
 const SUGGESTION =
   "Write the instruction as an imperative (e.g. Open the valve) instead of You must / You should + verb, unless your project style explicitly allows it.";

@@ -1,14 +1,27 @@
 /**
- * ADAM — STE-10.3 through STE-10.7 (Writing practices)
+ * ADAM — Writing practices engine (symbols, spelling, ellipsis)
  *
- * Heuristics without full ASD-STE100 spec:
- * - STE-10.3 (Symbols): & → "and"; % → "percent"
- * - STE-10.4 (Spelling consistency): British → US spelling suggestion (e.g. colour → color)
- * - STE-10.5 (Terminology): placeholder (doc-level consistency; no sentence-level check)
- * - STE-10.6 (Writing practices): ellipsis "..." → suggest rephrase
- * - STE-10.7 (Document consistency): placeholder (doc-level)
+ * Checks three distinct ASD-STE100 Issue 9 rules:
  *
- * @see ruleplan.md — STE-10.3–10.7
+ * STE-4.2 — Do not omit words or use contractions
+ *   Using the symbol '&' omits the word "and"; using '%' omits the word
+ *   "percent". Both are word omissions that violate Rule 4.2.
+ *   Non-STE: "Check the pump & valve."  → STE: "Check the pump and valve."
+ *   Non-STE: "Set pressure to 80%."     → STE: "Set pressure to 80 percent."
+ *
+ * STE-1.14 — Use American English spelling
+ *   British spellings (colour, centre, realise, etc.) must be replaced with
+ *   their US equivalents (color, center, realize, etc.).
+ *
+ * STE-8.1 — Use standard punctuation; do not use semicolons
+ *   The ellipsis (...) is non-standard punctuation in STE. It implies omitted
+ *   text or trailing thought — both of which violate the requirement for
+ *   complete, unambiguous sentences. Rephrase to a complete sentence.
+ *   Non-STE: "Remove the panel..."  → STE: "Remove the panel."
+ *
+ * @see ste42-engine.ts  — STE-4.2 (contractions and word omission)
+ * @see ste81-engine.ts  — STE-8.1 (semicolon prohibition)
+ * @see ste87-engine.ts  — STE-8.1 (em dash prohibition)
  */
 
 import type { TokenizedDocument } from "./types";
@@ -34,11 +47,9 @@ export interface Ste10WritingEngineResult {
 }
 
 const RULES: Record<string, string> = {
-  "STE-10.3": "Symbols",
-  "STE-10.4": "Spelling consistency",
-  "STE-10.5": "Terminology",
-  "STE-10.6": "Writing practices",
-  "STE-10.7": "Document consistency",
+  "STE-4.2":  "Do not omit words or use contractions",
+  "STE-1.14": "Use American English spelling",
+  "STE-8.1":  "Use standard punctuation; do not use semicolons",
 };
 
 /** British → US spelling (lowercase). Suggest US for consistency. */
@@ -87,8 +98,7 @@ function pushViolation(
 }
 
 /**
- * Runs STE-10.3, 10.4, 10.5, 10.6, 10.7 checks.
- * 10.5 and 10.7 are doc-level (no sentence-level violations from this engine).
+ * Runs STE-4.2 (symbols), STE-1.14 (spelling), and STE-8.1 (ellipsis) checks.
  */
 export function runSte10WritingCheck(doc: TokenizedDocument): Ste10WritingEngineResult {
   const violations: Ste10WritingViolation[] = [];
@@ -100,16 +110,17 @@ export function runSte10WritingCheck(doc: TokenizedDocument): Ste10WritingEngine
       const raw = token.raw;
       const norm = (token.normalized ?? raw).toLowerCase();
 
-      // STE-10.3 Symbols: & and %
+      // STE-4.2: symbol '&' omits the word "and"; '%' omits the word "percent"
       if (raw.includes("&")) {
         pushViolation(
           violations,
           sentence,
           docStart,
-          "STE-10.3",
+          "STE-4.2",
           token,
-          "symbol",
-          "Use the word 'and' instead of the symbol '&'."
+          "symbol_omits_word",
+          "Use the word 'and' instead of the symbol '&' " +
+          "(ASD-STE100 Rule 4.2: do not omit words — '&' omits the word 'and')."
         );
       }
       if (raw.includes("%")) {
@@ -117,36 +128,41 @@ export function runSte10WritingCheck(doc: TokenizedDocument): Ste10WritingEngine
           violations,
           sentence,
           docStart,
-          "STE-10.3",
+          "STE-4.2",
           token,
-          "symbol",
-          "Use the word 'percent' instead of the symbol '%' (e.g. '50 percent')."
+          "symbol_omits_word",
+          "Use the word 'percent' instead of the symbol '%' " +
+          "(ASD-STE100 Rule 4.2: do not omit words — '%' omits the word 'percent'). " +
+          "Write '50 percent', not '50%'."
         );
       }
 
-      // STE-10.4 Spelling: British → US
+      // STE-1.14 Spelling: British → US
       if (token.isWord && norm && BRITISH_TO_US[norm]) {
         pushViolation(
           violations,
           sentence,
           docStart,
-          "STE-10.4",
+          "STE-1.14",
           token,
           "spelling",
           `Use consistent spelling. Prefer "${BRITISH_TO_US[norm]}" instead of "${norm}" (US spelling).`
         );
       }
 
-      // STE-10.6 Writing practices: ellipsis
+      // STE-8.1: ellipsis is non-standard punctuation in STE
       if (raw.includes("...")) {
         pushViolation(
           violations,
           sentence,
           docStart,
-          "STE-10.6",
+          "STE-8.1",
           token,
           "ellipsis",
-          "Avoid ellipsis (...) in STE. Rephrase the sentence completely."
+          "Avoid the ellipsis (...) in STE writing " +
+          "(ASD-STE100 Rule 8.1: use only standard punctuation — the ellipsis implies " +
+          "omitted text or an incomplete thought, which STE does not permit). " +
+          "Rephrase as a complete sentence."
         );
       }
     }

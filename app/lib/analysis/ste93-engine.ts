@@ -12,7 +12,7 @@
 import type { TokenizedDocument } from "./types";
 
 const RULE_ID = "STE-9.3";
-const RULE_NAME = "Phrasal verbs";
+const RULE_NAME = "Do not make phrasal verbs";
 
 const SUGGESTION =
   "Avoid phrasal verbs; use a single approved STE verb where possible (e.g. OMIT instead of LEAVE OUT).";

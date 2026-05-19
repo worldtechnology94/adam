@@ -17,8 +17,8 @@
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID   = "STE-10.7";
-const RULE_NAME = "Document consistency";
+const RULE_ID   = "STE-1.11";
+const RULE_NAME = "Do not use different technical nouns for the same item";
 
 /**
  * Each entry: [groupKey, variants[]].

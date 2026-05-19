@@ -16,8 +16,8 @@
 import type { TokenizedDocument } from "./types";
 import { classifySentenceRole } from "./sentence-classifier";
 
-const RULE_ID = "STE-4.6";
-const RULE_NAME = "Descriptive lead-in and command (comma)";
+const RULE_ID = "STE-5.4";
+const RULE_NAME = "Condition then comma, then instruction";
 
 const SUGGESTION =
   "When you start an instruction with a descriptive statement, divide that statement from the command with a comma. Example: When the light is on, open the valve.";
@@ -58,34 +58,47 @@ export function runSte46Check(doc: TokenizedDocument): Ste46EngineResult {
   for (const sentence of doc.sentences) {
     const trimmed = sentence.text.trim();
     if (!trimmed) continue;
-
     if (classifySentenceRole(sentence) === "warning_like") continue;
-
-    if (!SUBORDINATOR_START.test(trimmed)) continue;
-    if (trimmed.includes(",")) continue;
 
     const words = sentence.tokens.filter((t) => t.isWord);
     if (words.length < MIN_WORDS) continue;
 
-    if (!COMMAND_VERB_IN_TEXT.test(trimmed)) continue;
-
     const start = sentence.offsetInDocument.start;
     const end = sentence.offsetInDocument.end;
+    const startsWithSub = SUBORDINATOR_START.test(trimmed);
+    let flagged = false;
 
-    violations.push({
-      sentenceIndex: sentence.index,
-      sentenceExcerpt: sentence.text,
-      tokenRaw: "",
-      tokenNormalized: "",
-      positionStart: start,
-      positionEnd: end,
-      ruleId: RULE_ID,
-      ruleName: RULE_NAME,
-      severity: "minor",
-      reason: "missing_comma_lead_in_command",
-      suggestion: SUGGESTION,
-      wordCount: words.length,
-    });
+    // Path 1: subordinator first + no comma + command verb somewhere in sentence
+    if (startsWithSub && !trimmed.includes(",") && COMMAND_VERB_IN_TEXT.test(trimmed)) {
+      flagged = true;
+    }
+
+    // Path 2: imperative command first + "if"-clause appears later (condition after command)
+    // Requires at least 3 words before "if" to exclude "Check if..." (indirect question).
+    if (!flagged && !startsWithSub) {
+      const firstWordRaw = words[0]?.raw ?? "";
+      const ifIndex = words.findIndex((w) => w.normalized.toLowerCase() === "if");
+      if (COMMAND_VERB_IN_TEXT.test(firstWordRaw) && ifIndex >= 3) {
+        flagged = true;
+      }
+    }
+
+    if (flagged) {
+      violations.push({
+        sentenceIndex: sentence.index,
+        sentenceExcerpt: sentence.text,
+        tokenRaw: "",
+        tokenNormalized: "",
+        positionStart: start,
+        positionEnd: end,
+        ruleId: RULE_ID,
+        ruleName: RULE_NAME,
+        severity: "minor",
+        reason: "condition_after_command",
+        suggestion: SUGGESTION,
+        wordCount: words.length,
+      });
+    }
   }
 
   return { violations };

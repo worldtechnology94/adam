@@ -15,8 +15,8 @@
 
 import type { TokenizedDocument } from "./types";
 
-const RULE_ID = "STE-3.7";
-const RULE_NAME = "Phrasal verb";
+const RULE_ID = "STE-9.3";
+const RULE_NAME = "Do not make phrasal verbs";
 
 /**
  * [verb, particle, suggestion for replacement]
@@ -57,6 +57,9 @@ const PHRASAL_PAIRS: [string, string, string][] = [
   // Wear / depletion
   ["wear",   "out",     "Use 'deteriorate' or 'become unserviceable' instead of 'wear out'."],
   ["run",    "out",     "Use 'deplete' instead of 'run out'."],
+  // Fire / emission
+  ["put",    "out",     "Use 'extinguish' or 'stop' instead of 'put out'."],
+  ["give",   "off",     "Use 'emit' or 'release' instead of 'give off'."],
   // Backing up
   ["back",   "up",      "Use 'copy' or 'save' instead of 'back up'."],
   // Locking
