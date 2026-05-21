@@ -45,9 +45,16 @@ export async function GET(request: NextRequest) {
       where.topic = topic;
     }
 
-    const rules = await prisma.rule.findMany({
-      where,
-      orderBy: [{ topic: "asc" }, { ruleId: "asc" }],
+    const rules = await prisma.rule.findMany({ where });
+
+    rules.sort((a, b) => {
+      const parse = (id: string) => {
+        const m = id.match(/(\d+)\.(\d+)/);
+        return m ? [parseInt(m[1], 10), parseInt(m[2], 10)] : [0, 0];
+      };
+      const [aM, aS] = parse(a.ruleId);
+      const [bM, bS] = parse(b.ruleId);
+      return aM !== bM ? aM - bM : aS - bS;
     });
 
     return NextResponse.json(rules.map(mapRule));
