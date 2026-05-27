@@ -84,12 +84,14 @@ export async function runSte11Check(
       }
 
       if (!entry.approved) {
+        const firstMeaning = entry.meanings?.find((m) => m.alternativeWord);
         const firstAlt = entry.alternatives[0];
-        const suggestion = firstAlt
-          ? firstAlt.pos
-            ? `${firstAlt.word} (${firstAlt.pos})`
-            : firstAlt.word
-          : "Use an approved alternative.";
+        const altWord = firstMeaning?.alternativeWord ?? firstAlt?.word;
+        const altPos  = firstMeaning?.alternativePos ?? firstAlt?.pos;
+        const guidance = firstMeaning?.guidanceNote;
+        const suggestion = altWord
+          ? [altPos ? `${altWord} (${altPos})` : altWord, guidance].filter(Boolean).join(" — ")
+          : "Use an approved STE alternative.";
         violations.push({
           sentenceIndex: sentence.index,
           sentenceExcerpt: sentence.text,

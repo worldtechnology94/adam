@@ -72,7 +72,32 @@ export interface Ste107EngineResult {
   violations: Ste107Violation[];
 }
 
-export function runSte107Check(doc: TokenizedDocument): Ste107EngineResult {
+/**
+ * Build the UNIT_TO_GROUP map, optionally augmented with rows from SteUnit table.
+ * Each DB row adds its symbol as an additional variant for its measureType group.
+ */
+export function buildUnitLookup(
+  dbUnits?: { measureType: string; unitName: string; symbol: string }[]
+): Map<string, string> {
+  const map = new Map<string, string>();
+  for (const [groupKey, variants] of UNIT_GROUPS) {
+    for (const v of variants) map.set(v.toLowerCase(), groupKey);
+  }
+  if (dbUnits) {
+    for (const u of dbUnits) {
+      const group = u.measureType.toLowerCase();
+      map.set(u.symbol.toLowerCase(), group);
+      map.set(u.unitName.toLowerCase(), group);
+    }
+  }
+  return map;
+}
+
+export function runSte107Check(
+  doc: TokenizedDocument,
+  dbUnits?: { measureType: string; unitName: string; symbol: string }[]
+): Ste107EngineResult {
+  const unitToGroup = dbUnits ? buildUnitLookup(dbUnits) : UNIT_TO_GROUP;
   const violations: Ste107Violation[] = [];
 
   /** Maps groupKey → first seen { rawUnit, sentenceIndex } */
@@ -90,7 +115,7 @@ export function runSte107Check(doc: TokenizedDocument): Ste107EngineResult {
     while ((match = UNIT_RE.exec(text)) !== null) {
       const unitRaw  = match[2]!;
       const unitNorm = unitRaw.toLowerCase();
-      const groupKey = UNIT_TO_GROUP.get(unitNorm);
+      const groupKey = unitToGroup.get(unitNorm);
       if (!groupKey) continue;
 
       // Position of the unit token within the sentence text

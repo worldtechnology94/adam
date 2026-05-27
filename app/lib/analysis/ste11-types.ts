@@ -11,6 +11,7 @@ export interface SteMeaningRow {
   approvedAsIs: boolean;
   alternativeWord: string | null;
   alternativePos: string | null;
+  guidanceNote: string | null;
 }
 
 /** Result of a dictionary lookup for one word/form (resolved to headword). */

@@ -26,6 +26,7 @@ function toLookupResult(entry: {
     approvedAsIs: boolean;
     alternativeWord: string | null;
     alternativePos: string | null;
+    guidanceNote: string | null;
   }[];
   examples: { steText: string | null; nonSteText: string | null }[];
 }): DictionaryLookupResult {
@@ -42,6 +43,7 @@ function toLookupResult(entry: {
           approvedAsIs: m.approvedAsIs,
           alternativeWord: m.alternativeWord,
           alternativePos: m.alternativePos,
+          guidanceNote: m.guidanceNote,
         }))
       : undefined;
   const formSet = new Set(entry.forms.map((f) => f.form.toLowerCase()));

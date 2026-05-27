@@ -119,6 +119,10 @@ export async function POST(
 
     log("Tokenizing...");
     const tokenized = tokenizeText(text, { applyPosHeuristic: true });
+
+    const dbUnits = await prisma.steUnit.findMany({
+      select: { measureType: true, unitName: true, symbol: true },
+    });
     log("Running STE checks...");
     const lookup = await createBatchedPrismaLookup(prisma, tokenized);
     log("STE-1.1 (dictionary) running...");
@@ -228,7 +232,7 @@ export async function POST(
     log("STE-9.4 (ste105 engine — consistent style)...");
     const ste105Result = runSte105Check(tokenized);
     log("STE-1.11 (ste107 engine — doc-level TN consistency)...");
-    const ste107Result = runSte107Check(tokenized);
+    const ste107Result = runSte107Check(tokenized, dbUnits);
     log("STE-1.10 (ste110 engine — regional, slang, and jargon as technical nouns)...");
     const ste110Result = runSte110Check(tokenized);
     log("STE-1.13 (ste113 engine — technical verbs used as nouns)...");

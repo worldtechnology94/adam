@@ -45,6 +45,7 @@ model SteMeaning {
   approvedAsIs     Boolean  @default(true) @map("approved_as_is")
   alternativeWord  String? @map("alternative_word")
   alternativePos   String? @map("alternative_pos")
+  guidanceNote     String? @map("guidance_note")
 
   word SteWord @relation(fields: [wordId], references: [id], onDelete: Cascade)
 
@@ -126,6 +127,43 @@ model Violation {
   analysisRun AnalysisRun @relation(fields: [analysisRunId], references: [id], onDelete: Cascade)
 
   @@map("violations")
+}
+
+// ─── Master Data (imported from master_data.db) ──────────────────────────────
+
+model SteVerbForm {
+  id             Int     @id @default(autoincrement())
+  base           String  @map("base")
+  presentS       String? @map("present_s")
+  past           String? @map("past")
+  pastParticiple String? @map("past_participle")
+
+  @@index([base])
+  @@index([past])
+  @@index([pastParticiple])
+  @@map("ste_verb_forms")
+}
+
+model SteAbbreviation {
+  id       Int     @id @default(autoincrement())
+  term     String  @unique @map("term")
+  fullForm String  @map("full_form")
+  category String? @map("category")
+  source   String? @map("source")
+
+  @@map("ste_abbreviations")
+}
+
+model SteUnit {
+  id          Int     @id @default(autoincrement())
+  measureType String  @map("measure_type")
+  unitName    String  @map("unit_name")
+  symbol      String  @map("symbol")
+  system      String? @map("system")
+
+  @@index([symbol])
+  @@index([measureType])
+  @@map("ste_units")
 }
 
 // ─── Rule Library (T4.3) ─────────────────────────────────────────────────────
